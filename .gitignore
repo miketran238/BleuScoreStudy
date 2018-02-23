@@ -1,6 +1,6 @@
-*.aux
-*.log
-*.gz
-*.pdf
-*.bbl
-*.blg
+./Writing/*.aux
+./Writing/*.log
+./Writing/*.gz
+./Writing/*.pdf
+./Writing/*.bbl
+./Writing/*.blg
