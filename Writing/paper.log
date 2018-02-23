@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  21 FEB 2018 21:18
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  21 FEB 2018 15:48
->>>>>>> cf928fb43fa9a3e06fd78067a46707920ffc77e9
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  22 FEB 2018 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -742,18 +738,12 @@ Package hyperref Warning: Option `pdfdisplaydoctitle' has already been used,
 (./body.tex
 
 Package natbib Warning: Citation `Papineni02' on page 1 undefined on input line
-<<<<<<< HEAD
  5.
 
 
-Underfull \vbox (badness 2809) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-=======
- 3.
-
-[1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
->>>>>>> cf928fb43fa9a3e06fd78067a46707920ffc77e9
 
 ]) (./paper.bbl)
 
@@ -767,39 +757,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 48.
  (./paper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 48.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 48.
-<<<<<<< HEAD
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 26C473CA07ED29BC425F134122620BA9;2357.
+(rerunfilecheck)             Checksum: 0681DA60773C60A746EA0236E3659930;2548.
  ) 
 Here is how much of TeX's memory you used:
- 15424 strings out of 494910
- 222673 string characters out of 6179836
- 373485 words of memory out of 5000000
- 18222 multiletter control sequences out of 15000+600000
+ 15428 strings out of 494910
+ 222723 string characters out of 6179836
+ 372486 words of memory out of 5000000
+ 18224 multiletter control sequences out of 15000+600000
  15544 words of font info for 85 fonts, out of 8000000 for 9000
-=======
-
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: 59790E28D53EAE0D2EE64F32697A6791;2374
-(rerunfilecheck)             After:  26C473CA07ED29BC425F134122620BA9;2357.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
-Here is how much of TeX's memory you used:
- 15426 strings out of 494910
- 222685 string characters out of 6179836
- 373483 words of memory out of 5000000
- 18222 multiletter control sequences out of 15000+600000
- 15595 words of font info for 86 fonts, out of 8000000 for 9000
->>>>>>> cf928fb43fa9a3e06fd78067a46707920ffc77e9
  197 hyphenation exceptions out of 8191
- 60i,16n,94p,1013b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,16n,94p,1013b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/mike/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/tex
@@ -814,14 +782,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-<<<<<<< HEAD
-Output written on paper.pdf (2 pages, 198681 bytes).
-=======
-Output written on paper.pdf (2 pages, 198537 bytes).
->>>>>>> cf928fb43fa9a3e06fd78067a46707920ffc77e9
+Output written on paper.pdf (2 pages, 199031 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
- 20121 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 24 named destinations out of 1000 (max. 500000)
+ 20137 words of extra memory for PDF output out of 20736 (max. 10000000)
 
