@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  22 FEB 2018 22:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  23 FEB 2018 01:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -738,10 +738,10 @@ Package hyperref Warning: Option `pdfdisplaydoctitle' has already been used,
 (./body.tex
 
 Package natbib Warning: Citation `Papineni02' on page 1 undefined on input line
- 5.
+ 7.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6445) has occurred while \output is active []
 
  [1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -763,11 +763,11 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 Here is how much of TeX's memory you used:
  15428 strings out of 494910
  222723 string characters out of 6179836
- 372486 words of memory out of 5000000
+ 373486 words of memory out of 5000000
  18224 multiletter control sequences out of 15000+600000
  15544 words of font info for 85 fonts, out of 8000000 for 9000
  197 hyphenation exceptions out of 8191
- 60i,16n,94p,1013b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,16n,94p,1280b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/mike/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/tex
@@ -782,7 +782,7 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on paper.pdf (2 pages, 199031 bytes).
+Output written on paper.pdf (2 pages, 199218 bytes).
 PDF statistics:
  186 PDF objects out of 1000 (max. 8388607)
  146 compressed objects within 2 object streams
