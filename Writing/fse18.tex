@@ -1,0 +1,387 @@
+% This is "sig-alternate.tex" V2.1 April 2013 
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+%
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (lo cation) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+ % ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
+
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[sigconf,review,anonymous]{acmart}
+
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+
+\usepackage{mathptmx}
+\usepackage{microtype}
+
+%\usepackage{nccmath}
+\usepackage{amsmath}
+\usepackage{newtxmath}
+
+\DeclareSymbolFont{largesymbolsCM}{OMX}{cmex}{m}{n}
+\let\txsum\sum
+\let\sum\relax
+\DeclareMathSymbol{\sum}{\mathop}{largesymbolsCM}{"50}
+
+\DeclareSymbolFont{tienlargesymbolsCM}{OMX}{cmex}{m}{n}
+\let\txprod\prod
+\let\prod\relax
+\DeclareMathSymbol{\prod}{\mathop}{tienlargesymbolsCM}{"51}
+
+
+\usepackage{balance}
+
+\usepackage{ulem}
+
+\usepackage[table]{xcolor}
+
+\usepackage{listings}
+\normalem
+%\usepackage{latex8}
+%\usepackage{times}
+\usepackage{epsf}
+\usepackage{ctable}
+%\usepackage{latexsym}
+%\usepackage{tweaklist}
+%\usepackage{rotating}
+%\usepackage{listings}
+%\usepackage{alltt}
+%\usepackage{fvrb-ex}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{multicol}
+%\floatstyle{boxed}
+\restylefloat{figure}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{paralist}
+
+\usepackage{xspace}
+\newcommand{\cf}{\hbox{\emph{cf.}}\xspace}
+\newcommand{\deletia}{\ldots [deletia] \ldots}
+\newcommand{\etal}{\hbox{\emph{et al.}}\xspace}
+\newcommand{\eg}{\hbox{\emph{e.g.,}}\xspace}
+\newcommand{\ie}{\hbox{\emph{i.e.,}}\xspace}
+\newcommand{\st}{\hbox{\emph{s.t.}}\xspace}
+\newcommand{\wrt}{\hbox{\emph{w.r.t.}}\xspace}
+\newcommand{\viz}{\hbox{\emph{viz.}}\xspace}
+
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}\PackageWarning{TODO:}{#1!}}
+
+%\usepackage{amsmath}
+%\usepackage{booktabs}
+
+\usepackage{multirow}
+\usepackage{textcomp}
+
+\usepackage[T1]{fontenc}
+\usepackage{array}
+
+\usepackage{fancyhdr}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+
+\newtheorem{Definition}{Definition}
+\newtheorem{Claim}{Claim}
+\newtheorem{Lemma}{Lemma}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Property}{Property}
+
+\newcommand{\code}[1]{{\small\textsf{#1}}}
+
+%\newcommand{\hoan}[1]{{\color{green!70!black}\textbf{Hoan:}~#1}\xspace}
+%\newcommand{\danny}[1]{{\color{blue!70!white}\textbf{Danny:}~#1}\xspace}
+%\newcommand{\tien}[1]{{\color{violet!70!white}\textbf{Tien:}~#1}\xspace}
+%\newcommand{\michael}[1]{{\color{cyan!70!white}\textbf{Michael:}~#1}\xspace}
+
+
+
+\newcommand{\NumChanges}{\textcolor{black}{322K}\xspace}
+\newcommand{\NumFiles}{\textcolor{black}{1M}\xspace}
+\newcommand{\NumChangeFiles}{\textcolor{black}{291K}\xspace}
+\newcommand{\NumChangesIntelliJ}{\textcolor{black}{XXX}\xspace}
+\newcommand{\NumFilesIntelliJ}{\textcolor{black}{XXX}\xspace}
+\newcommand{\NumDevelopers}{\textcolor{black}{108}\xspace}
+
+\newcommand{\NumDevelopersSecondCorpus}{\textcolor{black}{13K}\xspace}
+\newcommand{\NumberSLOCs}{\textcolor{black}{164M}\xspace}
+\newcommand{\NumberChangeSLOCs}{\textcolor{black}{81M}\xspace}
+\newcommand{\NumbersofChangeGraphNodes}{\textcolor{black}{3M}\xspace}
+
+
+\newcommand{\NumRepos}{\textcolor{black}{88}\xspace}
+\newcommand{\NumPatterns}{\textcolor{black}{17K}\xspace}
+\newcommand{\NumRequests}{\textcolor{black}{451}\xspace}
+\newcommand{\NumResponses}{\textcolor{black}{108}\xspace}
+\newcommand{\RepeatedChangePatterns}{\textcolor{black}{XXX}\xspace}
+
+\newcommand{\NumAllDevelopers}{\textcolor{black}{170,000+}\xspace}
+\newcommand{\NumAllProjects}{\textcolor{black}{5,000+}\xspace}
+
+
+\lstset{
+    language={Java}, emph={},
+    mathescape=false, escapeinside={/*@}{@*/},
+    basicstyle=\small\sffamily,
+    numberstyle=\small\sffamily,
+    emphstyle=\bfseries,
+    numbers=left, stepnumber=1, numbersep=-6pt,
+    frame=single, xleftmargin=4pt, xrightmargin=4pt, framexleftmargin=0pt, framexrightmargin=0pt,  %xleftmargin=11pt
+    columns=flexible, breaklines=true, showspaces=false, showstringspaces=true, showtabs=false, tabsize=2
+}
+
+\definecolor{deletedline}{RGB}{255,224,224}
+\definecolor{addedline}{RGB}{224,255,224}
+\definecolor{modifiedline}{RGB}{231,231,152}
+
+%\lstset{
+%    language={}, emph={},
+%    mathescape=false, escapechar=@,
+%    basicstyle=\scriptsize\sffamily,
+%    numberstyle=\scriptsize\sffamily,
+%    emphstyle=\bfseries,
+%    numbers=left, stepnumber=1, %numbersep=7pt,
+%    frame=single, xleftmargin=4pt, xrightmargin=4pt, framexleftmargin=0pt, framexrightmargin=0pt,  %xleftmargin=11pt
+%    columns=flexible, breaklines=true, showspaces=false, showstringspaces=true, showtabs=false, tabsize=4
+%}
+
+%\def\alignauthor{%
+%\end{tabular}%
+%  \begin{tabular}[t]{p{0.88\auwidth}}\centering}%
+
+%\makeatletter
+%\let\@copyrightspace\relax  % clear copyright block!!!
+%\makeatother
+
+\begin{document}
+
+%\special{papersize=8.5in,11in}
+\setlength{\pdfpageheight}{\paperheight}
+\setlength{\pdfpagewidth}{\paperwidth}
+
+% Copyright
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+% DOI
+%\acmDOI{10.475/123_4}
+
+% ISBN
+%\acmISBN{123-4567-24-567/08/06}
+
+\acmConference[FSE 2018]{International Symposium on Foundations of Software Engineering}{November 2018}{Orlando, USA}
+
+%\acmPrice{\$15.00}
+
+%
+% --- Author Metadata here ---
+%\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+%------- TITLE ----------------------------------
+%\title{Capture Relevancy Between Texts and API Elements via Software
+%  Documentation with Vector Representation}
+
+%Tien
+%\title[]{Capturing Relevance Between English Words and API Elements via Vector Representation
+%and Applications}
+
+\title[]{Does BLUE Score Work for Source Code Migration?}
+%\subtitle {Draft version {\today} \currenttime}
+
+%({\today} \currenttime)
+
+%\numberofauthors{4} %  in this sample file, there are a *total*
+
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+
+%------------------------------------------
+%\author{Hoan Anh Nguyen}
+%\affiliation{Iowa State University, USA}
+%\email{hoan@iastate.edu}
+
+%\author{Tien N. Nguyen}
+%\affiliation{University of Texas at Dallas, USA}
+%\email{tien.n.nguyen@utdallas.edu}
+
+%\author{Danny Dig}
+%\affiliation{Oregon State University, USA}
+%\email{digd@eecs.oregonstate.edu}
+
+%\author{Michael Hilton}
+%\affiliation{Carnegie Mellon University, USA}
+%\email{mhilton@cmu.edu}
+
+%---------------------------------------
+
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+
+
+%\date{30 July 1999}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+
+\input{abstract}
+
+%type references, method calls, and field references.
+
+%\renewcommand{\shortauthors}{}
+
+\setcopyright{none}
+
+\settopmatter{printacmref=false, printfolios=false}
+
+%\if@ACM@manuscript{false}
+
+%\ACM@manuscriptfalse
+
+%\printtopmatter{none}
+
+\maketitle
+
+
+
+%An important class of software engineering problems is centered around relation between the English text descriptions and
+%relevant source code including API elements. A text is relevant to
+%source code when it can be used to describe the functionality,
+%behaviors, purposes, and related aspects of the code. Existing
+%approaches capture the relevance relation between an English word and
+%a code element by automatically tokenizing the name of the code/API
+%element into English words, and a source file is considered as a
+%collection of those words and the words from its comments, and then
+%compared with textual software documents. This solution is not always
+%ideal since in a program, a developer could have API elements' names
+%with different textual values than the words in the text
+%descriptions. In this paper, inspired by the Wor2Vec model for NLP,
+%we develop a specialized neural network model, {\tool} that
+%characterizes the APIs via a low-dimensional continuous vector space
+%that encodes information on many contexts in which the APIs
+%appear. With vector representations, {\tool} captures the relevance
+%relations between English words and API elements.
+%%and those amongwords and APIs.
+%Our empirical evaluation showed that our vector
+%representations reflect human knowledge of the
+%relevance between words and API elements. We also demonstrated the usefulness of
+%our model in two SE applications: searching API example code and mining single API
+%mappings across software libraries.
+
+%API documentation is a very crucial resource for developers in
+%understanding various aspects on the API usages in software
+%libraries. An interesting nature of such documentation is the presence
+%of code elements embedded in natural language texts that explain their
+%purposes, usages and mutual connections with others. Some recent work
+%has explored that nature for different purposes such as discovering
+%code elements in documents and generating summaries for classes and
+%methods with context. However, none of the existing approaches is
+%capable of further capturing semantic relations of code elements
+%(i.e. embedded APIs hereafter) with related words and with other
+%relevant APIs at the same time. In this paper, by considering an
+%embedded API element as a word, we characterize this API via a
+%low-dimensional continuous vector that encodes information on many
+%contexts in which that API appears as possible. Our empirical study
+%shows that the vector representation learned from a large corpus of
+%documentation is capable of capturing semantic relations between API
+%elements and words. That is, APIs with similar functionalities have
+%similar embeddings; and APIs and related words are close to each other
+%in the vector space without explicit word matching. Our experiment
+%also suggests that the proposed representation for embedded API
+%elements has promising potential for API code search.
+
+
+%\input{intro}
+\input{body}
+
+
+% (36.8\% relatively higher). 
+%We also built an Eclipse plugin that automatically adds the import
+%statements of the required libraries for a given code snippet and sets
+%up the Maven links to the repositories for those libraries.
+
+%\section*{Acknowledgments}
+%We would like to thank 
+%Sarah Nadi,
+%Stas Negara,
+%Mihai Codoban,
+%Sruti Srinivasa, % Sruti did not give feedback as she was busy with her own CHI submissions
+%Zhen Yu,
+%Ameya Ketkar,
+%and Samantha Khairunnesa 
+%for providing valuable feedback on earlier drafts of this paper.
+
+% TODO: add here the Grant numbers
+
+\newpage
+
+\balance
+%\bibliographystyle{abbrv}
+%\citestyle{acmauthoryear}
+
+\bibliographystyle{ACM-Reference-Format}
+
+\setcitestyle{numbers,sort&compress}
+
+%\setcitestyle{numbers,sort&compress}
+\bibliography{fse18}
+
+
+
+% That's all folks!
+\end{document}
