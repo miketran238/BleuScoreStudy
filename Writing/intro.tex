@@ -1,2 +1,91 @@
 \section{Introduction}
 \label{sec:intro}
+
+Statistical Machine Translation (SMT)~\cite{smtbook} is a natural
+language processing (NLP) approach~that uses statistical learning to
+derive the translation ``rules'' from a training data (called a {\em
+  corpus}) and applies the trained model to translate a sequence from
+the source language ($L_S$) to the target one ($L_T$). SMT produces
+translated texts based on the statistical models whose parameters are
+trained from a corpus of the corresponding texts in two languages. SMT
+has been very successful in translating natural-language texts.
+Google Translate~\cite{googletranslate} is a SMT-based tool~that can
+accept inputs in 15 natural languages and allows the translation of a
+word or a phrase into one of 53 languages.  Microsoft
+Translator~\cite{mstranslator} also supports instant translation for
+more than 40 languages.
+
+The statistical machine translation community relies on the BLUE
+metric (bilingual evaluation understudy) for the purpose of evaluating
+SMT models and tools.
+%
+%what
+%
+BLUE metric or BLUE sore measures translation quality by the accuracy
+of trxanslating $n$-grams to $n$-grams with various values of $n$
+(phrases to phrases). BLEU was shown to be highly correlated with
+human judgments in natural language MT systems \cite {Papineni02}.
+Despite the criticism on BLUE metric, it has been remaining one of the
+most popular automated and inexpensive metrics to evaluate the quality
+of translation models.
+
+
+
+
+
+Machine Translation (MT) is the use of computer program to translate
+text or speech from one language to another. Bleu score evaluates the
+quality of MT by calculating the modified n-grams precision and also
+taking into account the length difference penalty. Traditionally, MT
+is only applied to natural language, but now it is also used for
+technical and programming language. One notable use of MT for SE tasks
+is Code Migration. Even with that adaptation, SE community still
+relies on Blue to evaluate the quality of MT. It is well known that
+there is a significant difference between natural language and
+programing language: programing language has structure, and
+well-defined syntax. This leads to a question as whether Blue score is
+suitable for SE task (Code Migration) or not. If it is, we could
+continue to use it. Otherwise, we need another metric that is more
+suitable for programing language. Hence, the answer to the question
+above will help researchers and developers build and evaluate MT-based
+Code Migration system better. Some has attempted to answer the
+question by stating informal arguments toward the use of Bleu for SE
+task \cite{}. However, up to date, there has not been any empirical
+evidences to formally address the problem.
+
+Bleu measures the lexical difference between machine generated code and referenced one. On the other hand, to measure the semantic similarity between them is the ultimate goal when evaluating quality of Code Migration system. 
+ 
+
+Bleu was proved to be correlated with human judgments in natural language MT systems \cite {Papineni02}. However, Callison at el argued that we should not over-rely on Bleu score as an improvement in Bleu score is not sufficient nor necessary to show an in improvement in translation quality \cite {Callison06}. To validate the use of Bleu on SE tasks, we set up an experiment to manually judge the result of multiple MT systems and compare its to the Bleu score. Our result showed that Bleu score has weak correlation to human judgments across 
+
+%\vspace{0.03in} {\em 1.}  \textbf{\code{BLEU}}. This is a popular
+%metrics in SMT that measures translation quality by the accuracy of
+%translating $n$-grams to $n$-grams with various values of $n$ (phrases
+%to phrases):
+
+% \[\code{BLEU} = BP.{e^{\frac{1}{n}(\log {P_1} + ... + \log {P_n})}}~\cite{bleu}\]
+%where $BP$ is the {\em brevity penalty value}, which equals to 1 if
+%the total length (i.e. the number of words) of the resulting sentences
+%is longer than that of the {\em reference sentences} (i.e. the correct
+%sentences in the oracle). Otherwise, it equals to the ratio between
+%those two lengths. $P_i$ is the metrics for the overlapping between
+%the bag of $i$-grams (repeating items are allowed) appearing in the
+%resulting sentences and that of $i$-grams appearing in the reference
+%sentences. Specifically, if $S^{i}_{ref}$ and $S^{i}_{trans}$ are the
+%bags of $i$-grams appearing in the reference code and in the
+%translation code respectively, $P_i$ = |$S^{i}_{ref}$ $\cap$
+%$S^{i}_{trans}$|/|$S^{i}_{trans}$|. The value of \code{BLEU} is
+%between 0-1. The higher it is, the higher the translation quality.
+
+%Since $P_i$ represents the accuracy in translating phrases
+%with $i$ consecutive words, the higher the value of $i$ is used, the
+%better \code{BLEU} measures translation quality. For example, assume
+%that a translation \code{Tr} has a high $P_1$ value but a
+%low~$P_2$. That is, \code{Tr} has high word-to-word accuracy but low
+%accuracy in translating 2-grams to 2-grams (e.g. the word order might
+%not be respected in the result). Thus, using both $P_1$ and $P_2$ will
+%measure \code{Tr} better than using only $P_1$. If
+%translation~sen\-tences are shorter, \code{BP} is smaller and
+%\code{BLEU} is smaller. If they are too long and more incorrect words
+%occur, $P_i$ values are smaller, thus, \code{BLEU} is smaller. $P_i$s
+%are computed for $i$=1-4.
