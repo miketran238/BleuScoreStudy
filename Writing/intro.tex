@@ -105,10 +105,43 @@ then computed the correlation between the BLEU scores and semantic
 scores of all the pairs. Our result shows that the BLEU metric has a
 weak correlation to the semantic accuracy of the migrated code.
 However, the result indicates that the BLEU metric is correlated with
-syntactic correctness of the migrated~code.
+syntactic correctness of the migrated~code. Thus, BLEU could be used
+to evaluate the improvement of the models on the syntactic
+accuracy of the resulting migrated code.
 
+%Tien
 %We propose a metric: GVED that measure the similarity between graph
 %representation. The intuition.
+
+In this work, we also introduce, {\model}, a novel metric to evaluate
+the results of the SMT-based code migration tools. {\model} focuses on
+measuring the accuracy of the semantics of the code with respect to
+the reference code in the ground truth. That is, it measures how close
+the resulting code to the ground truth when the semantics of the code
+is considered. {\model} measures semantics via program dependence
+graph (PDG) as data and control dependencies aamong program entities
+are considered as the key elements in a program. We also integrate
+three different scores from lexical, syntactical, and semantic levels
+into a final {\model} score. The lexical and syntactical scores are
+measured via string edit distance and tree edit distance,
+respectively, between the resulting code and the reference one. The
+intention of the lexical and syntactic scores is for the resulting
+code that might {\em not} be lexically or syntactically correct. We
+also conducted experiments to evaluate {\model} as in the previous
+experiments for BLEU. Our result shows that the new metric {\model} is
+highly correlated to the human judgements on the semantic accuracy of
+the resulting migrated code. The contributions of this paper include:
+
+1. An empirical evidence to show that BLEU metric does not reflect
+well the semantic accuracy of the migrated code for SMT-based
+migration tools. However, BLEU could be used to measure
+syntactic correctness of the migrated code.
+
+2. {\model}, a novel metric to evaluate the results of the SMT-based
+code migration tools, that integrates the scores at the lexical,
+syntactical, and semantic levels in source code.
+
+Our dataset is publicly available for evaluation.
 
 
 %In this paper we give a number of counterexamples for Bleu¡¦s
