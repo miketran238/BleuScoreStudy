@@ -3,32 +3,75 @@
 
 Statistical Machine Translation (SMT)~\cite{smtbook} is a natural
 language processing (NLP) approach~that uses statistical learning to
-derive the translation ``rules'' from a training data (called a {\em
-  corpus}) and applies the trained model to translate a sequence from
-the source language ($L_S$) to the target one ($L_T$). SMT produces
-translated texts based on the statistical models whose parameters are
-trained from a corpus of the corresponding texts in two languages. SMT
-has been very successful in translating natural-language texts.
-Google Translate~\cite{googletranslate} is a SMT-based tool~that can
-accept inputs in 15 natural languages and allows the translation of a
-word or a phrase into one of 53 languages.  Microsoft
-Translator~\cite{mstranslator} also supports instant translation for
-more than 40 languages.
+derive the translation ``rules'' from a training data and applies the
+trained model to translate a sequence from the source language ($L_S$)
+to the target one ($L_T$). SMT produces translated texts based on the
+statistical models whose parameters are trained from a corpus of the
+corresponding texts in two languages. SMT has been successful in
+translating natural-language texts.  Google
+Translate~\cite{googletranslate} is a SMT-based tool~that can accept
+inputs in 15 natural languages and allows the translation of texts
+into one of 53 languages. Microsoft Translator~\cite{mstranslator}
+also supports instant translation for more than 40~languages.
 
-The statistical machine translation community relies on the BLUE
-metric (bilingual evaluation understudy) for the purpose of evaluating
-SMT models and tools.
-%
-%what
-%
-BLUE metric or BLUE sore measures translation quality by the accuracy
-of trxanslating $n$-grams to $n$-grams with various values of $n$
-(phrases to phrases). BLEU was shown to be highly correlated with
-human judgments in natural language MT systems~\cite{Papineni2002}.
-Despite the criticism on BLUE metric, it has been remaining one of the
-most popular automated and inexpensive metrics to evaluate the quality
-of translation models.
+The statistical machine translation community relies on the BLEU ({\em
+  BiLingual Evaluation Understudy}) metric for the purpose of
+evaluating SMT models and tools. {\em BLEU metric}, also called {\em
+  BLEU~score}, measures translation quality by the accuracy of
+translating text phrases to another with various phrases'
+lengths. BLEU was shown to be highly correlated with human judgments
+on the translated texts from natural-language SMT
+tools~\cite{Papineni2002}. However, there exists criticism on BLEU
+as Callison-Burch {\em et al.}~\cite{Callison} argued that an
+improvement in BLEU metric is not sufficient nor necessary to show an
+improvement in translation quality. Despite such criticism, BLEU
+score still remains one of the most popular automated and inexpensive
+metrics to evaluate the quality of translation models.
 
+
+%However, Callison at el argued that we should not over-rely on Bleu
+%score as an improvement in Bleu score is not sufficient nor necessary
+%to show an in improvement in translation quality \cite {Callison06}.
+
+In recent years, several researchers in Software Engineering (SE) and
+Programming Languages have been exploring the NLP techniques and
+models to build automated SE tools. SMT has been directly used or
+adapted to be used to translate/migrate source code in different
+programming
+languages~\cite{fse13-nier,icse14-demo,karaivanov14,ase15,icsme16}. The
+SE problem is called {\em language migration}. In the modern world of
+computing, language migration is important. Software vendors often
+develop a software product for multiple operating platforms in
+different languages. For example, the same mobile app could be
+developed for iOS (in Objective-C), Android (in Java), and Windows
+Phone (in C\texttt{\#}).
+%Rather than developing each version of a software product
+%independently, it would be more economical to develop the product in
+%one platform/language and then migrate to another.
+Thus, nowadays, there is an increasing need for migration/translation
+of source code from one programming language to another.
+%
+
+Unlike natural-language texts, source code follows syntactic rules and
+has well-defined semantics with respect to programming languages. A
+natural question is {\em how effective BLEU score is in~evaluating the
+  results of migrated source code in language migration}. The answer
+to this question is important because if it does, we could~establish
+an automated metric to evaluate the quality of SMT-based code
+migration tools, and otherwise, a relevant question should be raised:
+{\em what is an alternative metric?} Unfortulately, there has not yet
+any empirical evidence to either validate or invalidate the
+effectiveness of BLEU score in applying to source code in language
+migration.
+
+
+
+%Nat Lang vs Prog Lang: Difference in structure.
+%Question: Is bleu suitable for source code?  The answer will help
+%build and evaluate MT-based Code Migration (Code to Code) If yes,
+%^continue. If no, we need another metric.  To answer it, until now only
+%informal statements. There hasn¡¦t been any empirical evidences to show
+%its (in)validity.
 
 
 
