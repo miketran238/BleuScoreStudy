@@ -4,3 +4,4 @@
 ./Writing/*.pdf
 ./Writing/*.bbl
 ./Writing/*.blg
+./Writing/*.sty
