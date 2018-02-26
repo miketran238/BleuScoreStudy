@@ -1,13 +1,129 @@
 \section{Background}
+\label{sec:background}
+
 \subsection{Statistical Machine Translation}
-Machine Translation (MT) is the use of computer program to automatically translate text or speech from one language to another \cite{MT93}. SMT is a machine translation paradigm that uses statistical models to translate a sequence from the source language ($L_S$) to the target language ($L_T$). First, the text in the $L_S$ is tokenized into a sequence \textit{s} of words via a module called Tokenizer. The sequence \textit{s} is then fetched into the Decoder module, which handles the translation by finding the most relevant target sequence \textit{t} with respect to \textit{s}. Formally, the Decoder searches for the target sequence \textit{t} that has the maximum probability:
+
+Machine Translation is the use of computer program to automatically
+translate text or speech from one language to another. Statistical
+Machine Translation (SMT) is a machine translation paradigm that uses
+statistical models to learn to derive the translation ``rules'' from a
+training corpus in order to translate a sequence from the source
+language ($L_S$) to the target language ($L_T$). The text in the $L_S$
+is tokenized into a sequence \textit{s} of words. The model searches
+the most relevant target sequence \textit{t} with respect to
+\textit{s}. Formally, the model searches for the target sequence
+\textit{t} that has the maximum probability:
 $$ P\left(t \mid s \right) = \frac{P\left(s \mid t\right) \, P\left(t\right)}{P\left(s\right)} $$
-To do that, it utilizes the two models: 1) the language model and 2) the translation model. The language model learns from monolingual corpus of $L_T$ to derive the posibility of feasible sequences in it ($P\left(t\right)$: how likely sequence \textit{t} occurs in $L_T$). On the other hand, the translation model computes the likelihood $P\left(s \mid t\right)$ of mapping between $s$ and $t$. The mapping is calculated by analysising the bilingual dual corpus to learn the alignment between the words/sequences of two languages.
 
-\subsection{Source Code Migration}
-Traditionally, SMT is used widely for translating natural languages \cite{smtbook}, but now it has been adapted to use on programing languages. One of its notable application is for the task Code Migration. In the modern software development, software companies often need to develop a software for multiple platforms which require different programing languages. For example, a same mobile application be written in Objective-C for Ios, in C\# for Windows, and in Java for Android. Thus, there is an increasing demand of migrating source code from one programing language to another \cite{Wu2010}. Recently, the use of SMT for Code Migration has achieved great success: \cite{mppSMT}, \cite{phrasalSMT}. In the scope of this paper, we only consider the SMT-based Code Migration system that translates between Java and C\# due to the popularity of these 2 languages. 
+To do that, it utilizes the two models: 1) the language model and 2)
+the translation model. The language model learns from monolingual
+corpus of $L_T$ to derive the posibility of feasible sequences in it
+($P\left(t\right)$: how likely sequence \textit{t} occurs in
+$L_T$). On the other hand, the translation model computes the
+likelihood $P\left(s \mid t\right)$ of mapping between $s$ and
+$t$. The mapping is calculated by analysising the bilingual dual
+corpus to learn the alignment between the words/sequences of two
+languages.
+
+\subsection{SMT-based Code Migration}
+
+Traditionally, SMT is used widely for translating natural
+languages~\cite{smtbook}. With the success of SMT, several researchers
+have adapted it to use on programing languages to migrate source code
+from one language to another (called {\em code migration} or {\em
+  language migration}). lpSMT~\cite{fse13-nier} is a model that
+directly applies Phrasal, a phrase-based SMT tool, to migrate Java
+code to C\texttt{\#}. Source code is treated as a sequence of code
+tokens and a Java code fragment is migrated into a fragment in
+C\texttt{\#}. Despite that the migrated code is textually similar to
+the manually migrated code, the percentage of migrated methods that
+are semantically incorrect is high (65.5\%). 
+%
+Karaivanov et al.~\cite{karaivanov14} also follow phrase-based SMT to
+migrate C\texttt{\#} to Java. They use prefix grammar to consider only
+the phrases that are potentially the beginning of some syntactic
+units.
+
+Nguyen {\em et al.}~\cite{ase15} developed mppSMT by using a
+divide-andconquer approach with syntax-directed translation. mppSMT
+constructs from the code the sequence of annotations for code token
+types and data types. mppSMT then uses phrase-based SMT three times on
+three sequences built from source code: lexemes, syntactic and type
+annotations. It integrates the resulting translated code at the
+lexical level for all syntactic units into a larger code. The type
+annotations help with the translation of data and API types.
+The divide-and-conquer spirit is similar to that of Sudoh {\em et
+  al.}~\cite{sudoh15} in clause translation for texts.
+%
+codeSMT~\cite{icsme16} uses of well-defined semantics in programming
+languages to build a context to guide the translation process in
+SMT. It integrates five types of features forming the contexts
+involving the semantic relations among code tokens including
+occurrence association among code tokens, data and control
+dependencies among program entities, visibility constraints of
+entities, and the consistency in declarations and accesses of
+variables, fields and methods.
 
 
-\subsection{Bleu}
-The goal in developing Bleu is to find an automatic metric to replace human efforts in evaluating machine translation quality. Manual evaluation is time consuming, expensive and not possible for frequent incremental developing tasks of MT system \cite{Papineni2002}. while an automatic metric can be used handly in many frequent tasks of incremental developing MT system. 
-Bleu (\underline{b}i\underline{l}ingual \underline{e}valuation \underline{u}nderstudy) uses the modified form of n-grams precision and length difference penalty to evaluate the quality of text generated by MT compared to referenced one.
+%One of its notable application is for the task Code Migration. In the
+%modern software development, software companies often need to develop
+%a software for multiple platforms which require different programing
+%languages. For example, a same mobile application be written in
+%Objective-C for Ios, in C\# for Windows, and in Java for
+%Android. Thus, there is an increasing demand of migrating source code
+%from one programing language to another \cite{Wu2010}. Recently, the
+%use of SMT for Code Migration has achieved great success:
+%\cite{mppSMT}, \cite{phrasalSMT}. In the scope of this paper, we only
+%consider the SMT-based Code Migration system that translates between
+%Java and C\# due to the popularity of these 2 languages.
+
+
+%\subsection{Bleu}
+
+%The goal in developing Bleu is to find an automatic metric to replace human efforts in evaluating machine translation quality. Manual evaluation is time consuming, expensive and not possible for frequent incremental developing tasks of MT system \cite{Papineni2002}. while an automatic metric can be used handly in many frequent tasks of incremental developing MT system. 
+%Bleu (\underline{b}i\underline{l}ingual \underline{e}valuation \underline{u}nderstudy) uses the modified form of n-grams precision and length difference penalty to evaluate the quality of text generated by MT compared to referenced one.
+
+
+\subsection{BLEU metric}
+
+The key goal of BLEU is to find an automatic metric to replace human
+efforts in evaluating machine translation quality. Manual evaluation
+is time consuming, expensive and not possible for frequent incremental
+developing tasks of a SMT system \cite{Papineni2002}, while an
+automatic metric can be used handly. BLEU
+(\underline{B}i\underline{L}ingual \underline{E}valuation
+\underline{U}nderstudy)~\cite{Papineni2002} uses the modified form of $n$-grams precision
+and length difference penalty to evaluate the quality of text
+generated by SMT compared to referenced one.
+
+BLEU measures
+translation quality by the accuracy of translating $n$-grams to
+$n$-grams with various values of $n$ (phrases to phrases):
+
+\[BLEU = BP.{e^{\frac{1}{n}(\log {P_1} + ... + \log {P_n})}}\]
+
+where $BP$ is the {\em brevity penalty value}, which equals to 1 if
+the total length (i.e. the number of words) of the resulting sentences
+is longer than that of the {\em reference sentences} (i.e. the correct
+sentences in the oracle). Otherwise, it equals to the ratio between
+those two lengths. $P_i$ is the metrics for the overlapping between
+the bag of $i$-grams (repeating items are allowed) appearing in the
+resulting sentences and that of $i$-grams appearing in the reference
+sentences. Specifically, if $S^{i}_{ref}$ and $S^{i}_{trans}$ are the
+bags of $i$-grams appearing in the reference code and in the
+translation code respectively, $P_i$ = |$S^{i}_{ref}$ $\cap$
+$S^{i}_{trans}$|/|$S^{i}_{trans}$|. The value of \code{BLEU} is
+between 0-1. The higher it is, the higher the translation quality.
+
+Since $P_i$ represents the accuracy in translating phrases
+with $i$ consecutive words, the higher the value of $i$ is used, the
+better \code{BLEU} measures translation quality. For example, assume
+that a translation \code{Tr} has a high $P_1$ value but a
+low~$P_2$. That is, \code{Tr} has high word-to-word accuracy but low
+accuracy in translating 2-grams to 2-grams (e.g. the word order might
+not be respected in the result). Thus, using both $P_1$ and $P_2$ will
+measure \code{Tr} better than using only $P_1$. If
+translation~sen\-tences are shorter, \code{BP} is smaller and
+\code{BLEU} is smaller. If they are too long and more incorrect words
+occur, $P_i$ values are smaller, thus, \code{BLEU} is smaller. $P_i$s
+are computed for $i$=1-4.
