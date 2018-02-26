@@ -1,16 +1,64 @@
 \section{Hypothesis and Research Question}
-BLEU was proved to be correlated with human judgments in natural language MT systems \cite {Papineni02}, but no one has confirmed its validity for programming languages. There are two reasons to be concern about the use of BLEU on SMT-based Code Migration system. First, programming language is much difference from natural language: Programming language is written for machines. So it has well-defined semantic and is unambiguous. Programming allows some variations, but the meaning is rigorous. On the other hand, natural languages is ambiguous, and has more relaxed semantics. Moreover, the naturalness of programming language is to give instructions to computer. Hence, it has strict structure and syntactic while natural language is more loosy in that aspect to enable creativity, poetry and metarphors. Second, there is a gap between the purpose of Bleu and the task of evaluating translated source code. BLEU measures the lexical precision of machine generated source code. However, when evaluating translated source code, it is more important to consider the functionality of the generated code. The closer in term of functionality between the translated source code (T) and the reference source code(R), the better quality of translation is. Statically speaking, functionality of sources code is represented semantically by program dependence
-graph (PDG) as data and control dependencies among program entities. As a result, BLEU would fail to capture the semantic similarity between resulting code and reference code.
 
-Because of the two intuitive reasons above, we came up with our hypothesis: 
-\textbf{ BLEU score does not measure well the similarity in term of semantics between the reference and migrated source code }
-In this work, we aim to answer these questions:
+BLEU has been widely used in evaluating the translation quality of SMT
+models in NLP. It has been empirically validated to be correlated with
+human judgements for the translation quality in natural-language
+texts~\cite{Papineni2002}.
+%
+%was proved to be correlated with human judgments in natural
+%language MT systews~\cite{Papineni02}, but no one has confirmed its
+%validity for programming languages. 
+%
+However, the use of BLEU metric in evaluating the migrated code from
+SMT-based code migration would raise two key issues. First,
+programming languages aim to be used with automated tools, thus, have
+well-defined syntaxes and semantics. Source code has strict syntactic
+structure while natural-language texts are less strict in that aspect
+to enable creativity, poetry and metarphors.
+%
+%there are two reasons to be concern about the use of BLEU on SMT-based
+%Code Migration system. First, programming language is much difference
+%from natural language: Programming language is written for
+%machines. So it has well-defined semantic and is
+%unambiguous. Programming allows some variations, but the meaning is
+%rigorous. 
+%On the other hand, natural languages is ambiguous, and has more
+%relaxed semantics. Moreover, the naturalness of programming language
+%is to give instructions to computer. Hence, it has strict structure
+%and syntactic while natural language is more loosy in that aspect to
+%enable creativity, poetry and metarphors. 
+%
+Second, there is a gap between the purpose of BLEU and the task of
+evaluating migrated code. BLEU measures the lexical precision of
+translating results. However, when evaluating translated source code,
+it is more important to consider the semantics and functionality of
+the generated code.
+%
+The closer in term of semantics/functionality between the translated
+source code and the reference source code, the better quality of
+translation is.
+%
+%Statically speaking, functionality of sources code is represented
+%semantically by program dependence graph (PDG) as data and control
+%dependencies among program entities. 
+%As a result, BLEU would fail to capture the semantic similarity
+%between resulting code and reference code.
 
-\textbf{RQ1: }
-Does bleu score reflect the semantic similarity between resulting code and reference code?
+Due to those two intuitive reasons, we have the following hypothesis:
+{\em BLEU score does not measure well the similarity in term of
+  semantics between the reference and migrated source code}. In this
+work, we aim to answer these following research questions:
 
-\textbf{RQ2: } 
-Is Bleu correlated to Lexical (measured by String Edit Distance) representation of code ? If no, can Lexical score represent semantic of code?
+\textbf{RQ1:} Does BLEU score reflect the semantic similarity between
+the resulting code and the reference code in the ground truth?
 
-\textbf{RQ3: } 
-Is Bleu correlated to Syntaxtical (measured by Tree Edit Distance)  representation of code? If no, can Syntax score represent semantic of code?
+\textbf{RQ2:} Is BLEU correlated to lexical (measured by String Edit
+Distance) representation of code? If no, can Lexical score represent
+semantic of code?
+
+\textbf{RQ3:} Is BlEU correlated to syntaxtical (measured by Tree
+Edit Distance) representation of code? If no, can Syntax score
+represent semantic of code?
+
+{\bf RQ4:} What is the alternative metric to measure semantic accuracy
+of migrated code if BLEU does not reflect well such accuracy?
