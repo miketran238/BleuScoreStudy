@@ -1,2 +1,102 @@
-\subsection{Proof of Hypothesis}
-To prove our hypothesis, we use counterexamples. Specifically, we want to disable and/or 
+\subsection{Counter-Examples and Model Selections}
+
+%To prove our hypothesis, we use counterexamples. Specifically, we want to disable and/or 
+
+We conducted experiments to provide counterexamples to empirically
+validate that hypothesis. We choose the language migration task from
+Java to C\texttt{\#} because they are the most popular and similar
+languages and if BLEU does not work for this migration, it will not
+likely work for other pairs of programming languages.
+%
+We will show that BLEU score is not strongly correlated to human
+judgments on the semantic accuracy of the migrated code. The judgments
+from human subjects are based on the estimation of the efforts that
+need to be put on to correct the resulting migrated code as well as
+how close the result is with respect to the given correct solution in
+the ground truth.
+%
+We also show that under some circumstances an improvement in BLEU is
+not sufficient to reflect an improvement in code migration quality,
+and in other circumstances that it is not necessary to improve BLEU in
+order to achieve an improvement in migration~quality.
+
+{\bf Sufficiency.} We chose the migration models that focus on phrase
+translation, for example, fpSMT~\cite{fse13-nier,karaivanov14} that
+adapts phrase-to-phrase translation models~\cite{phrasal10}. This type
+of models produces migrated code with high lexical accuracy, i.e.,
+high correctness on the sequences of code tokens. However, several
+tokens or sequences of tokens are placed in the incorrect locations.
+This results in an improvement in BLEU but with a lower semantic
+acccuracy in migrated code.
+
+
+\begin{figure}[t]
+\centering
+\begin{lstlisting}[basicstyle=\small\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
+  // Java code: ClientQueryResult.java
+  public ClientQueryResult(Transaction ta, int initialSize) {
+    super(ta, initialSize);
+  }
+
+  // C# code: ClientQueryResult.cs
+  public ClientQueryResult(Transaction ta, int initialSize) : base(ta, initialSize) {}
+
+  // Translated by lpSMT:
+  public ClientQueryResult(Transaction ta, int initialSize) : base(ta {, initialSize) ; }
+\end{lstlisting}
+\caption{Call to Parent Class' Constructor \code{super(...)}~\cite{fse13-nier}}
+\label{fig:issueexample2}
+\end{figure}
+
+%{\bf Breaking a parent class' constructor call.} 
+
+Let us take an example of the resulting migrated code from the tool
+lpSMT~\cite{fse13-nier} ({\em Call to Parent Class' Constructor
+  \code{super(...)}}). Figure~\ref{fig:issueexample2} shows an example
+as the lpSMT model translates a call to the constructor of a parent
+class via \code{super} (lines 2-4). In Java, a call to \code{super} is
+made inside the method's body. In contrast, in C\#, a call to the
+constructor is made via \code{base} and occurs in the method
+signature, \ie prior to the method's body as in
+\code{base(ta,initialSize) {}} (line 7). However, in the translation
+version, this call was broken into two pieces: one in the method
+signature \code{'base(ta'} and one in the method body \code{',
+  initialSize);'} (line 10). Thus, the translation code is
+syntactically incorrect. In this case, lpSMT translated based on the
+lexemes of tokens in the method signature and the body, however, does
+not consider the entire syntactic unit of a constructor call to the
+parent class in \code{super} for translation. For this example, the
+BLEU score with $n$=4 is {\bf XXX}. However, the result is not even
+compiled due to that syntactic error. The effort to find the
+misplacement and to correct this is not trivial.
+
+{\bf Necessity.} We chose the migration models/tools that focus on
+structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
+high semantic accuracy but with a wide range of BLEU~scores.
+
+%--- Tien
+As seen in Table~\ref{tab:result}, {\tool} achieves good translation
+accuracy. {\bf 84.8--97.9\%} and {\bf 70-83\%} of the total numbers of
+translated methods are {\em syntactically} and {\em semantically
+  correct}, respectively. Among all total translated methods, there
+are {\em {\bf 26.3--51.2\%} that are exactly matched to the
+  C\texttt{\#} code written by the developers of the subject projects
+  in the oracle} (Table~\ref{tab:textmatch}).
+%
+%The resulting code has true C\texttt{\#} style, rather than Java-like
+%C\texttt{\#}.
+%
+We examined the migrated results that are syntactically and
+semantically correct but differ from the manual-migrated code in the
+oracle. We found that they involve 1) code with different local
+variables' names from a reference method, but all variables are
+consistently renamed; 2) code with namespaces being added/ deleted
+to/from a type (e.g., \code{new P.A()} vs \code{new A()}); and 3) code
+with `\code{this}' being added/deleted to/from a field or method.
+Regarding EDR, only 3.7--14\% of the total number of tokens in the
+resulting code are incorrect (not shown).
+
+With these insights, we conducted an experiment to empirically verify
+how the correlation between the BLEU scores and the human judgments on
+the semantic accuracy of the migrated code. Let us explain our data
+collection, settings, and metrics for our experiments.
