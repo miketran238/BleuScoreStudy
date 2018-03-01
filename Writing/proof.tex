@@ -72,31 +72,51 @@ misplacement and to correct this is not trivial.
 
 {\bf Necessity.} We chose the migration models/tools that focus on
 structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
-high semantic accuracy but with a wide range of BLEU~scores.
+high semantic accuracy but with a wide range of BLEU~scores. The key
+idea behind this choice is that mppSMT uses syntax-directed
+translation, \ie it translates the code within syntactic structures
+first, and then aggregates the translated code for all structures to
+form the final migrated code. To improve semantic accuracy, mppSMT
+integrates during the translation process the mappings of types and
+API usages between two languages. This strategy has been efficient in
+achieving higher syntactic and semantic accuracy than other existing
+techniques~\cite{ase15}. An important characteristic of mppSMT is that
+there is a considerable percentage of translated code that are
+semantically correct, however, are different from the manual-migrated
+code. Specifically, those correct code involve 1) code with different
+local variables' names from a reference method, but all variables are
+consistently renamed; 2) code with namespaces being added/ deleted
+to/from a type (e.g., \code{new P.A()} vs \code{new A()}); 3) code
+with `\code{this}' being added/deleted to/from a field or method; and
+4) code with different uses of syntactic units and APIs having the
+same meaning, \eg field accesses versus getters or array accesses
+versus method calls. These variations are all correct, however, the
+BLEU scores among the pairs of the reference and translated code are
+quite different.  From those observations, we chose mppSMT for this
+experiment.
+
 
 %--- Tien
-As seen in Table~\ref{tab:result}, {\tool} achieves good translation
-accuracy. {\bf 84.8--97.9\%} and {\bf 70-83\%} of the total numbers of
-translated methods are {\em syntactically} and {\em semantically
-  correct}, respectively. Among all total translated methods, there
-are {\em {\bf 26.3--51.2\%} that are exactly matched to the
-  C\texttt{\#} code written by the developers of the subject projects
-  in the oracle} (Table~\ref{tab:textmatch}).
-%
-%The resulting code has true C\texttt{\#} style, rather than Java-like
-%C\texttt{\#}.
-%
-We examined the migrated results that are syntactically and
-semantically correct but differ from the manual-migrated code in the
-oracle. We found that they involve 1) code with different local
-variables' names from a reference method, but all variables are
-consistently renamed; 2) code with namespaces being added/ deleted
-to/from a type (e.g., \code{new P.A()} vs \code{new A()}); and 3) code
-with `\code{this}' being added/deleted to/from a field or method.
-Regarding EDR, only 3.7--14\% of the total number of tokens in the
-resulting code are incorrect (not shown).
+%As seen in Table~\ref{tab:result}, {\tool} achieves good translation
+%accuracy. {\bf 84.8--97.9\%} and {\bf 70-83\%} of the total numbers of
+%translated methods are {\em syntactically} and {\em semantically
+%  correct}, respectively. Among all total translated methods, there
+%are {\em {\bf 26.3--51.2\%} that are exactly matched to the
+%  C\texttt{\#} code written by the developers of the subject projects
+%  in the oracle} (Table~\ref{tab:textmatch}).
 
-With these insights, we conducted an experiment to empirically verify
-how the correlation between the BLEU scores and the human judgments on
-the semantic accuracy of the migrated code. Let us explain our data
-collection, settings, and metrics for our experiments.
+%We examined the migrated results that are syntactically and
+%semantically correct but differ from the manual-migrated code in the
+%oracle. We found that they involve 1) code with different local
+%variables' names from a reference method, but all variables are
+%consistently renamed; 2) code with namespaces being added/ deleted
+%to/from a type (e.g., \code{new P.A()} vs \code{new A()}); and 3) code
+%with `\code{this}' being added/deleted to/from a field or method.
+%Regarding EDR, only 3.7--14\% of the total number of tokens in the
+%resulting code are incorrect (not shown).
+
+With these insights, we chose those models and conducted experiments
+to empirically verify how the correlation between the BLEU scores and
+the human judgments on the semantic accuracy of the migrated code. Let
+us explain our data collection, settings, and metrics for our
+experiments.
