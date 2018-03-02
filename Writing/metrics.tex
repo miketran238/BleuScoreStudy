@@ -4,29 +4,27 @@
 \hline
 Score & Name & Description \\
 \hline
--2 & Totally Difference & Re-write the whole method \\
--1 &  Difference & The translated method seems to be correct, but the human subject would hesitate to fix and use it. \\
-0 & Average & You see something wrong, but maybe fix and use it. \\
+-2 & Totally Different & Re-write the whole method \\
+\hline
+-1 &  Different & The translated method seems to be incorrect. You are hesitate to fix and use it. \\
+\hline
+0 & Average & You see something wrong, but may fix and use it. \\
+\hline
 1 & Similar & The translated method seems to be correct. You are willing to fix and use it. \\
-2 & Perfectly Similar & The 2 methods are identical. You do not need to change anything and can use it as is. \\
-
+\hline
+2 & Perfectly Similar & The methods are identical. You do not need to change anything and can use it as is. \\
 \hline
 \end{tabular}
 \caption{Manual Semantic Score Criteria}
 \label{table:criteria}
 \end{table}
+\textbf{Semantic Score.}
+Our hypothesis states that \emph{\textit{BLEU score does not measure well the similarity in term of semantics between the reference and migrated source code}}. Therefore, given a pair of methods (reference one and machine translated one), we need a metric that can measure the similarity in term of semantics between them. As we know of, there is no automated metrics to do that task. To determine semantic similarity score, we used a human subject to manually evaluate pairs of methods to see how close they are in term of semantic/functionality. Specifically, scoring is done based on the human effort to fix the translated method to achieve the same functionality as of the reference one. The detailed scoring guidelines are presented in Table\ref{table:criteria}. The human subject is a senior developer who is fluent in both Java and C\#. He was given a pair of methods in C\# (machine generated one and reference one), the original method in Java, and the context project from which the methods come from. Then, he was told to evaluate pairs of methods in C\#, and give score as our guideline above and table \ref{table:criteria}. He could also refer back to the original Java method and project for a better understanding of the context. Below are examples for each score from -2 to 2:
+Score of -2 \\
+Score of -1 \\
+Score of 0 \\
+Score of 1 \\
+Score of 2 \\
+%To determine semantic similarity score between pair of methods, we manually scored each pair from 0 to 6 based on the human effort to fix a translated method to a referenced one. Specifically, we list the criteria to score in Table  with a score of 0 means the pair of methods are totally different, and a score of 6 means they are totally the same. Scoring also follows the following principles: 1. An effort to fix a syntactical error (misplacing a semi-colon, parenthesis...) has less weight than an effort to fix a semantical error (wrong branch, wrong function call...). 2. A fix that requires adding sources code has more weight than one that requires removing/replacing. 3. A fix for user-defined program elements (identifier, simple name, method name) is more 'pricey' than a fix for keyword (this, if, for...). Example (of scores 1,3,5). 
 
-\emph{1.} \textbf{Semantic Score:} To determine semantic similarity score between pair of methods, we manually scored each pair from 0 to 6 based on the human effort to fix a translated method to a referenced one. Specifically, we list the criteria to score in Table \ref{table:criteria} with a score of 0 means the pair of methods are totally different, and a score of 6 means they are totally the same. Scoring also follows the following principles: 1. An effort to fix a syntactical error (misplacing a semi-colon, parenthesis...) has less weight than an effort to fix a semantical error (wrong branch, wrong function call...). 2. A fix that requires adding sources code has more weight than one that requires removing/replacing. 3. A fix for user-defined program elements (identifier, simple name, method name) is more 'pricey' than a fix for keyword (this, if, for...). Example (of scores 1,3,5). 
-
-Since our dataset contains a large number of pairs of methods, it would be impossible to manually evaluate all of them. Hence, we took a sample from our population of total 34,209 pairs. According to \cite{website}, our sample size is 375 with confidence level of $95\%$ and margin of error $5\%$. 
-(... Formula?). After we manually scored 375 pairs of methods, we normalized them on 0-1 range.
-
-\emph{2.} \textbf{String Edit Distance (SED):} This metric measures
-effort that a user must edit in term of the code tokens
-that need to be deleted/added in order to transform the
-resulting code into the correct one. It is computed as:  $SED = \frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$ where $EditDistance\left(s_R, s_T\right)$ is the editing distance between each pair of the reference method $s_R$ and the translated method $s_T$; and the denominator is the total length of the referenced method. The metrics is also normalized in 0-1 range.
-
-\emph{3.} \textbf{Tree Edit Distance (TREED):} This metric measures the difference between the Abstract Syntax Trees (AST) of referenced method and translated method. Specifically, the tree edit distance between two trees is calculated by number of operations (add/delete/replace/move) to make them identical. \cite{algorithm}. 
-It is computed as:  $TREED = \frac{TreeEditDistance\left(AST_R, AST_T\right)}{CountNodes \left(AST_R\right)}$ where $TreeEditDistance\left(AST_R, AST_T\right)$ is the editing distance between two trees of referenced method $AST_R$ and the translated method $AST_T$; and the denominator is the total nodes in the tree of the referenced method.  The metrics is also normalized in 0-1 range.
-
-
+Since our dataset contains a large number of pairs of methods, it would take a lot of efforts to manually evaluate all of them. Hence, we took a sample from our population of total 34,209 pairs. According to \cite{website}, our sample size is 375 with confidence level of $95\%$ and margin of error $5\%$. After we conducted the human experiment with 375 pairs of methods, we normalized the result on 0-1 range with 0 is respected to -2 and 1 is respected to 2. 

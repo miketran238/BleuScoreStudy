@@ -1,1 +1,8 @@
 \section{Evaluation}
+\emph{2.} \textbf{String Edit Distance (SED):} This metric measures
+effort that a user must edit in term of the code tokens
+that need to be deleted/added in order to transform the
+resulting code into the correct one. It is computed as:  $SED = \frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$ where $EditDistance\left(s_R, s_T\right)$ is the editing distance between each pair of the reference method $s_R$ and the translated method $s_T$; and the denominator is the total length of the referenced method. The metrics is also normalized in 0-1 range.
+
+\emph{3.} \textbf{Tree Edit Distance (TREED):} This metric measures the difference between the Abstract Syntax Trees (AST) of referenced method and translated method. Specifically, the tree edit distance between two trees is calculated by number of operations (add/delete/replace/move) to make them identical. \cite{algorithm}. 
+It is computed as:  $TREED = \frac{TreeEditDistance\left(AST_R, AST_T\right)}{CountNodes \left(AST_R\right)}$ where $TreeEditDistance\left(AST_R, AST_T\right)$ is the editing distance between two trees of referenced method $AST_R$ and the translated method $AST_T$; and the denominator is the total nodes in the tree of the referenced method.  The metrics is also normalized in 0-1 range.
