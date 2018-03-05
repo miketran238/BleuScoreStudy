@@ -1,0 +1,20 @@
+\section{Proposal}
+\subsection{\model}
+%For a SMT-based migration system, BLEU has always been like this... doing that....
+
+%From the results in section 5, BLEU did not reflect the semantic accuracy of source code. --> We need a better metrics to replace BLEU
+
+%Needed metric should be 
+%Reflect semantical meaning of sources code.
+%Automated
+%Low computation's cost
+%Independent of programming language
+%Independent of MT model's type
+
+Considering all those requirements above, we introduce {\model}, a novel automated metric that can reflect semantic accuracy of translated code. {\model} is also independent of programming languages and machine translation models used in migration system. {\model} measures the semantic accuracy of the resulting code by comparing the program dependence graph (PDG) between them. PDG captures both the data and control dependencies among program entities. Because of its properties, we expect PDG can represent well the semantic level of source code. To reduce the high computational cost, we vectorize the PDG and calculate the vector difference to estimate the graph difference. This way, we would make sure that our model is practical and applicable in large scaled systems. 
+
+When applying MT on source code, there always exists the problem that the translated code is not compilable. Thus, it is impossible to build PDG on those code. To cope with the problem, our model is designed as best-effort, layered metric  : If the translated code can be built into PDG, we calculate {\model} in term of graph difference. If the translated code cannot be built into PDG but is compilable, we calculate {\model} in term of syntax tree edit distance. If the translated code is not compilable, we calculate {\model} in term of string edit distance. 
+
+if (GVED(s,t) != -1) RUBY(s,t) = GVED(s,t)\\
+else if (TREED(s,t) != -1) RUBY(s,t) = TREED(s,t)\\
+else RUBY(s,t) = SED(s,t)
