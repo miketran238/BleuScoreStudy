@@ -60,8 +60,8 @@ For example, a method using a \code{for} loop and a method using a
 \code{while} loop, they still can perform the same functionality even
 though their lexical representations are much different. There exist
 many studies aiming to measure the functionality similarity of source
-code, which utilize the similarities of structures and/or code
-tokens~\cite{tien}.
+code, which utilize the similarities of structures and
+dependencies~\cite{clone-tse07,roy09,ducasse99,baker97,ccfinder,cpminer,baxter98,deckard,deckard2,horwitz01}.
 %
 However, they are not reliable as their results sometimes contradict
 with human judgments on semantic accuracy~\cite{fse14-higo}. More
@@ -70,7 +70,7 @@ importantly, those structure-based metrics {\em do not reflect human
 %
 Human judgment for our study would be the most reliable metric to
 measure semantic accuracy. A developer who examines a pair of methods
-can tell whether they perform the same functionality as well as
+can tell whether the code perform the same functionality as well as
 explain the efforts needed for the correction. Therefore, we conducted
 a study that used a human subject to manually evaluate the migrated
 code from the SMT-based migration tools.
