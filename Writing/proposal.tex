@@ -12,15 +12,15 @@ However, from the results in section 5, it can be concluded that BLEU did not re
 Such a metric should have the following requirements:\\ \emph{1}. The metric is more suitable for source code than BLEU is. It can reflect the semantic meaning of source code and the semantic accuracy of translation result. To fulfill that, the metric must have high correlation with human evaluation for the translation result. \emph{2}. The metric can be computed automatically and at low cost in order to support migration system in term of incremental development and evaluation. That means the metric can be calculated swiftly after each iteration of development so the system can be evaluated and tuned immediately. \emph{3}. The metric is independent of the programming languages that the Code Migration supports, and of the MT model's type. A good and reliable metric must have consistent results for any languages and models so it can be applied universally to any SMT-based Code Migration systems.  
 
 %What is Ruby and why Ruby is good.
-Considering all those requirements above, we introduce {\model}, a novel automated metric that can reflect semantic accuracy of translated code. {\model} is also independent of programming languages and machine translation models used in migration system. {\model} measures the semantic accuracy of the resulting code with respect to reference code by comparing their Program Dependence Graph (PDG). PDG captures both the data and control dependencies among program entities. Because those dependencies play an important role in a program, we expect PDG can represent well the semantics of source code. Usually, comparing graph is expensive, but our approach makes it affordable. We estimate the graph edit distance by vectorizing the graph and calculating the vectors edit distance. Thus, we can save the computational cost. Basically, every programming language code can be built into PDG. Hence, our metric can be used for any Code Migration systems that migrate different programming languages. Lastly, the way {\model} is measured makes it independent of machine translation models. 
+Considering all those requirements above, we introduce {\model}, a novel automated metric that can reflect semantic accuracy of translated code. {\model} is also independent of programming languages and machine translation models used in migration system. {\model} measures the semantic accuracy of the resulting code with respect to reference code by comparing their Program Dependence Graph (PDG). PDG captures both the data and control dependencies among program entities. Because those dependencies play an important role in a program, we expect PDG can represent well the semantics of source code. Usually, comparing graph is expensive, but our approach makes it affordable. We estimate the graph edit distance by vectorizing the graph and calculating the vectors edit distance. Because of that, we can save the computational cost and make our approach scalable. Basically, every programming language code can be built into PDG. Hence, our metric can be used for Code Migration systems that migrate different programming languages. Lastly, the way {\model} is measured makes it independent of machine translation models. That means Code Migration systems that deployed different SMT models can still use our metric. Next, we go into details how to formalize the calculation of {\model}
 
 %To reduce the high computational cost, we vectorize the PDGs and calculate the vector difference to estimate the graph difference. This way, we would make sure that our model is practical and applicable in large scaled systems. 
 
-When applying MT on source code, there always exists the problem that the translated code is broken in term of syntax. Thus, it is impossible to build PDG or even compile those code. To cope with the problem, our model is designed as best-effort, layered metric  : If the translated code can be built into PDG, we calculate {\model} in term of graph edit distance. If the translated code cannot be built into PDG but is compilable, we calculate {\model} in term of syntax tree edit distance. If the translated code is not compilable, we calculate {\model} in term of string edit distance. Next, we represent about the 3 metrics graph/tree/string edit distances: 
+When applying MT on source code, there always exists the problem that the translated code is broken in term of syntax. Thus, it is impossible to build PDG or even compile those code. To cope with the problem, our model is designed as best-effort, layered metric  : If the translated code can be built into PDG, we calculate {\model} in term of graph edit distance. If the translated code cannot be built into PDG but is compilable, we calculate {\model} in term of syntax tree edit distance. If the translated code is not compilable, we calculate {\model} in term of string edit distance. We then represent about the 3 metrics graph/tree/string edit distances as follows:
 
 \emph{1.} \textbf{Graph Vector Edit Distance (GVED):} We estimate the graph difference by vector difference. First, PDGs were vectorized...
 
-\emph{2.} \textbf{Tree Edit Distance (TED):} This metric measures the difference between the Abstract Syntax Trees (AST) of referenced method and translated method. Specifically, the tree edit distance between two trees is calculated by number of operations (add/delete/replace/move) to make them identical. \cite{algorithm}. 
+\emph{2.} \textbf{Tree Edit Distance (TREED):} This metric measures the difference between the Abstract Syntax Trees (AST) of referenced method and translated method. Specifically, the tree edit distance between two trees is calculated by number of operations (add/delete/replace/move) to make them identical. \cite{algorithm}. 
 It is computed as:  $TREED = \frac{TreeEditDistance\left(AST_R, AST_T\right)}{CountNodes \left(AST_R\right)}$ where $TreeEditDistance\left(AST_R, AST_T\right)$ is the editing distance between two trees of referenced method $AST_R$ and the translated method $AST_T$; and the denominator is the total nodes in the tree of the referenced method.  The metrics is also normalized in 0-1 range.
 
 \emph{3.} \textbf{String Edit Distance (SED):} This metric measures
@@ -44,12 +44,12 @@ After we defined all the 3 metrics above, {\model} can be calculated as follows:
 \begin{algorithm}
 \caption{Calculate {\model}}\label{euclid}
 \begin{algorithmic}[1]
-\If { $\mbox{GVED}\left(s,t\right) $ is applicable }
-\State $\mbox{RUBY}\left(s,t\right) = \mbox{GVED}\left(s,t\right) $
-\ElsIf { $\mbox{TED}\left(s,t\right) $ is applicable }
-\State $\mbox{RUBY}\left(s,t\right) = \mbox{TED}\left(s,t\right) $
+\If { $\mbox{GVED}\left(r,t\right) $ is applicable }
+\State $\mbox{RUBY}\left(r,t\right) = \mbox{GVED}\left(r,t\right) $
+\ElsIf { $\mbox{TREED}\left(r,t\right) $ is applicable }
+\State $\mbox{RUBY}\left(r,t\right) = \mbox{TREED}\left(r,t\right) $
 \Else 
-\State $\mbox{RUBY}\left(s,t\right) = \mbox{SED}\left(s,t\right) $
+\State $\mbox{RUBY}\left(r,t\right) = \mbox{SED}\left(r,t\right) $
 \EndIf
 %\Procedure{MyProcedure}{}
 %\State $\textit{stringlen} \gets \text{length of }\textit{string}$
