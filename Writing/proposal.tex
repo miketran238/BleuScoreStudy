@@ -1,18 +1,48 @@
-\section{Proposal}
-\subsection{\model}
+\section{Proposed Metric}
+%\subsection{\model}
+
 %BLEU has always been doing this and that....
-Researchers usually claim that an improvement in BLEU also meant an improvement in translation quality. So BLEU has been used for not only evaluating the result but also tuning and developing SMT-based migration system. %From the results in section 5, BLEU did not reflect the semantic accuracy of source code. --> We need a better metrics to replace BLEU
-However, from the results in section 5, it can be concluded that BLEU did not reflect the semantic accuracy of source code since it has weak relation with Semantic Score. Therefore, we need a better metric to replace BLEU in order to serve code migration systems better. 
+
+%Researchers usually claim that an improvement in BLEU also meant an
+%improvement in translation quality. So 
+
+BLEU has been used for not only evaluating the result but also tuning
+and developing SMT-based migration system.
+%From the results in section 5, BLEU did not reflect the semantic accuracy of source code. --> We need a better metrics to replace BLEU
+However, from the results in section 5, it can be concluded that BLEU
+did not reflect well the semantic accuracy of migrated source code
+since it has weak relation with human judgments. Therefore, we need a
+better metric in order to fit better with programming languages and
+code migration systems.
+%
 %Needed metric should be 
 %Reflect semantical meaning of sources code.
 %Automated
 %Low computation's cost
 %Independent of programming language
 %Independent of MT model's type
-Such a metric should have the following requirements:\\ \emph{1}. The metric is more suitable for source code than BLEU is. It can reflect the semantic meaning of source code and the semantic accuracy of translation result. To fulfill that, the metric must have high correlation with human evaluation for the translation result. \emph{2}. The metric can be computed automatically and at low cost in order to support migration system in term of incremental development and evaluation. That means the metric can be calculated swiftly after each iteration of development so the system can be evaluated and tuned immediately. \emph{3}. The metric is independent of the programming languages that the Code Migration supports, and of the MT model's type. A good and reliable metric must have consistent results for any languages and models so it can be applied universally to any SMT-based Code Migration systems.  
+Such a metric should have the following requirements:
+
+
+\emph{1}. The metric is more suitable for source code than BLEU. It
+can reflect the semantics of source code and the semantic accuracy of
+translation result. To fulfill that, the metric must have high
+correlation with human evaluation for the translation result.
+
+
+\emph{2}. The metric can be computed automatically and inexpensively in
+order to support the evaluation of migration results in the
+incremental development of SMT-based code migration systems. For
+example, the metric can be calculated quickly after each iteration of
+development so a system can be evaluated and tuned in a timely~manner.
+
+\emph{3}. The metric is independent of the programming languages and
+of the SMT models. A good and reliable metric must have consistent
+results for any languages and models so it can be applied universally
+to any SMT-based code migration systems.
 
 %What is Ruby and why Ruby is good.
-Considering all those requirements above, we introduce {\model}, a novel automated metric that can reflect semantic accuracy of translated code. {\model} is also independent of programming languages and machine translation models used in migration system. {\model} measures the semantic accuracy of the resulting code with respect to reference code by comparing their Program Dependence Graph (PDG). PDG captures both the data and control dependencies among program entities. Because those dependencies play an important role in a program, we expect PDG can represent well the semantics of source code. Usually, comparing graph is expensive, but our approach makes it affordable. We estimate the graph edit distance by vectorizing the graph and calculating the vectors edit distance. Because of that, we can save the computational cost and make our approach scalable. Basically, every programming language code can be built into PDG. Hence, our metric can be used for Code Migration systems that migrate different programming languages. Lastly, the way {\model} is measured makes it independent of machine translation models. That means Code Migration systems that deployed different SMT models can still use our metric. Next, we go into details how to formalize the calculation of {\model}
+Considering all above requirements, we introduce {\model}, a novel automated metric that can reflect semantic accuracy of translated code. {\model} is also independent of programming languages and machine translation models used in migration system. {\model} measures the semantic accuracy of the resulting code with respect to reference code by comparing their Program Dependence Graph (PDG). PDG captures both the data and control dependencies among program entities. Because those dependencies play an important role in a program, we expect PDG can represent well the semantics of source code. Usually, comparing graph is expensive, but our approach makes it affordable. We estimate the graph edit distance by vectorizing the graph and calculating the vectors edit distance. Because of that, we can save the computational cost and make our approach scalable. Basically, every programming language code can be built into PDG. Hence, our metric can be used for Code Migration systems that migrate different programming languages. Lastly, the way {\model} is measured makes it independent of machine translation models. That means Code Migration systems that deployed different SMT models can still use our metric. Next, we go into details how to formalize the calculation of {\model}
 
 %To reduce the high computational cost, we vectorize the PDGs and calculate the vector difference to estimate the graph difference. This way, we would make sure that our model is practical and applicable in large scaled systems. 
 
