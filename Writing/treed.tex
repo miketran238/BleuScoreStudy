@@ -3,7 +3,13 @@ The sematical quality of translated code depends on its syntax. Until now, abstr
 In this study, we apply this in measuring the difference between the syntax of referenced method and translated method. Given a pair of method in C\# which are need to be compared their syntax, Roslyn[cite here] is used to parse them into ASTs. Then we compute the tree edit distance between two trees using the algorithm Treed described in the paper \cite{algorithm}.
 To be more detailed, the tree edit distance is calculated by number of operations (add/delete/replace/move) to make them identical. 
 
-It is computed as:  $TREED = 1 -  \frac{TreeEditDistance\left(AST_R, AST_T\right)}{CountNodes \left(AST_R+AST_T\right)}$ where $TreeEditDistance\left(AST_R, AST_T\right)$ is the editing distance between two trees of referenced method $AST_R$ and the translated method $AST_T$; and the denominator is the total nodes in the tree of both two methods. The value of TREED is from 0 to 1. For any two trees, there will always exist at least one editing (such as the one that deletes all nodes of the first tree and inserts all the nodes of the second). Therefore, there will always exist at least one TREED value and the higher value is, the more similar those trees are.
+We introduce a formuala to normalize the edit distance in convience of new method proposed in the next part of the paper. The normalized value is computed as:
+
+  $TREED = 1 -  \frac{TreeEditDistance\left(AST_R, AST_T\right)}{CountNodes \left(AST_R+AST_T\right)}$ 
+  
+where $TreeEditDistance\left(AST_R, AST_T\right)$ is the editing distance between two trees of referenced method $AST_R$ and the translated method $AST_T$; and the denominator is the total nodes in the tree of both two methods. The value of TREED is from 0 to 1. 
+
+For any two trees, there will always exist at least one editing (such as the one that deletes all nodes of the first tree and inserts all the nodes of the second). Therefore, there will always exist at least one TREED value and the higher value is, the more similar those trees are.
 
 \begin{figure}[h]
 	\caption{Tree Editing Example: In the label of each node, its type is in capital font and its val (if exists) is in normal font}

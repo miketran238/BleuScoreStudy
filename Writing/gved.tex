@@ -1,9 +1,8 @@
 \subsubsection{\textbf{Graph Vector Edit Distance (GVED)}} 
-.....
 Structure-oriented approaches in code semantic comparision have become popular in programming. In many popular tructure-orientedd approaches nowadays, Exas is an accurate and efficient structural characteristic feature extraction approach that better approximates and captures the structure within the fragments of artifacts.\cite{Accurate and Efficient Structural Characteristic Feature Extraction for Clone Detection}.
- In Exas, the characteristic features are extracted from the patterns of elements of the trees and graphs. The fragments are characterized by their counting vectors of those features. Therefore, distance of these counting vectors is considered the way to measure the sematic betwwen code fragments.
+In our study area, we use Exas as a mean of computing the difference between code structure. Given a pair of method in C\# which are need to be compared their structure, GROUM [cite GROUM] is used to parse code into program dependence graphs (PDGs) [cite to PDG] and Exas process these grahs.  The characteristic features are extracted from the patterns of elements of the . The fragments are characterized by their counting vectors of those features. Therefore, distance of these counting vectors is considered the way to measure the sematic betwwen code fragments.
 
-Formuala for computing vector edit distance is described as
+We also introduce the formuala for normalizing the result of vector edit distance which is used in the next part of the paper. The normalized value is described as
 
 $GVED(V1, V2) = 1 - \sum_{i=1}^{n} \frac{ \mid XV1_i - XV2_i \mid}{XV1_i + XV2_i}$, 
 where $n$ denotes the number of vector scalar, $V1$ denotes the counting vector of the first graph, $V2$ denotes the counting vector of the second graph, $XV1_i$ denotes $V1$\rq the value of the $i-th$ scalar, $XV2_i$ denotes $V2$\rq the value of the $i-th$ scalar.  
