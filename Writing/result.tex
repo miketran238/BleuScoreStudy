@@ -2,13 +2,17 @@
 In this section, we will show our empirical results about the relation between each of the 4 metrics BLEU, SED, TREED, GVED with Semantic Score. We use Pearson\rq s correlation coefficient to gauge their relations. 
 \subsection{RQ1: BLEU vs Semantic}
 Figures \ref{fig:BleuSemlpSMT}, \ref{fig:BleuSemMppSMT}  show the scatter plots between 2 metrics: BLEU and Semantic. Each point represents scores of a pair of methods where its x-axis value is BLEU score and y-axis value is Semantic score.
-The correlation coefficient between BLEU and Semantic score for the model mppSMT is 0.524 and for the model lpSMT is 0.67. That meant there is a positive relationship between the 2 metrics, but it is not strong since the correlation is closer to 0.5 than to 1.0. The graphs in the figures \ref{fig:BleuSemlpSMT} and \ref{fig:BleuSemMppSMT}  also demonstrate the weak correlation:
+The correlation coefficient between BLEU and Semantic score for the model mppSMT is 0.524 and for the model lpSMT is 0.67. That meant there is a positive relationship between the 2 metrics, but it is not strong since the correlation is closer to 0.5 than to 1.0. The graphs in the figures \ref{fig:BleuSemlpSMT} and \ref{fig:BleuSemMppSMT}  also demonstrate the weak correlation.
 
 \emph{Observation 1:} For a fixed value of Semantic score, there can be many associated BLEU values. Specifically, in the model lpSMT, with a Semantic Score of 1, the BLEU scores can be varied greatly between 0-1, which was reflected on the top horizontal line of dots in figure \ref{fig:BleuSemlpSMT}. Similarly, in the figure \ref{fig:BleuSemMppSMT}, with a Semantic Score of 1, the BLEU scores are in the range of 0.5 to 1. 
 
 \emph{Observation 2:} For a fixed value of BLEU, there can be many associated Semantic scores. For an instance, the figure \ref{fig:BleuSemMppSMT} shows that for a high BLEU score, for example 0.8, can have Semantic Score from 0.25 to 1. This can be observed by the vertical line of dots in the figure. 
 
-From observation 1, it can be implied that a translated method can have low BLEU score, but high Semantic score. This can be explained by the situations in which translated method uses different code structure to perform the same functionality. For example, the translated method that got maximum Semantic score (raw score is 4, normalized score is 1) on figure \ref{fig:scoreEG} has low BLEU score (0.4) because it uses a normal \lq for\rq  loop instead of a \lq for each\rq  loop as the reference code does. On the other hand, from observation 2, a translated method can have high BLEU score, but low Semantic score. The reason of this implication is that BLEU does not take into consideration order of n-grams tokens. So if a translated method has multiple correct n-grams tokens, but in the wrong order, the method can still be justified as not useful by human judgment. For example, in figure \ref{fig:issueexample2} the translated method misplaces the position of the bracelet which makes the method has low Semantic score, but high BLEU score. The two implications above shows that an improvement in BLEU is not sufficient nor necessary to improve translation migration quality. In conclusion, BLEU does not reflect well the semantics of source code, as well as is not suitable to use to evaluate semantic accuracy for SMT-based Code Migration system.
+\emph{Implication 1: }From observation 1, it can be implied that a translated method can have low BLEU score, but high Semantic score. This can be explained by the situations in which translated method uses different code structure to perform the same functionality. For example, the translated method that got maximum Semantic score (raw score is 4, normalized score is 1) on figure \ref{fig:scoreEG} has low BLEU score (0.4) because it uses a normal \lq for\rq  loop instead of a \lq for each\rq  loop as the reference code does. Moreover, there is also the white space problem. For example, the translated method has tokens: \lq m()\rq, but the reference method has: \lq m ()\rq. This situation reduces n-grams precision, but the human subject will still evaluate the result with high Semantic score.     
+
+\emph{Implication 2: }From observation 2, a translated method can have high BLEU score, but low Semantic score. The reason of this implication is that BLEU does not take into consideration order of n-grams tokens. So if a translated method has multiple correct n-grams tokens, but in the wrong order, the method can still be justified as not useful by human judgment. For example, in figure \ref{fig:issueexample2} the translated method misplaces the position of the bracelet which makes the method has low Semantic score, but high BLEU score. Another reason for this implication is that resulting method does not capture the important program elements. For example, the result contains mostly key words and punctuation like \lq if\rq, \lq public\rq, \lq()\rq, but miss out important program elements like function calls or variable names. In this case, it will have low Semantic score while moderate to high BLEU score. 
+
+The two implications above shows that an improvement in BLEU is not sufficient nor necessary to improve translation migration quality. In conclusion, BLEU does not reflect well the semantics of source code, as well as is not suitable to use to evaluate semantic accuracy for SMT-based Code Migration system.
 
  
 \begin{figure}
@@ -26,18 +30,37 @@ From observation 1, it can be implied that a translated method can have low BLEU
 \end{figure}
 
 \subsection{RQ2: SED vs Semantic}
+Figures \ref{fig:SedSemlpSMT}, \ref{fig:SedSemMppSMT}  show the scatter plots between 2 metrics: SED and Semantic. Each point represents scores of a pair of methods where its x-axis value is SED score and y-axis value is Semantic score.
+The correlation coefficient between SED and Semantic score for the model mppSMT is 0.549 and for the model lpSMT is 0.675. That meant there is a positive relationship between the 2 metrics, but it is not strong since the correlation is closer to 0.5 than to 1.0.
+
+Comparing to BLEU, SED has higher correlation with Semantic Score. The correlation coefficient increases from 0.524 to 0.549 (mppSMT), and 0.67 to 0.675. Nevertheless, the improvements are insignificant that can be ignored. SED suffers the same drawback as BLEU: it does not take into consideration the structures of source code. The reason SED has higher correlation can be explained by the fact that SED would deduce more heavily if the translated method has incorrect order of lexeme tokens. In a word, it is not worth to use SED instead of BLEU since it still has the same problem as BLEU. 
+
+\begin{figure}
+\caption{SED vs Semantic (lpSMT)}
+\centering
+\includegraphics{img/sedvssem_lpSMT.png}
+\label{fig:SedSemlpSMT}
+\end{figure}
+
+\begin{figure}
+\caption{SED vs Semantic (mppSMT)}
+\centering
+\includegraphics{img/sedvssem_mppSMT.png}
+\label{fig:SedSemMppSMT}
+\end{figure}
 
 \subsection{RQ3: TREED vs Semantic}
 Figures \ref{fig:TREEDlpSMT}, \ref{fig:TREEDmppSMT}  show the scatter plots between 2 metrics: TREED and Semantic. Each point represents scores of a pair of methods where its x-axis value is TREED score and y-axis value is Semantic score.
-The correlation coefficient between TREED and Semantic score for the model mppSMT is 0.684 and for the model lpSMT is 0.670. That meant there is a positive relationship between the 2 metrics, but it is not strong since the correlation is closer to 0.5 than to 1.0. The graphs in the figures  \ref{fig:TREEDlpSMT} and \ref{fig:TREEDmppSMT}  also demonstrate the weak correlation.
+The correlation coefficient between TREED and Semantic score for the model mppSMT is 0.684 and for the model lpSMT is 0.670. That meant there is a positive relationship between the 2 metrics, but it is not strong since the correlation is closer to 0.5 than to 1.0.
 
 \emph{Observation 1:} For a fixed value of Semantic score, there can be many associated TREED values. Specifically, in the model lpSMT, with a Semantic Score of 1, the TREED scores can be varied greatly between 0-1, which was reflected on the top horizontal line of dots in figure \ref{fig:TREEDlpSMT}. Similarly, in the figure \ref{fig:TREEDmppSMT}, with a Semantic Score of 1, the TREED scores are in the range of 0.7 to 1. 
 
 \emph{Observation 2:} For a fixed value of TREED, there can be many associated Semantic scores. For example, the figure \ref{fig:TREEDlpSMT} shows that for a high TREED score, for example 0.8, can have Semantic Score from 0.25 to 1. This can be observed by the vertical line of dots in the figure. 
 
-\emph{Observation 3:} TREED was showing some significant improvement on the correlation with Semantic score on mppSMT model (0.524 to 0.684). Comparing figure \ref{fig:BleuSemMppSMT} and figure \ref{fig:TREEDmppSMT}, it can be realized that on the model mppSMT, those horizontal lines of dots in figure \ref{fig:BleuSemMppSMT} became shorter in figure \ref{fig:TREEDmppSMT}. It means the variation of TREED score for certain Semantic score is lower. Data points in the figure can also be approximately fitted with a regression line even though there still are some outliers. 
+\emph{Observation 3:} TREED shows some noticeable improvement on the correlation with Semantic score on mppSMT model (0.524 to 0.684). Comparing figure \ref{fig:BleuSemMppSMT} and figure \ref{fig:TREEDmppSMT}, it can be realized that on the model mppSMT, those horizontal lines of dots in figure \ref{fig:BleuSemMppSMT} became shorter in figure \ref{fig:TREEDmppSMT}. It means the variation of TREED score for certain Semantic score is lower. Data points in the figure can also be approximately fitted with a regression line even though there still are some outliers. 
 
-From observation 1, it can be implied that a translated method can have low TREED score, but high Semantic score. On the other hand, from observation 2, a translated method can have high TREED score, but low Semantic score. The two implications above shows that an improvement in TREED is not sufficient nor necessary to improve translation migration quality. However, from observation 3, there is hint of positive improvement that using TREED would reflect Semantic score better than BLEU. 
+%From observation 1, it can be implied that a translated method can have low TREED score, but high Semantic score. On the other hand, from observation 2, a translated method can have high TREED score, but low Semantic score. The two implications above shows that an improvement in TREED is not sufficient nor necessary to improve translation migration quality. However, from observation 3, there is hint of positive improvement that using TREED would reflect Semantic score better than BLEU. 
+From observation 1 and 2, TREED still suffers the same problem with BLEU even though the reason is different for the two metrics. A translated method can be perfectly compilable, but still fails to capture the similarity in term of functionality. 
 
  
 \begin{figure}
