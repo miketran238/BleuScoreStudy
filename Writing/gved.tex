@@ -1,6 +1,7 @@
 \subsubsection{\textbf{Graph Vector Edit Distance (GVED)}} 
-Structure-oriented approaches in code semantic comparision have become popular in programming. In many popular tructure-orientedd approaches nowadays, Exas is an accurate and efficient structural characteristic feature extraction approach that better approximates and captures the structure within the fragments of artifacts.\cite{Accurate and Efficient Structural Characteristic Feature Extraction for Clone Detection}.
-In our study area, we use Exas as a mean of computing the difference between code structure. Given a pair of method in C\# which are need to be compared their structure, GROUM [cite GROUM] is used to parse code into program dependence graphs (PDGs) [cite to PDG] and Exas continues processing these graphs. In Exas, the characteristic features are extracted from the patterns of elements of the graphs. The code fragments are characterized by their counting vectors of those features. The difference between two vectors reflects the difference of two graphs.  Therefore, distance of these counting vectors is considered the way to measure the sematic between code fragments.
+Structure-oriented approaches in code semantic comparision have become popular in SE field. Among those approaches, Exas is an accurate and efficient structural characteristic feature extraction approach that better approximates and captures the structure within the fragments of artifacts.\cite{Accurate and Efficient Structural Characteristic Feature Extraction for Clone Detection}.
+In our study area, we use Exas as a mean of computing the difference between code structure. Given a pair of method in C\# which are need to be compared their structure, GROUM [cite GROUM] is used to build program dependence graphs (PDGs) [cite to PDG] from code, and Exas will process these graphs. In Exas, the characteristic features are extracted from the patterns of elements of the graphs. The code fragments are characterized by their counting vectors of those features. The difference between two vectors reflects the difference of two graphs. 
+%Therefore, distance of these counting vectors is considered the way to measure the sematic between code fragments.
 
 
 
@@ -8,9 +9,9 @@ Figure \ref{fig:PDGs} shows an illustrated PGDs of a code fragment 1 and fragmen
 
 An efficient way to express the property ``having the same or similar features`` is the use of vectors. The characteristic vector of a fragment is the occurrence-count vector of its features. That is, each position in the vector is indexed for a feature and the value at that position is the number of occurrences of that feature in the fragment. Table \ref{tab:featureIndex} shows the indexes of the features, which are global across all vectors. Based on the occurrence counts this table, the vectors for code1 and code2 are V1(1,1,1,1,1,0,1,0...),V2(1,1,0,1,1,1,1,1...) respectively. Two fragments having the same feature sets and occurrence counts will have the same vectors and vice versa. The vector similarity can be measured by an appreciably chosen vector distance such as 1-norm distance.
 
-We introduce the formuala for normalizing the result of vector edit distance which is used in the next part of the paper. The normalized value is described as
+We introduce the formula for normalizing the result of vector edit distance which is used in the next part of the paper. The normalized value is described as
 
-$GVED(V1, V2) = 1 - \sum_{i=1}^{n} \frac{ \mid XV1_i - XV2_i \mid}{XV1_i + XV2_i}$, 
+$GVED\left(V1, V2\right) = 1 - \sum_{i=1}^{n} \frac{ \mid XV1_i - XV2_i \mid}{XV1_i + XV2_i}$, 
 where $n$ denotes the number of vector scalar, $V1$ denotes the counting vector of the first graph, $V2$ denotes the counting vector of the second graph, $XV1_i$ denotes $V1$\rq the value of the $i-th$ scalar, $XV2_i$ denotes $V2$\rq the value of the $i-th$ scalar.  
 
 In this example, the value of GVED is $GVED(V1, V2) = 1 - \frac{8 }{20} = 0.6 $,
