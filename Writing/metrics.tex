@@ -2,12 +2,38 @@
 %Semantic similarity of source code can be estimated via the similarity in term of different levels: lexical, syntax, and structural. Based on those three levels, we provide three metrics 
 %
 
-Remind that our goal of the experiment is to (in)validate whether BLEU reflects the semantic accuracy of the migrated code from the tools with respect to the manual-migrated code in the collected ground truth. In our experiment, however, we will also study to verify the uses of three other metrics to estimate the semantic accuracy. Those metrics are associated with three levels of representations of source code: String Edit Distance (SED) that associates with lexical, Tree Edit Distance (TREED) that associates with syntax, and Graph Vector Edit Distance (GVED) that associates with structural representation. We will provide their correlation results with semantic accuracy in Section 5 and those metrics are the foundation of our proposed solution in Section 6. In this section, we will define and give examples for those metrics. 
+Remind that our goal of the experiment is to (in)validate whether BLEU
+reflects the semantic accuracy of the migrated code from the tools
+with respect to the manual-migrated code in the ground truth. In our
+experiment, we will also aim to verify the correleation of three other
+metrics with semantic accuracy. Those metrics are associated with
+three levels of representations of source code: String Edit Distance
+(SED) that associates with lexical level, Tree Edit Distance (TREED)
+that associates with syntactic level, and Graph Vector Edit Distance
+(GVED) that associates with data and control dependency level. We will
+provide their correlation results with semantic accuracy in Section 5
+and those metrics are the foundation of our proposed solution in
+Section 6. In this section, we will define and give examples of those
+metrics.
 
-\subsubsection{\textbf{String Edit Distance (SED)}}There exists several research tried to estimate semantic similarity based on lexical similarity of source code. Usually, code is tokenized into sequences of lexeme, and then is compared by String Edit Distance (SED). SED measures efforts that a user must edit in term of the code tokens
-that need to be deleted/added in order to transform the
-resulting code into the correct one. In our study, we used Levenshtein algorithm to calculate that distance. The metric is normalized as:  $SED = 1 -  \frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$ where 
-$s_R$ is the sequence of tokens represent the reference method, $s_T$ is the sequence of tokens represent the translated method, $EditDistance\left(s_R, s_T\right)$ is the editing distance between the pair; and the denominator is the total length of the referenced method. For example: the $EditDistance\left(s_R, s_T\right)$ between translated code and reference code in figure \ref{fig:issueexample2} is 4 (2 deletions, 2 additions). Then, it is normalized as 0.952. Note that the closer the score to 1, the more similar the pair in term of code tokens. 
+\subsubsection{\textbf{String Edit Distance (SED)}}There exist 
+research aiming to estimate semantic similarity based on lexical
+similarity of source code. Usually, code is tokenized into sequences
+of lexeme, and then is compared by String Edit Distance (SED). SED
+measures efforts that a user must edit in term of the code tokens that
+need to be deleted/added in order to transform the resulting code into
+the correct one. In our study, we used Levenshtein algorithm to
+calculate that distance. The metric is normalized as: $SED = 1 -
+\frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$
+where $s_R$ is the sequence of tokens representing the reference code,
+$s_T$ is the sequence of tokens represent the translated code,
+$EditDistance\left(s_R, s_T\right)$ is the editing distance between
+the pair; and the denominator is the total length of the reference
+code. For example: the $EditDistance\left(s_R, s_T\right)$ between
+translated code and reference code in Figure~\ref{fig:issueexample2}
+is 4 (2 deletions, 2 additions). Then, it is normalized as 0.952. Note
+that the closer the score to 1, the more similar the pair in term of
+lexical tokens.
 
 \input{treed}
 
