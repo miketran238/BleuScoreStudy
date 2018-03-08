@@ -1,5 +1,29 @@
 \section{Proposed Metric}
-%\subsection{\model}
+Since BLEU did not reflect well the semantic accuracy of migrated code, there is a need for an alternative metric that can fit well with the task. In this section, we propose {\model}, a novel automated metric to evaluate SMT-based code migration tools that is suitable for source code, is language independence, can reflect well the semantic accuracy of translated results, and inexpensive to compute. {\model} is then validated on practical SMT-based code migration models to show its potential and effectiveness. 
+ 
+\subsection{Design}
+\emph{Insight 1 :} In computer network, a best effort delivery describes a network service that does not guarantee the quality of delivery. Nevertheless, the service will make their "best effort" to try to deliver the packet with its available resources. Under some circumstances, the packet may be loss or delayed. Similarly, in the domain of SMT-based Code Migration problem, a translated method cannot be guaranteed to be compilable or be built into PDG. Regardless, we would try our best effort to measure its semantic similarity with respect to the reference method as accurate as possible. \\
+\emph{Insight 2 :}
+According to Table \ref{tab:summary} in section 5, there is a trend of increasing correlation coefficient with Semantic score when more complex levels of source code are used. Specifically, GVED has the highest correlation, and it follows by TREED, SED, BLEU respectively. Therefore, those metrics should have priority order when be used in evaluating translation results.  
+
+From the two insights, we design {\model} as a best-effort multi-layered metric. {\model} is a combination metric that takes into consideration metrics at the lexical, syntactical, and semantic levels of source code while aims to measure the semantic accuracy of translated code in a reliable manner. If the translated code can be built into PDG, we calculate {\model} in term of graph vector edit distance (GVED). If the translated code cannot be built into PDG, but is compilable, {\model} is calculated as syntax tree edit distance (TREED). Lastly, if the translated code is not compilable, we use string edit distance (SED) to compute {\model}.
+
+The formula of {\model} is presented in Algorithm \ref{ruby}. GVED, TREED, and SED were defined in section 4.3. $r$ is the reference code, $t$ is the translated code; in turn $r,t$ are tokenized into sequences to use in SED, are parsed into ASTs to use in TREED, and are built into PDGs to use in GVED.  
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\begin{algorithm}
+\caption{Calculate {\model}}\label{ruby}
+\begin{algorithmic}[1]
+\If { $\mbox{GVED}\left(r,t\right) $ is applicable }
+\State $\mbox{RUBY}\left(r,t\right) = \mbox{GVED}\left(r,t\right) $
+\ElsIf { $\mbox{TREED}\left(r,t\right) $ is applicable }
+\State $\mbox{RUBY}\left(r,t\right) = \mbox{TREED}\left(r,t\right) $
+\Else 
+\State $\mbox{RUBY}\left(r,t\right) = \mbox{SED}\left(r,t\right) $
+\EndIf
+\end{algorithmic}
+\end{algorithm}
 
 %BLEU has always been doing this and that....
 
@@ -49,45 +73,4 @@
 %When applying MT on source code, there always exists the problem that the translated code is broken in term of syntax. Thus, it is impossible to build PDG or even compile those code. To cope with the problem, our model is designed as best-effort, layered metric  : If the translated code can be built into PDG, we calculate {\model} in term of graph edit distance. If the translated code cannot be built into PDG but is compilable, we calculate {\model} in term of syntax tree edit distance. If the translated code is not compilable, we calculate {\model} in term of string edit distance. We then represent about the 3 metrics graph/tree/string edit distances as follows:
 
 
- {\model} can be calculated as follows: 
-%if (GVED(s,t) != -1) RUBY(s,t) = GVED(s,t)\\
-%else if (TREED(s,t) != -1) RUBY(s,t) = TREED(s,t)\\
-%else RUBY(s,t) = SED(s,t)
 
-%$\mbox{RUBY}\left(s,t\right) = \begin{cases} 
-%\mbox{GVED}\left(s,t\right), & \mbox{if } \mbox{GVED}\left(s,t\right) \mbox{ is applicable}\\ 
-%\mbox{TED}\left(s,t\right), & \mbox{if } n\mbox{ is odd} 
-%\end{cases}$
-
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
-\begin{algorithm}
-\caption{Calculate {\model}}\label{euclid}
-\begin{algorithmic}[1]
-\If { $\mbox{GVED}\left(r,t\right) $ is applicable }
-\State $\mbox{RUBY}\left(r,t\right) = \mbox{GVED}\left(r,t\right) $
-\ElsIf { $\mbox{TREED}\left(r,t\right) $ is applicable }
-\State $\mbox{RUBY}\left(r,t\right) = \mbox{TREED}\left(r,t\right) $
-\Else 
-\State $\mbox{RUBY}\left(r,t\right) = \mbox{SED}\left(r,t\right) $
-\EndIf
-%\Procedure{MyProcedure}{}
-%\State $\textit{stringlen} \gets \text{length of }\textit{string}$
-%\State $i \gets \textit{patlen}$
-%\BState \emph{top}:
-%\If {$i > \textit{stringlen}$} \Return false
-%\EndIf
-%\State $j \gets \textit{patlen}$
-%\BState \emph{loop}:
-%\If {$\textit{string}(i) = \textit{path}(j)$}
-%\State $j \gets j-1$.
-%\State $i \gets i-1$.
-%\State \textbf{goto} \emph{loop}.
-%\State \textbf{close};
-%\EndIf
-%\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-%\State \textbf{goto} \emph{top}.
-%\EndProcedure
-\end{algorithmic}
-\end{algorithm}
