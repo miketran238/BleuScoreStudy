@@ -2,12 +2,38 @@
 %Semantic similarity of source code can be estimated via the similarity in term of different levels: lexical, syntax, and structural. Based on those three levels, we provide three metrics 
 %
 
-Remind that our goal of the experiment is to (in)validate whether BLEU reflects the semantic accuracy of the migrated code from the tools with respect to the manual-migrated code in the collected ground truth. In our experiment, however, we will also study to verify the uses of three other metrics to estimate the semantic accuracy. Those metrics are associated with three levels of representations of source code: String Edit Distance (SED) that associates with lexical, Tree Edit Distance (TREED) that associates with syntax, and Graph Vector Edit Distance (GVED) that associates with structural representation. We will provide their correlation results with semantic accuracy in Section 5 and those metrics are the foundation of our proposed solution in Section 6. In this section, we will define and give examples for those metrics. 
+Remind that our goal of the experiment is to (in)validate whether BLEU
+reflects the semantic accuracy of the migrated code from the tools
+with respect to the manual-migrated code in the ground truth. In our
+experiment, we will also aim to verify the correleation of three other
+metrics with semantic accuracy. Those metrics are associated with
+three levels of representations of source code: String Edit Distance
+(SED) that associates with lexical level, Tree Edit Distance (TREED)
+that associates with syntactic level, and Graph Vector Edit Distance
+(GVED) that associates with data and control dependency level. We will
+provide their correlation results with semantic accuracy in Section 5
+and those metrics are the foundation of our proposed solution in
+Section 6. In this section, we will define and give examples of those
+metrics.
 
-\subsubsection{\textbf{String Edit Distance (SED)}}There exists several research tried to estimate semantic similarity based on lexical similarity of source code. Usually, code is tokenized into sequences of lexeme, and then is compared by String Edit Distance (SED). SED measures efforts that a user must edit in term of the code tokens
-that need to be deleted/added in order to transform the
-resulting code into the correct one. In our study, we used Levenshtein algorithm to calculate that distance. The metric is normalized as:  $SED = 1 -  \frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$ where 
-$s_R$ is the sequence of tokens represent the reference method, $s_T$ is the sequence of tokens represent the translated method, $EditDistance\left(s_R, s_T\right)$ is the editing distance between the pair; and the denominator is the total length of the referenced method. For example: the $EditDistance\left(s_R, s_T\right)$ between translated code and reference code in figure \ref{fig:issueexample2} is 4 (2 deletions, 2 additions). Then, it is normalized as 0.952. Note that the closer the score to 1, the more similar the pair in term of code tokens. 
+\subsubsection{\textbf{String Edit Distance (SED)}}There exist 
+research aiming to estimate semantic similarity based on lexical
+similarity of source code. Usually, code is tokenized into sequences
+of lexeme, and then is compared by String Edit Distance (SED). SED
+measures efforts that a user must edit in term of the code tokens that
+need to be deleted/added in order to transform the resulting code into
+the correct one. In our study, we used Levenshtein algorithm to
+calculate that distance. The metric is normalized as: $SED = 1 -
+\frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$
+where $s_R$ is the sequence of tokens representing the reference code,
+$s_T$ is the sequence of tokens represent the translated code,
+$EditDistance\left(s_R, s_T\right)$ is the editing distance between
+the pair; and the denominator is the total length of the reference
+code. For example: the $EditDistance\left(s_R, s_T\right)$ between
+translated code and reference code in Figure~\ref{fig:issueexample2}
+is 4 (2 deletions, 2 additions). Then, it is normalized as 0.952. Note
+that the closer the score to 1, the more similar the pair in term of
+lexical tokens.
 
 \input{treed}
 
@@ -41,40 +67,47 @@ Score & Description \\
 %
 Semantic accuracy between pairs of methods (one is the result from a
 SMT-based migration tool and another is the reference code from the
-ground truth) is the similarity between them in term of execution and
+ground truth) is the similarity between them in term of
 functionality. If two methods perform similar operations on a given
 input, they are semantically similar, even interchangeable. A pair of
 methods can have the same functionality despite of their difference in
-term of program elements.
+term of code structure and code elements.
 %
 For example, a method using a \code{for} loop and a method using a
 \code{while} loop, they still can perform the same functionality even
 though their lexical representations are much different. There exist
 many studies aiming to measure the functionality similarity of source
 code, which utilize the similarities of structures and
-dependencies~\cite{clone-tse07,roy09,ducasse99,baker97,ccfinder,cpminer,baxter98,deckard,deckard2,horwitz01}.
-%
+dependencies~\cite{clone-tse07,roy09,baker97,ccfinder,cpminer,deckard,deckard2,horwitz01}.
+%baxter98,ducasse99
 However, they are not reliable as their results sometimes contradict
-with human judgments on semantic accuracy~\cite{fse14-higo}. More
-importantly, those structure-based metrics {\em do not reflect human
-  efforts} in fixing the incorrect migrated code into the correct one.
+with human judgments on semantic accuracy~\cite{deckard2}. 
+%More importantly, those structure-based metrics {\em do not reflect
+%  human efforts} in fixing the incorrect migrated code into the
+%correct one.
 %
 Human judgment for our study would be the most reliable metric to
 measure semantic accuracy. A developer who examines a pair of methods
 can tell whether the code perform the same functionality as well as
-explain the efforts needed for the correction. Therefore, we conducted
-a study that used a human subject to manually evaluate the migrated
-code from the SMT-based migration tools.
+explain the efforts needed in fixing the incorrectly migrated code
+into the correct one. Therefore, we conducted a study that used a
+human subject to manually evaluate the migrated code from the
+SMT-based migration tools.
 %2 goals
 
 %Our study was conducted as follows:
 
 \emph{1. Sample Size}. Because our dataset contains a large number of
 pairs of code, it would take a lot of efforts to manually evaluate all
-of them. According to \cite{website}, from a population of 34,209, a
-sample size of 375 is acceptable with the confidence level of 95\% and
-the margin of error of 5\%. Therefore, we randomly sampled 375 pairs
-of methods from the dataset for evaluation.
+of them. With a data population of 34,209 pairs translated methods, we
+aim to achieve the confidence level of 95\% and the margin of error of
+5\%. Thus, according to~\cite{website}, we randomly sampled 375
+pairs of methods from the dataset for evaluation.
+
+%According to~\cite{website}, from a population of 34,209, a sample
+%size of 375 is acceptable with the confidence level of 95\% and the
+%margin of error of 5\%. Therefore, we randomly sampled 375 pairs of
+%methods from the dataset for evaluation.
 
 \emph{2. Setting}. The human subject of our study is one of the
 authors who is fluent in both Java and C\#. He was then given a pair
@@ -105,21 +138,22 @@ Score ranges from 0 to 4 as follows:
 
 \begin{compactitem}
 
-\item A score of 0 means the translated code is totally useless, and
+\item {\bf Useless.} A score of 0 means the translated code is totally useless, and
   it is better to re-write the whole method rather than use it.
 
-\item A score of 1 means the translated method seems to be incorrect, and even
-though some parts of it are reusable, the human subject do not want to
-fix and use it.
+\item {\bf Somewhat useless.} A score of 1 means the translated method
+  seems to be incorrect, and even though some parts of it are
+  reusable, the human subject do not want to fix and use it.
 
-\item A score of 2 means the human subject cannot decide whether to
-  use the translated method or not.
+\item {\bf Neither useful nor useless.} A score of 2 means the human
+  subject cannot decide whether to use the translated method or not.
 
-\item A score of 3 means the translated method seems to be correct,
-  but it still needs some minor adjustments.
+\item {\bf Somewhat useful.} A score of 3 means the translated method
+  seems to be correct, but it still needs some minor adjustments.
 
-\item A score of 4 means the pairs of methods are identical in term of
-functionality, and the translated method can be used as-is.
+\item {\bf Useful.} A score of 4 means the pairs of methods are
+  identical in term of functionality, and the translated method can be
+  used as-is.
 
 \end{compactitem}
 
@@ -147,7 +181,7 @@ useless, \ie it is better to rewrite the whole method.
 
 %\includegraphics{scoreExamples}
 
-We conducted the same human study for the results of both lpSMT and mppSMT models. As a result, we have scores for 375 pairs of methods for each model. From now on, we regard those scores as \textbf{semantic score}.
+We conducted the same human study for the results of both lpSMT and mppSMT models. As a result, we have scores for 375 pairs of methods for each model. From now on, we regard those scores as \textbf{{\em semantic score}}.
 
 \begin{figure}
 \caption{Scoring Examples}
