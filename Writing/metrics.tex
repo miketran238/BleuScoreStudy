@@ -4,9 +4,10 @@
 
 Remind that our goal of the experiment is to (in)validate whether BLEU reflects the semantic accuracy of the migrated code from the tools with respect to the manual-migrated code in the collected ground truth. In our experiment, however, we will also study to verify the uses of three other metrics to estimate the semantic accuracy. Those metrics are associated with three levels of representations of source code: String Edit Distance (SED) that associates with lexical, Tree Edit Distance (TREED) that associates with syntax, and Graph Vector Edit Distance (GVED) that associates with structural representation. We will provide their correlation results with semantic accuracy in Section 5 and those metrics are the foundation of our proposed solution in Section 6. In this section, we will define and give examples for those metrics. 
 
-\subsubsection{\textbf{String Edit Distance (SED)}} This metric measures effort that a user must edit in term of the code tokens
+\subsubsection{\textbf{String Edit Distance (SED)}}There exists several research tried to estimate semantic similarity based on lexical similarity of source code. Usually, code is tokenized into sequences of lexeme, and then is compared by String Edit Distance (SED). SED measures efforts that a user must edit in term of the code tokens
 that need to be deleted/added in order to transform the
-resulting code into the correct one. It is computed as:  $SED = \frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$ where $EditDistance\left(s_R, s_T\right)$ is the editing distance between each pair of the reference method $s_R$ and the translated method $s_T$; and the denominator is the total length of the referenced method. The metrics is also normalized in 0-1 range. 
+resulting code into the correct one. In our study, we used Levenshtein algorithm to calculate that distance. The metric is normalized as:  $SED = 1 -  \frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$ where 
+$s_R$ is the sequence of tokens represent the reference method, $s_T$ is the sequence of tokens represent the translated method, $EditDistance\left(s_R, s_T\right)$ is the editing distance between the pair; and the denominator is the total length of the referenced method. For example: the $EditDistance\left(s_R, s_T\right)$ between translated code and reference code in figure \ref{fig:issueexample2} is 4 (2 deletions, 2 additions). Then, it is normalized as 0.952. Note that the closer the score to 1, the more similar the pair in term of code tokens. 
 
 \input{treed}
 
