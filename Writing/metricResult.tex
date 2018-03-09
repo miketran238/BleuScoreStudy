@@ -1,4 +1,4 @@
-\subsection{Exploratory Study}
+\subsection{Metric Results}
 To verify the 3 metrics SED, TREED, and GVED , we conducted an exploratory study that reveals their correlation with the ground truth Semantic score. Table \ref{table:correlation} summarizes our results for the two models mppSMT and lpSMT. We will explain each metric \rq s correlation in details as follows:
 
 \begin{table}
@@ -16,7 +16,7 @@ lpSMT  & 0.635 & 0.774 & 0.836 \\
 
 
 \subsubsection{\textbf{SED vs Semantic}}
-SED is similar to BLEU in the way that both of them compare source code qw lexical representation. That is confirmed and reflected in our empirical result. Indeed, the two metrics have similar correlations with Semantic score (table \ref{table:correlation}. The correlation coefficient increases from 0.524 to 0.549 (mppSMT), and 0.67 to 0.675 (lpSMT). Nevertheless, the improvements are too trivial that can be ignored. SED suffers the same drawback as BLEU: it does not take into consideration the structures of source code, and it only compares source code in term of lexemes. 
+SED is similar to BLEU in the way that both of them compare source code in term of lexical representation. That is confirmed and reflected in our empirical result. Indeed, the two metrics have similar correlations with Semantic score (table \ref{table:correlation}. The correlation coefficient increases from 0.524 to 0.549 (mppSMT), and 0.67 to 0.675 (lpSMT). Nevertheless, the improvements are too trivial that can be ignored. SED suffers the same drawback as BLEU: it does not take into consideration the structures of source code, and it only compares source code in term of lexemes. 
 %that SED would deduce more penalty if the translated method has incorrect order of lexeme tokens. 
 So, it is not worth to use SED instead of BLEU since it still has the same problems as BLEU while its advantage is insignificant. 
 
@@ -35,11 +35,11 @@ So, it is not worth to use SED instead of BLEU since it still has the same probl
 %\end{figure}
 
 \subsubsection{\textbf{TREED vs Semantic}}
-TREED compares source code at higher level of representation (Syntax Tree). Syntax of source code is the pre-requisite before mentioning about its semantics or functionality. Comparing methods in term of syntax is likely to reflect semantic accuracy better than comparing at lexical level. This argument is proved by our empirical results: 
+%TREED compares source code at higher level of representation (Syntax Tree). Syntax of source code is the pre-requisite before mentioning about its semantics or functionality. Comparing methods in term of syntax is likely to reflect semantic accuracy better than comparing at lexical level. This argument is proved by our empirical results: 
 
 %Technically, a translated method cannot be said to perform any functionality if it cannot be compiled. However, in the Code Migration problem, a translated method which has wrong syntax can still be useful for developers. 
 
-Figure \ref{fig:TREEDmppSMT} shows the scatter plots between 2 metrics: TREED and Semantic. In general, the figure has similar trend as BLEU's one: The data points are too scattered to show a noticeable correlation and there are several outliers. For a fixed value of Semantic score, TREED score can still vary in a large range. However, comparing to BLEU, the variety is much smaller. For example, a [pair of method that has Semantic score of 0.5 can possibly have TREED scores in range of 0.7 to 1 while such range is 0.5 to 1 for BLEU. TREED shows some noticeable improvements on the correlation with Semantic score on mppSMT model (0.524 to 0.684), and on lpSMT model (0.621 to 0.774). 
+Figure \ref{fig:TREEDmppSMT} shows the scatter plots between 2 metrics: TREED and Semantic score. In general, the figure has similar trend as BLEU's one: The data points are too scattered to show a noticeable correlation and there are several outliers. For a fixed value of Semantic score, TREED score can still vary in a large range. However, comparing to BLEU, the variety is much smaller. For example, a pair of method that has Semantic score of 0.5 can possibly have TREED scores in range of 0.7 to 1 while such range is 0.5 to 1 for BLEU. TREED shows some noticeable improvements on the correlation with Semantic score on mppSMT model (0.524 to 0.684), and on lpSMT model (0.621 to 0.774). 
 
 %\emph{Observation 1:} For a fixed value of Semantic score, there can be many associated TREED values. Specifically, in the model lpSMT, with a Semantic Score of 1, the TREED scores can be varied greatly between 0-1, which was reflected on the top horizontal line of dots in figure \ref{fig:TREEDlpSMT}. Similarly, in the figure \ref{fig:TREEDmppSMT}, with a Semantic Score of 1, the TREED scores are in the range of 0.7 to 1. 
 %
@@ -68,8 +68,7 @@ In general, TREED still suffers the same issues with BLEU even though the reason
 \end{figure}
 
 \subsubsection{\textbf{GVED vs Semantic}}
-Comparing source code in term of structure (specifically PDGs in our study) to estimate semantic similarity is the 
-highest level of comparison. PDGs capture all data and control dependence of program elements, and those dependencies are the keys to reflect functionality of source code. Therefore, GVED is expected to have the best correlation with Semantic score. Our results cement this argument. 
+There are studies that compare PDGs to measure the semantic similarity. PDGs capture all data and control dependence of program elements, and those dependencies are the keys to reflect functionality of source code. Therefore, GVED is expected to have the best correlation with Semantic score. Our results cement this argument. 
 
 Figure \ref{fig:GVEDmppSMT} shows the scatter plots between 2 metrics: GVED and Semantic score when GVED is applicable. There are 240 of such points for the model mppSMT in the total of 375 pairs of methods, and respectively 75 points for lpSMT. The correlation coefficient between GVED and Semantic score for the model mppSMT is 0.893 and for the model lpSMT is 0.980. They show significant improvements on both models comparing to any of the other 3 metrics. All other 3 metrics have correlation coefficients with Semantic Score less than 0.7 while GVED achieves remarkable correlation coefficients of nearly 1.0. GVED's promising result makes it an obvious choice to evaluate SMT-based Code Migration systems. However, such systems always have the problem that the translated methods have too many errors that cannot be built into PDG, or even be compiled. That explains the situation
 in which the number of data points available for model lpSMT is too small to draw conclusion about the correlation with high confidence. 

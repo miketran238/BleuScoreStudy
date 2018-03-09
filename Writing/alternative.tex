@@ -1,0 +1,24 @@
+\section{Alternative Metrics}
+Since BLEU did not reflect well the semantic similarity of migrated code and reference code, there is a need for an alternative metric that can fit better with the task. The nature of the task is to compare source code in term of programming language \rq semantics. To compare the two language bases, they must be represented in some ways. While a language is normally composed by three parts: vocabulary, grammar, and meaning; programming language which is a special kind of language also can be composed by the 3 parts: lexemes, syntax, and semantics. Therefore, we choose one representation for each of the above part to compare, in order to heuristically estimate the semantic similarity. Specifically, token, AST and PDG are representations of lexemes, syntax, and semantics respectively. The metrics to compare those representations are SED, TREED and GVED which are defined below. Those metrics are then evaluated to show how well they reflect Semantic score.
+\subsection{Definitions}
+\subsubsection{\textbf{String Edit Distance (SED)}}String Edit Distance (SED) is the metric to compare source code when represented as sequence of tokens. SED
+measures efforts that a user must edit in term of the code tokens that
+need to be deleted/added in order to transform the resulting code into
+the correct one. In our study, we used Levenshtein algorithm to
+calculate that distance. The metric is normalized as: $SED = 1 -
+\frac{EditDistance\left(s_R, s_T\right)}{length\left(s_R\right)}$
+where $s_R$ is the sequence of tokens representing the reference code,
+$s_T$ is the sequence of tokens represent the translated code,
+$EditDistance\left(s_R, s_T\right)$ is the editing distance between
+the pair; and the denominator is the total length of the reference
+code. For example: the $EditDistance\left(s_R, s_T\right)$ between
+translated code and reference code in Figure~\ref{fig:issueexample2}
+is 4 (2 deletions, 2 additions). Then, it is normalized as 0.952. Note
+that the closer the score to 1, the more similar the pair in term of
+lexical tokens.
+
+\input{treed}
+
+\input{gved}
+ 
+\input{metricResult}
