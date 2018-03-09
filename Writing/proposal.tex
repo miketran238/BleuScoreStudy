@@ -88,5 +88,6 @@ The formula of {\model} is presented in Algorithm \ref{ruby}. GVED, TREED, and S
 %
 %When applying MT on source code, there always exists the problem that the translated code is broken in term of syntax. Thus, it is impossible to build PDG or even compile those code. To cope with the problem, our model is designed as best-effort, layered metric  : If the translated code can be built into PDG, we calculate {\model} in term of graph edit distance. If the translated code cannot be built into PDG but is compilable, we calculate {\model} in term of syntax tree edit distance. If the translated code is not compilable, we calculate {\model} in term of string edit distance. We then represent about the 3 metrics graph/tree/string edit distances as follows:
 
+\input{proposalResult}
 
 
