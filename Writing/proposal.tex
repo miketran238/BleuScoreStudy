@@ -1,5 +1,13 @@
 \section{Proposal}
-In this section, we propose {\model}, a novel automated metric to evaluate SMT-based code migration tools that is suitable for source code, is language independence, can reflect well the semantic accuracy of translated results, and inexpensive to compute. {\model} is then validated on practical SMT-based code migration models to show its potential and effectiveness. 
+
+In this section, we propose {\model}, a novel automated metric to
+evaluate SMT-based code migration tools. It is aimed to support source
+code, and language-independent
+%, and can reflect well the semantic
+%accuracy of translated results, and inexpensive to compute. 
+{\model} is then empirically validated on SMT-based code migration
+models to show its effectiveness.
+
 
 \subsection{Design}
 \emph{Insight 1 :} According to Table \ref{table:correlation} in section 6. There is a trend of increasing correlation coefficient with Semantic score when more complex level of source code\rq s representations are used. Specifically, GVED has the highest correlation, and it follows by TREED and SED respectively. Therefore, those metrics should have priority order when are used in evaluating translation results. The Expert System tries to address similar problem by inferring through a knowledge base of \lq if-then \rq rules, and using the best expert available for the problem. Applying the Expert System's idea onto our problem, the best metric available should be used when evaluating translation result.
