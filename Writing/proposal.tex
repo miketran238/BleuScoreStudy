@@ -10,17 +10,75 @@ models to show its effectiveness.
 
 
 \subsection{Design}
-\emph{Insight 1 :} According to Table \ref{table:correlation} in section 6. There is a trend of increasing correlation coefficient with Semantic score when more complex level of source code\rq s representations are used. Specifically, GVED has the highest correlation, and it follows by TREED and SED respectively. Therefore, those metrics should have priority order when are used in evaluating translation results. The Expert System tries to address similar problem by inferring through a knowledge base of \lq if-then \rq rules, and using the best expert available for the problem. Applying the Expert System's idea onto our problem, the best metric available should be used when evaluating translation result.
 
-\emph{Insight 2 :}
-For SMT-based Code Migration systems, a translated method cannot be guaranteed to be compilable or be built into PDG. It leads to the problems that GVED and TREED are not always applicable even though GVED is better than TREED, and TREED is better than SED. The probability of a translated method can be built into PDG is also lower than  the probability it can be compiled because a segment of code needs to be compiled first before building into PDG.  On the other hand, SED can always be computed regardless of translation result or types of Code Migration systems. To sum up, the 3 metrics have different advantages and disadvantages. Therefore, it is natural to combine the 3 metrics to overcome the disadvantages and boost the advantages. Indeed, there is a theory to backup that combination. In machine learning domain, Ensemble theory is to combine multiple classifiers to form a hopefully better one when each different classifier is more suited for a practical problem. 
+%\emph{Insight 1 :} 
+According to Table~\ref{table:correlation} in Section 6, we can
+observe a trend of increasing correlation coefficients with Semantic
+scores when higher levels of representations are used for source code
+from lexical tokens to AST, and to PDGs.
+%
+%there is a trend of increasing correlation coefficient with
+%Semantic score when more complex level of source code's
+%representations are used. 
+Specifically, GVED has the highest correlation, and it is followed by
+TREED and SED, respectively. 
+% Tien
+However, as explained earlier, we cannot use GVED as a sole metric to
+evaluate the migrated code because {\em not all resulting migrated
+  code is sufficiently correct to build the PDGs} and to compute
+the feature vectors. 
 
-From the two insights, we design {\model} as an ensemble expert-based metric. {\model} is a combination metric that takes into consideration metrics at the lexical, syntactical, and semantic levels of source code while aims to measure the semantic accuracy of translated code in a reliable manner. {\model} utilizes the best metric available and guarantees to give a reliable semantic accuracy regardless of translation result. If the translated code can be built into PDG, we calculate {\model} in term of graph vector edit distance (GVED). If the translated code cannot be built into PDG, but is compilable, {\model} is calculated as syntax tree edit distance (TREED). Lastly, if the translated code is not compilable, we use string edit distance (SED) to compute {\model}.
+To address this problem, we adapt an idea from machine learning,
+called {\em ensemble methods}~\cite{ensemble}. In machine learning,
+ensemble methods use multiple learning algorithms to obtain better
+predictive performance than could be obtained from any of the
+constituent learning algorithms alone~\cite{ensemble}.
+% Tien
+To apply to our problem, we would use the decision made by the most
+reliable metric, which is GVED metric. In the case that the most
+reliable metric is not available (due to the fact that an PDG cannot
+be built from incorrectly migrated code), we would use the next
+reliable one, which is TREED. TREED in turn would face the same issue
+if the migrated code is not syntactically correct. In this case, we
+would resolve to use SED as it is always computable for any given
+piece of code with regard to the reference code. This design strategy
+is reasonable because the probability of a translated method can be
+built into PDG is lower than the probability that it is syntactically
+correct because a segment of code needs to be compiled first before we
+can build an PDG. On the other hand, SED can always be computed
+regardless of the quality of migrated code and types of code migration
+systems.
 
-The formula of {\model} is presented in Algorithm \ref{ruby}. GVED, TREED, and SED were defined in section 6.1. $r$ is the reference code, $t$ is the translated code; $r,t$ are tokenized into sequences to use in SED, are parsed into ASTs to use in TREED, and are built into PDGs to use in GVED.  
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
+%Therefore, those metrics should have priority order when are used in
+%evaluating translation results. The Expert System tries to address
+%similar problem by inferring through a knowledge base of \lq if-then
+%\rq rules, and using the best expert aarilable for the
+%problem. Applying the Expert System's idea onto our problem, the best
+%metric available should be used when evaluating translation result.
+
+
+%\emph{Insight 2 :}
+%For SMT-based Code Migration systems, a translated method cannot be guaranteed to be compilable or be built into PDG. It leads to the problems that GVED and TREED are not always applicable even though GVED is better than TREED, and TREED is better than SED. The probability of a translated method can be built into PDG is also lower than  the probability it can be compiled because a segment of code needs to be compiled first before building into PDG.  On the other hand, SED can always be computed regardless of translation result or types of Code Migration systems. To sum up, the 3 metrics have different advantages and disadvantages. Therefore, it is natural to combine the 3 metrics to overcome the disadvantages and boost the advantages. Indeed, there is a theory to backup that combination. In machine learning domain, Ensemble theory is to combine multiple classifiers to form a hopefully better one when each different classifier is more suited for a practical problem. 
+
+From the above insight, we design {\model} as an ensemble expert-based
+metric. {\model} is a combined metric that takes into consideration
+metrics at the lexical, syntactical, and semantic levels of source
+code while aiming to measure the semantic accuracy of translated code
+in a reliable manner. {\model} utilizes the best metric available and
+guarantees to give a reliable semantic accuracy regardless of
+translation results. If the translated code can be built into PDG, we
+calculate {\model} in term of graph vector edit distance (GVED). If
+the translated code cannot be built into PDG, however it is
+syntactically correct, {\model} is calculated as syntax tree edit
+distance (TREED). Finally, if the translated code is not syntactically
+correct, we take string edit distance (SED).
+
+The formula to compute {\model} is presented in Algorithm~\ref{ruby}. GVED,
+TREED, and SED were defined in Section~\ref{sec:alternatives}. $r$ is
+the reference code, $t$ is the translated code; $r$ and $t$ are tokenized
+into sequences to use in SED, are parsed into ASTs to use in TREED,
+and are built into PDGs to use in GVED.  \makeatletter
+\def\BState{\State\hskip-\ALG@thistlm} \makeatother
 \begin{algorithm}
 \caption{Calculate {\model}}\label{ruby}
 \begin{algorithmic}[1]
@@ -36,19 +94,7 @@ The formula of {\model} is presented in Algorithm \ref{ruby}. GVED, TREED, and S
 
 \input{proposalResult}
 
-\begin{figure}
-\caption{RUBY vs Semantic (lpSMT)}
-\centering
-\includegraphics{img/rubyvssem_lpSMT.png}
-\label{fig:RubySemlpSMT}
-\end{figure}
 
-\begin{figure}
-\caption{RUBY vs Semantic (mppSMT)}
-\centering
-\includegraphics{img/rubyvssem_mppSMT.png}
-\label{fig:RubySemMppSMT}
-\end{figure}
 
 %BLEU has always been doing this and that....
 
