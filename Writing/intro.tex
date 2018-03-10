@@ -89,12 +89,12 @@ migration models/tools that focus on structures. Specifically, we
 picked mppSMT tool~\cite{ase15} that has high semantic accuracy but
 with a wide range of BLEU~scores.
 
-In our experiment, we used a dataset of {\bf 30,000} pairs of methods
+In our experiment, we used a dataset of {\bf 34,209} pairs of methods
 in {\bf 9} projects that were manually migrated from Java to
 C\texttt{\#} by developers. The dataset was used for evaluating the
 code migration models/tools in existing research~\cite{ase15}. We used
 those above SMT-based migration tools to perform code migration for
-those methods. We then manually investigated {\bf 367}
+those methods. We then manually investigated {\bf 375}
 randomly-selected pairs of methods. For each pair of the manually
 migrated method and the automatically migrated one from a tool, we
 computed the BLEU score and assigned a semantic accuracy score. The
@@ -119,7 +119,7 @@ measuring the accuracy of the semantics of the code with respect to
 the reference code in the ground truth. That is, it measures how close
 the resulting code to the ground truth when the semantics of the code
 is considered. {\model} measures semantics via program dependence
-graph (PDG) as data and control dependencies aamong program entities
+graph (PDG) as data and control dependencies among program entities
 are considered as the key elements in a program. We also integrate
 three different scores from lexical, syntactical, and semantic levels
 into a final {\model} score. The lexical and syntactical scores are
