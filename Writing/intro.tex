@@ -1,14 +1,14 @@
 \section{Introduction}
 \label{sec:intro}
 
-Statistical Machine Translation (SMT)~\cite{smtbook} is a natural
-language processing (NLP) approach~that uses statistical learning to
-derive the translation ``rules'' from a training data and applies the
-trained model to translate a sequence from the source language ($L_S$)
-to the target one ($L_T$). SMT produces translated texts based on the
-statistical models whose parameters are trained from a corpus of the
-corresponding texts in two languages. SMT has been successful in
-translating natural-language texts.  Google
+Statistical Machine Translation (SMT)~\cite{smtbook} is a
+natural~language processing (NLP) approach that uses statistical
+learning to derive the translation ``rules'' from a training data and
+applies the trained model to translate a sequence from the source
+language ($L_S$) to the target one ($L_T$). SMT produces translated
+texts based on the statistical models whose parameters are trained
+from a corpus of corresponding texts in two languages. SMT has
+been successful in translating natural-language texts.  Google
 Translate~\cite{googletranslate} is a SMT-based tool~that can accept
 inputs in 15 natural languages and allows the translation of texts
 into one of 53 languages. Microsoft Translator~\cite{mstranslator}
@@ -21,11 +21,13 @@ evaluating SMT models and tools. {\em BLEU metric}, also called {\em
 translating text phrases to another with various phrases'
 lengths. BLEU was shown to be highly correlated with human judgments
 on the translated texts from natural-language SMT
-tools~\cite{Papineni2002}. However, there exists criticism on BLEU
-as Callison-Burch {\em et al.}~\cite{Callison} argued that an
-improvement in BLEU metric is not sufficient nor necessary to show an
-improvement in translation quality. Despite such criticism, BLEU
-score still remains one of the most popular automated and inexpensive
+tools~\cite{Papineni2002}. 
+%
+%However, there exists criticism on BLEU as Callison-Burch {\em et
+%  al.}~\cite{Callison} argued that an improvement in BLEU metric is
+%not sufficient nor necessary to show an improvement in translation
+%quality. Despite such criticism, 
+BLEU score remains one of the most popular automated and inexpensive
 metrics to evaluate the quality of translation models.
 
 
@@ -39,7 +41,7 @@ models to build automated SE tools. SMT has been directly used or
 adapted to be used to translate/migrate source code in different
 programming
 languages~\cite{fse13-nier,icse14-demo,karaivanov14,ase15,icsme16}. The
-SE problem is called {\em language migration}. In the modern world of
+problem is called {\em language migration}. In the modern world of
 computing, language migration is important. Software vendors often
 develop a software product for multiple operating platforms in
 different languages. For example, the same mobile app could be
@@ -48,7 +50,7 @@ Phone (in C\texttt{\#}).
 %Rather than developing each version of a software product
 %independently, it would be more economical to develop the product in
 %one platform/language and then migrate to another.
-Thus, nowadays, there is an increasing need for migration/translation
+Thus, there is an increasing need for migration/translation
 of source code from one programming language to another.
 %
 
@@ -64,18 +66,19 @@ any empirical evidence to either validate or invalidate the
 effectiveness of BLEU score in applying to source code in language
 migration.
 
-Because the BLEU metric and programming languages have different
-nature in which BLEU measures the phrase-to-phrase translation and
-source code has well syntactic and semantics, we hypothesize that {\em
-  BLEU metric does not reflect well the semantic accuracy on the
-  migrated source code}. We conducted experiments to provide
-counterexamples to empirically validate that hypothesis. We choose the
-language migration task from Java to C\texttt{\#} because it is the
-most popular SE task that applies SMT. We show that under some
-circumstances an improvement in BLEU is not sufficient to reflect an
-improvement in code migration quality, and in other circumstances that
-it is not necessary to improve BLEU in order to achieve an improvement
-in migration quality. 
+Because the BLEU metric 
+%and programming languages have different nature in which BLEU 
+measures the phrase-to-phrase translation while source code has well
+syntactic and semantics, we hypothesize that {\em BLEU metric does not
+  reflect well the semantic accuracy on the migrated source code}. We
+conducted experiments to provide counterexamples to empirically
+validate that hypothesis. We choose the language migration task 
+%from Java to C\texttt{\#} 
+because it is a popular SE task that applies SMT. We show that under
+some circumstances an improvement in BLEU is not sufficient to reflect
+an improvement in code migration quality, and in other circumstances
+that it is not necessary to improve BLEU in order to achieve an
+improvement in migration quality.
 
 Specifically, for the sufficiency, we chose the migration models that
 focus on phrase translation, for example, fpSMT~\cite{fse13-nier} that
