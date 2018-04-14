@@ -60,14 +60,17 @@ natural question is {\em how effective BLEU score is in~evaluating the
   results of migrated source code in language migration}. The answer
 to this question is important because if it does, we could~establish
 an automated metric to evaluate the quality of SMT-based code
-migration tools, and otherwise, a relevant question should be raised:
-{\em what is an alternative metric?} Unfortulately, there has not yet
+migration tools. 
+%Son: Em nghi khong nhat thiet phai hoi truc tiep cau nay
+%, and otherwise, a relevant question should be raised:
+%{\em what is an alternative metric?} 
+Unfortulately, there has not yet
 any empirical evidence to either validate or invalidate the
 effectiveness of BLEU score in applying to source code in language
 migration.
 
 Because the BLEU metric measures the the phrase-to-phrase translation
-while source code has well syntactic and semantics, we hypothesize
+while source code has well syntactic and semantics \textbf{Son: dependencies instead of semantics?}, we hypothesize
 that {\em BLEU metric is not effective in evaluating the translated
   results of migrated source code}. With respect to the use of BLEU
 for the translation results by a single model or its use to compare
@@ -81,6 +84,8 @@ We conducted experiments to provide counterexamples to empirically
 validate that hypothesis. We choose the language migration task
 because it is a popular SE task that applies SMT. 
 
+\textbf{Son: What is the general principle of selections?}
+
 For the first part, we chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier} that adapts a
 phrase-to-phrase translation model~\cite{phrasal10}. This type of
@@ -88,14 +93,17 @@ models produces migrated code with high lexical accuracy, i.e., high
 correctness for sequences of code tokens. However, several tokens or
 sequences of tokens are placed in the incorrect locations.  This
 results in an increment in BLEU but with a lower semantic acccuracy in
-migrated code. We also chose the migration models/tools that focus on
+migrated code \textbf{Son: Why? This is a guess without evidences}. We also chose the migration models/tools that focus on
 structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
 high semantic accuracy but with a wide range of BLEU
-scores. Importantly, we aimed to show that BLEU has weak correlation
+scores \textbf{Son: Why}. Importantly, we aimed to show that BLEU has weak correlation
 with human judgments on translated source code in term of
-functionality. For second part, we chose the three most popular
+functionality \textbf{Son: Miss connection, why human judgments? or just semantic accurancy?}. 
+For second part, we chose the three most popular
 models: lpSMT~\cite{fse13-nier}, mppSMT~\cite{ase15}, and
-GNMT~\cite{tien}. We showed that an improvement in BLEU is not
+GNMT~\cite{tien}. 
+\textbf{This is for the second part, selections or how to apply the selections in first part for this part?} 
+We showed that an improvement in BLEU is not
 sufficient nor necessary to reflect an improvement in the quality of
 code migration.
 
@@ -134,7 +142,7 @@ those above SMT-based migration tools to perform code migration for
 those methods. We then manually investigated {\bf 375}
 randomly-selected pairs of methods. For each pair of the manually
 migrated method and the automatically migrated one from a tool, we
-computed the BLEU score and assigned a semantic accuracy score. The
+assigned a semantic accuracy score and computed the BLEU score. The
 semantic accuracy score was given by a developer after examining the
 original code in Java, the manually migrated code in C\texttt{\#} and
 the auto-migrated code in C\texttt{\#} by a tool. For the first part
@@ -146,10 +154,19 @@ translated results of the same set of 375 methods for two different
 SMT-based migration models. In nearly half of those methods, an
 improvement of BLEU score does not indicate an improvement in semantic
 score, and vice-versa.
+%Conclusion
+By the results of the two experiments, we concluded that BLEU is not a 
+effective metric for evaluating the translated results of migrated code. 
 %Tien
 %We propose a metric: GVED that measure the similarity between graph
 %representation. The intuition.
-
+%Son drafted: (The intuition that motivates us to measure the results in 3 abstraction levels)
+%The intuition is that the metric that measures the results 
+%in the higher abstraction level, the better metric for reflecting the semantics 
+%accuracy. However, in code migration, the higher level representation the source 
+%code is not always constructed. Therefore, we propose a novel metric to evaluate...
+% that integrate measure in three representation levels of source code: lexeme 
+%(text), abstract syntax tree and dependency graph. (More details). We conduct experiments... The results show that...
 In this work, we also introduce, {\model}, a novel metric to evaluate
 the results of the SMT-based code migration tools. {\model} focuses on
 measuring the accuracy of the semantics of the code with respect to
