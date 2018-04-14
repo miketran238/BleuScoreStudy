@@ -1,8 +1,8 @@
-\subsection{Proposal result}
-
+\subsection{Proposal Result}
+\subsubsection{Correlation of RUBY and Semantic scores}
 To evaluate RUBY, we conducted the same experiment with other four
-metrics to show the correlation of RUBY with semantic scores on two
-model mppSMT and lpSMT. RUBY's efficiency was tested on a large number
+metrics to show the correlation of RUBY with semantic scores on three
+models GNMT, mppSMT and lpSMT. RUBY's efficiency was tested on a large number
 of methods translated by those models. 
 
 \begin{figure}[t]
@@ -39,8 +39,6 @@ high confidence. For example, an increase of 0.5, {\model} score can
 be interpreted as an increase of 0.4 in term of Semantic score. Based
 on that information, developers can tune the system in an incremental
 manner.
-
-
 %Specifically, a correlation of +0.8 implies that when 	
 
 Although RUBY has a strong correlation coefficient, it is still lower
@@ -51,5 +49,9 @@ information, RUBY does not depend on the code, even we can not parse
 PDGs and ASTs. This implies that there exist a RUBY score for any
 given code. On the other hand, in comparison with TREED, SED
 and BLEU, RUBY always outperforms the other three metrics.
+
 	    
-  			
+\subsubsection{The Use of RUBY in Comparing Models}
+We conducted the same experiment on {\model} as we did with BLEU on cross models. 
+Comparing models GNMT and mppSMT, we found out that in \textbf{97.7\%} of the cases, the change in {\model} score indicates the change in the same direction for Semantic score. It means an improvement in {\model} score equivalents an improvement in Semantic scores and vice versa. More interestingly, 83 of 88 cases (\textbf{94.3\%}) if a pair of translated results have the same Semantic score, they also have identical {\model} score. 
+As the results showing, {\model} is a reliable metric to use in comparing different SMT-based migration models. 	

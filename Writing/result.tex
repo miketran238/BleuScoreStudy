@@ -1,12 +1,14 @@
 \section{Empirical Results}
 \label{sec:bleuresult}
 
-In this section, we present the empirical results on the relation
-between BLEU scores and human judgements via semantic scores.  We use
+In this section, we present the empirical results to prove our hypothesis that \textit{BLEU is not effective in evaluating translation quality of source code migration task}
+\subsection{Correlation between BLEU and Semantic scores}
+Regarding the first part of the hypothesis (the use of BLEU for a single model), we show the relation
+between BLEU scores and human judgments via semantic scores. We use
 Pearson's correlation coefficient~\cite{PearsonCorrelation} to gauge
-how strong their relation. The correlation coefficient has value
-between -1 and 1, where 1 indicates a strong positive relation, -1
-indicates a strong negative relation, and 0 indicates no relation at
+how strong their relation is. The correlation coefficient has value
+between -1 and 1, where 1 indicates the strongest positive relation, -1
+indicates the strongest negative relation, and 0 indicates no relation at
 all.
 
 Figures~\ref{fig:BleuSemlpSMT} and~\ref{fig:BleuSemMppSMT} show the
@@ -64,12 +66,12 @@ out the important program elements such as function calls or variable
 names. In this case, it will have low Semantic score while having
 a moderate to high BLEU score.
 
-The two implications above show that an improvement in BLEU is not
-sufficient nor necessary to indicate an improvement in translation
-migration quality. In conclusion, BLEU does not reflect well the
+In conclusion, BLEU does not reflect well the
 semantics of source code, and it is not suitable to use in evaluating
-semantic accuracy of the SMT-based code migration systems.
+semantic accuracy of a SMT-based code migration system.
 
+\subsection{The Use of BLEU in Comparing Models}
+To validate the use of BLEU in comparing different SMT-based code migration systems, we conduct study to see if the change in BLEU scores over models reflect the change in translation quality represented by human judgments of Semantic score. For a same set of 375 original Java methods, the two models GNMT and mppSMT generates two sets of 375 translated methods. Each set has its own BLEU scores and Semantic scores. We ignored pairs of translated results if they have the same BLEU score or Semantic score (136 of the cases). For the remaining results, we found out that in \textbf{34\%} of the cases, the change in BLEU score contradicts the change in Semantic score. It means an improvement in BLEU score leads to a decrease in Semantic score and vice versa. In other words, if one function is translated by two migration models, one-third of the time, the result which has higher BLEU score actually has lower translation quality than the other. Consequently, BLEU is not reliable to use in comparing different SMT-based migration models. 
 
 \begin{figure}
 \caption{BLEU metric vs Semantic metric (lpSMT model)}
