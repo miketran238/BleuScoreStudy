@@ -66,31 +66,36 @@ any empirical evidence to either validate or invalidate the
 effectiveness of BLEU score in applying to source code in language
 migration.
 
-Because the BLEU metric 
-%and programming languages have different nature in which BLEU 
-measures the phrase-to-phrase translation while source code has well
-syntactic and semantics, we hypothesize that {\em BLEU metric does not
-  reflect well the semantic accuracy on the migrated source code}. We
+Because the BLEU metric measures the the phrase-to-phrase translation while source code has well syntactic and semantics, we hypothesize that {\em BLEU metric is not effective in evaluating the translated results of migrated source code}. The hypothesis can further be divided into two parts: BLEU does not reflect well the semantic accuracy of migrated source code, and BLEU does not work well for the task of comparing different SMT models.  We
 conducted experiments to provide counterexamples to empirically
 validate that hypothesis. We choose the language migration task 
-%from Java to C\texttt{\#} 
-because it is a popular SE task that applies SMT. We show that under
-some circumstances an improvement in BLEU is not sufficient to reflect
-an improvement in code migration quality, and in other circumstances
-that it is not necessary to improve BLEU in order to achieve an
-improvement in migration quality.
-
-Specifically, for the sufficiency, we chose the migration models that
-focus on phrase translation, for example, fpSMT~\cite{fse13-nier} that
-adapts a phrase-to-phrase translation model~\cite{phrasal10}. This
-type of models produces migrated code with high lexical accuracy,
-i.e., high correctness for sequences of code tokens. However, several
-tokens or sequences of tokens are placed in the incorrect locations.
-This results in an improvement in BLEU but with a lower semantic
-acccuracy in migrated code. For the necessary part, we chose the
-migration models/tools that focus on structures. Specifically, we
-picked mppSMT tool~\cite{ase15} that has high semantic accuracy but
-with a wide range of BLEU~scores.
+because it is a popular SE task that applies SMT. In the domain of migration task that used SMT, we pick the three most popular models: lpSMT, mppSMT, and GNMT. To prove the first part of our hypothesis, we show that BLEU has weak correlation with human judgments on translated source code in term of functionality. For the second part, we show that an improvement in BLEU is not sufficient nor necessary to reflect an improvement in code migration quality.
+%  reflect well the semantic accuracy on the migrated source code}
+%syntactic and semantics, we hypothesize that {\em BLEU metric does not
+%Because the BLEU metric 
+%measures the phrase-to-phrase translation while source code has well
+%syntactic and semantics, we hypothesize that {\em BLEU metric does not
+%  reflect well the semantic accuracy on the migrated source code}. We
+%conducted experiments to provide counterexamples to empirically
+%validate that hypothesis. We choose the language migration task 
+%%from Java to C\texttt{\#} 
+%because it is a popular SE task that applies SMT. We show that under
+%some circumstances an improvement in BLEU is not sufficient to reflect
+%an improvement in code migration quality, and in other circumstances
+%that it is not necessary to improve BLEU in order to achieve an
+%improvement in migration quality.
+%
+%Specifically, for the sufficiency, we chose the migration models that
+%focus on phrase translation, for example, fpSMT~\cite{fse13-nier} that
+%adapts a phrase-to-phrase translation model~\cite{phrasal10}. This
+%type of models produces migrated code with high lexical accuracy,
+%i.e., high correctness for sequences of code tokens. However, several
+%tokens or sequences of tokens are placed in the incorrect locations.
+%This results in an improvement in BLEU but with a lower semantic
+%acccuracy in migrated code. For the necessary part, we chose the
+%migration models/tools that focus on structures. Specifically, we
+%picked mppSMT tool~\cite{ase15} that has high semantic accuracy but
+%with a wide range of BLEU~scores.
 
 In our experiment, we used a dataset of {\bf 34,209} pairs of methods
 in {\bf 9} projects that were manually migrated from Java to
@@ -106,7 +111,7 @@ examining the original code in Java, the manually migrated code in
 C\texttt{\#} and the auto-migrated code in C\texttt{\#} by a tool. We
 then computed the correlation between the BLEU scores and semantic
 scores of all the pairs. Our result shows that the BLEU metric has a
-weak correlation to the semantic accuracy of the migrated code.
+weak correlation to the semantic accuracy of the migrated code. Additionally, we compared the translated results of the same set of 375 methods for two different SMT models. In nearly half of those methods, an improvement of BLEU score does not indicate an improvement in semantic score, and vice-versa.
 %Tien
 %We propose a metric: GVED that measure the similarity between graph
 %representation. The intuition.
@@ -127,8 +132,8 @@ intention of the lexical and syntactic scores is for the resulting
 code that might {\em not} be lexically or syntactically correct. We
 also conducted experiments to evaluate {\model} as in the previous
 experiments for BLEU. Our result shows that the new metric {\model} is
-highly correlated to the human judgements on the semantic accuracy of
-the resulting migrated code. The contributions of this paper include:
+highly correlated to the human judgments on the semantic accuracy of
+the resulting migrated code. {\model} can also be used to compare different SMT models as it can predict successfully (95\% of the cases) the change in translation quality (measured by semantic score). The contributions of this paper include:
 
 1. An empirical evidence to show that BLEU metric does not reflect
 well the semantic accuracy of the migrated code for SMT-based
@@ -141,7 +146,7 @@ syntactical, and semantic levels in source code.
 Our dataset is publicly available for evaluation.
 
 
-%In this paper we give a number of counterexamples for Bleu¡¦s
+%In this paper we give a number of counterexamples for Bleuï¿½ï¿½s
 %correlation with human judgments. We show that under some
 %circumstances an improvement in Bleu is not sufficient to reflect a
 %genuine improvement in translation quality, and in other circumstances

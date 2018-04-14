@@ -13,11 +13,10 @@ vocabulary, grammar, and meaning; programming language can be composed
 by the three corresponding parts: lexeme, syntax, and
 semantics. 
 %
-Therefore, we consider three representations that reflect each of the
-three above parts. Specifically, we use tokens, Abstract Syntax Trees
-(ASTs), and Program Dependence Graphs (PDGs) in this study to estimate
-the semantic accuracy of the migrated code from SMT-based migration
-tools.
+Therefore, we consider three representations: tokens, Abstract Syntax Trees
+(ASTs), and Program Dependence Graphs (PDGs) that reflect each of the
+three above parts respectively. Comparing source code by using those representations would give us three metrics to measure semantics similarity. Each representation would reflect semantics of source code in certain ways.
+For example, a pair of methods that have identical lexemes would have identical program semantics, but if they are different in term of lexeme, it is uncertain to determine their semantic similarity. Therefore, to fully capture how well these representations reflect semantics accuracy, it is necessary to conduct empirical study that measures the correlation between each metric with semantic score graded by human expert.
 %choose one representation for each of the above part to
 %compare, in order to heuristically estimate the semantic
 %similarity. 
