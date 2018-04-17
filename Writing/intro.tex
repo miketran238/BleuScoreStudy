@@ -70,9 +70,10 @@ effectiveness of BLEU score in applying to source code in language
 migration.
 
 Because the BLEU metric measures the the phrase-to-phrase translation
-while source code has well syntactic and semantics \textbf{Son: dependencies instead of semantics?}
-\textbf{Ngoc: sua thanh rigid semantics (programming language co tinh chat nay khac voi natural language 1 cau co the co nhieu nghia)}, we hypothesize
-that {\em BLEU metric is not effective in evaluating the translated
+while source code has well syntactic and dependencies  
+%\textbf{Son: dependencies instead of semantics?}
+%\textbf{Ngoc: sua thanh rigid semantics (programming language co tinh chat nay khac voi natural language 1 cau co the co nhieu nghia)}, 
+we hypothesize that {\em BLEU metric is not effective in evaluating the translated
   results of migrated source code}. With respect to the use of BLEU
 for the translation results by a single model or its use to compare
 the results across models, this key hypothesis can further be divided
@@ -85,8 +86,8 @@ We conducted experiments to provide counterexamples to empirically
 validate that hypothesis. We choose the language migration task
 because it is a popular SE task that applies SMT. 
 
-\textbf{Son: What is the general principle of selections?}
-\textbf{Ngoc: popular migration models that used SMT}
+%\textbf{Son: What is the general principle of selections?}
+%\textbf{Ngoc: popular migration models that used SMT}
 
 For the first part, we chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier} that adapts a
@@ -95,19 +96,13 @@ models produces migrated code with high lexical accuracy, i.e., high
 correctness for sequences of code tokens. However, several tokens or
 sequences of tokens are placed in the incorrect locations.  This
 results in an increment in BLEU but with a lower semantic acccuracy in
-migrated code \textbf{Son: Why? This is a guess without evidences}. \textbf{Ngoc: This can result in a translated code with high BLEU score but not necessary high semantic accuracy}. We also chose the migration models/tools that focus on
+migrated code. We also chose the migration models/tools that focus on
 structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
 high semantic accuracy but with a wide range of BLEU
-scores \textbf{Son: Why}. \textbf{Ngoc: The mppSMT can produce translated code that has different lexical representation but performs the same functionality}. Importantly, we aimed to show that BLEU has weak correlation
-with human judgments on translated source code in term of
-functionality \textbf{Son: Miss connection, why human judgments? or just semantic accurancy?}. 
-\textbf{Ngoc: I agreed. We can either introduce the use of human judgments before mentioning it here or just use semantic accuracy here.} 
-For second part, we chose the three most popular
-models: lpSMT~\cite{fse13-nier}, mppSMT~\cite{ase15}, and
-GNMT~\cite{tien}. 
-\textbf{This is for the second part, selections or how to apply the selections in first part for this part?}
-\textbf{Ngoc: I don't understand the question but I'll try to answer anyway: It is about the selection for the second part of the hypothesis}  
-We showed that an improvement in BLEU is not
+scores. Importantly, we aimed to show that BLEU has weak correlation
+with semantic accuracy on translated source code. For second part, we chose 
+the three most popular models: lpSMT~\cite{fse13-nier}, mppSMT~\cite{ase15}, 
+and GNMT~\cite{tien}. We showed that an improvement in BLEU is not
 sufficient nor necessary to reflect an improvement in the quality of
 code migration.
 
@@ -165,37 +160,49 @@ effective metric for evaluating the translated results of migrated code.
 %We propose a metric: GVED that measure the similarity between graph
 %representation. The intuition.
 
-\textbf{Son drafted}: (The intuition that motivates us to measure the results in 3 abstraction levels)
+%In this work, we also introduce, {\model}, a novel metric to evaluate
+%the results of the SMT-based code migration tools. {\model} focuses on
+%measuring the accuracy of the semantics of the code with respect to
+%the reference code in the ground truth. That is, it measures how close
+%the resulting code to the ground truth when the semantics of the code
+%is considered. {\model} measures semantics via program dependence
+%graph (PDG) as data and control dependencies among program entities
+%are considered as the key elements in a program. We also integrate
+%three different scores from lexical, syntactical, and semantic levels
+%into a final {\model} score. The lexical and syntactical scores are
+%measured via string edit distance and tree edit distance,
+%respectively, between the resulting code and the reference one. The
+%intention of the lexical and syntactic scores is for the resulting
+%code that might {\em not} be lexically or syntactically correct. We
+%also conducted experiments to evaluate {\model} as in the previous
+%experiments for BLEU. Our result shows that the new metric {\model} is
+%highly correlated to the human judgments on the semantic accuracy of
+%the resulting migrated code. {\model} can also be used to compare
+%different SMT-based code migration models as it can successfully
+%measure 95\% of the cases of the change in translation quality. 
+%The contributions of this paper include:
+
+In this work, we introduce, {\model}, a novel metric to evaluate
+the results of the SMT-based code migration tools. 
 The intuition is that the metric that measures the results 
-in the higher abstraction level, the better metric for reflecting the semantics 
-accuracy. However, in code migration, the higher level representation the source 
-code is not always constructed. Therefore, we propose a novel metric, {\model}, to evaluate...
- that integrate the measuring in three representation levels of source code: lexeme 
-(text), abstract syntax tree and dependency graph. (More details). We conduct experiments... The results show that...
-
-\textbf{Ngoc}: Anh dong y la minh nen doi cach tiep can tu huong integration of 3 representations thay vi su dung PDG lam trong tam.
-
-In this work, we also introduce, {\model}, a novel metric to evaluate
-the results of the SMT-based code migration tools. {\model} focuses on
-measuring the accuracy of the semantics of the code with respect to
-the reference code in the ground truth. That is, it measures how close
-the resulting code to the ground truth when the semantics of the code
-is considered. {\model} measures semantics via program dependence
-graph (PDG) as data and control dependencies among program entities
-are considered as the key elements in a program. We also integrate
-three different scores from lexical, syntactical, and semantic levels
-into a final {\model} score. The lexical and syntactical scores are
-measured via string edit distance and tree edit distance,
-respectively, between the resulting code and the reference one. The
-intention of the lexical and syntactic scores is for the resulting
-code that might {\em not} be lexically or syntactically correct. We
-also conducted experiments to evaluate {\model} as in the previous
+in the higher abstraction level, the better metric for reflecting 
+the semantics accuracy. However, in code migration, the translated code 
+might be missed information that is required to construct the higher 
+level representations. Therefore, we propose a multiple levels metric 
+to evaluate the quality of translated code, that increasingly integrates 
+the measuring in three representation levels of source code: lexeme 
+(text), abstract syntax tree, and program dependence graph. For a 
+translated result, the {\model} score is the similarity rate between 
+the source code and the expected result in the highest level representations 
+that can be constructed for both versions. To evaluate the effectiveness 
+of {\model} in assessing the quality of migrated source code compared to BLEU, 
+we conducted experiments to evaluate {\model} as in the previous
 experiments for BLEU. Our result shows that the new metric {\model} is
 highly correlated to the human judgments on the semantic accuracy of
 the resulting migrated code. {\model} can also be used to compare
 different SMT-based code migration models as it can successfully
-measure 95\% of the cases of the change in translation quality. The
-contributions of this paper include:
+measure 95\% of the cases of the change in translation quality. 
+The contributions of this paper include:
 
 1. An empirical evidence to show that BLEU metric does not reflect
 well the semantic accuracy of the migrated code for SMT-based
