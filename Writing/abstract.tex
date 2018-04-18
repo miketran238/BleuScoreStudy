@@ -1,3 +1,26 @@
 \begin{abstract}
-Statistical Machine translation (SMT) is a fast growing sub-field of computational linguistic. Until now, the most popular automatic metric to measure the quality of SMT is BLEU score. Lately, SMT along with its BLEU metric has been applied to a Software Engineering(SE) task named Code Migration. Unfortunately, there are not any studies to approve or disapprove the use of BLEU for source code. In this paper, we conducted empirical study of BLEU score to (in)validate its suitability for software engineering task because of its inability to reflect semantics of source code. In our work, we use human judgment as the ground truth to measure Semantic score. (In)Validating the use of BLEU score could advance the research and development of SMT-based Code Migration systems. We provided counterexamples to show that an improvement in BLEU is not sufficient nor necessary for an improvement in translation quality. Our empirical study also demonstrated BLEU score does not reflect translation quality due to its weak relation with Semantics score of translated source code. Due to BLEU's ineffectiveness for Code Migration task, we propose an alternative metric {\model} that takes into consideration lexical, syntactical, and semantic representations of source code. We then verified that {\model} could measure well the semantic accuracy of translated source code. {\model} achieves 0.85 correlation coefficient with Semantic score of source code. With its advantages, {\model} could be used to evaluate SMT-based Code Migration system instead of BLEU. 
+Statistical Machine translation (SMT) is a fast growing sub-field of
+computational linguistic. Until now, the most popular automatic metric
+to measure the quality of SMT is BiLingual Evaluation Understudy
+(BLEU) score. Lately, SMT along with its BLEU metric has been applied
+to the Software Engineering(SE) task named Code
+Migration. Unfortunately, there are no study to approve or disapprove
+the use of BLEU for source code. In this paper, we conducted an
+empirical study on BLEU score to (in)validate its suitability for the
+code migration task because of its inability to reflect semantics of
+source code. In our work, we use human judgment as the ground truth to
+measure the semantic correctness of the migrated code. (In)Validating
+the use of BLEU score could advance the research and development of
+SMT-based code migration tools. We provided counter-examples to show
+that an improvement in BLEU is not sufficient nor necessary for an
+improvement in translation quality. Our empirical study also
+demonstrated BLEU score does not reflect translation quality due to
+its weak relation with the semantic correctness of translated code.
+%
+Due to BLEU's ineffectiveness for code migration task, we propose an
+alternative metric {\model}, which considers lexical,
+syntactical, and semantic representations of source code. We then
+verified that {\model} could achieve a high correlation coefficient
+with the semantic correctness of migrated code. With its advantages,
+{\model} could be used to evaluate SMT-based code migration tools.
 \end{abstract}
