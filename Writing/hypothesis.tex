@@ -12,7 +12,7 @@ texts~\cite{Papineni2002}.
 However, the use of BLEU metric in evaluating the migrated code from
 SMT-based code migration would raise two key issues. First,
 programming languages aim to be used with automated tools, thus, have
-well-defined syntaxes and semantics. Source code has strict syntactic
+well-defined syntaxes and program dependencies. Source code has strict syntactic
 structure while natural-language texts are less strict in that aspect
 to enable creativity, poetry and metarphors.
 %
@@ -45,12 +45,20 @@ translation is.
 %between resulting code and reference code.
 
 Due to those two intuitive reasons, we have the following hypothesis:
-{\em BLEU score does not measure well the similarity in term of
-  semantics between the reference and migrated source code}. In this
-work, we aim to answer these following research questions:
+{\em BLEU score does not measure well the quality of translated results
+that is estimated based on the similarity in term of 
+semantics between the reference and migrated source code}. To validate 
+this hypothesis, we aim to answer these following research questions:
+%
+%\textbf{RQ1:} Does BLEU score reflect the semantic similarity between
+%the resulting code and the reference code in the ground truth?
 
-\textbf{RQ1:} Does BLEU score reflect the semantic similarity between
+{\bf RQ1:} Does BLEU score reflect well the semantic similarity between
 the resulting code and the reference code in the ground truth?
 
-{\bf RQ2:} What is the alternative metric to measure semantic accuracy
-of migrated code if BLEU does not reflect well such accuracy?
+{\bf RQ2:} Is BLEU effective in evaluating the translation quality 
+improvement of a model over another?\\
+Furthermore, we also answer a relevant question question:
+
+{\bf RQ3:} What is the alternative metric to measure semantic accuracy
+of migrated code if BLEU is not effective in evaluating the translated results?
