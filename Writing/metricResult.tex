@@ -14,8 +14,9 @@ in Section~7 based on the results of the following experiments.
 \hline
  & SED & TREED & GVED\\
 \hline
-mppSMT  & 0.549 & 0.684 & 0.862 \\
-lpSMT  & 0.635 & 0.774 & 0.836 \\
+mppSMT  & 0.549 & 0.820 & 0.910 \\
+lpSMT  & 0.533 & 0.786 & 0.823 \\
+GNMT & 0.692 & 0.734 & 0.927 \\
 \hline
 \end{tabular}
 \label{table:correlation}
@@ -27,9 +28,10 @@ lpSMT  & 0.635 & 0.774 & 0.836 \\
 SED is similar to BLEU in the way that both of them compare source
 code in term of lexical representation. Indeed, the two metrics have
 similar correlations with Semantic score
-(Table~\ref{table:correlation}). The correlation coefficient are
-equivalent 0.524 and 0.549 (mppSMT), and 0.67 and 0.675 (lpSMT). SED
-suffers the same drawbacks as BLEU: it does not take into
+(Table~\ref{table:correlation}). The correlation coefficient between SED and Semantic score is 0.549,
+ 0.533, and 0.692 for three models mppSMT, lpSMT, and GNMT respectively. 
+%equivalent 0.523 and 0.549 (mppSMT), and 0.67 and 0.675 (lpSMT). SED
+SED suffers the same drawbacks as BLEU: it does not take into
 consideration the structures of source code, and it compares source
 code only in term of lexical tokens. 
 %It is not worth to use SED instead of BLEU since it still has the same
@@ -55,16 +57,16 @@ code only in term of lexical tokens.
 %Technically, a translated method cannot be said to perform any functionality if it cannot be compiled. However, in the Code Migration problem, a translated method which has wrong syntax can still be useful for developers. 
 
 Figure \ref{fig:TREEDmppSMT} shows the scatter plots between 2
-metrics: TREED and Semantic score. In general, the result has similar
+metrics: TREED and Semantic score for the model mppSMT. In general, the result has similar
 trend as in the relation of BLEU and Semantic score: the data points
-are too scattered to show a noticeable correlation and there are
+are too scattered to show a strong correlation and there are
 several outliers. For a fixed value of Semantic score, TREED score can
 still vary in a large range. However, compared to BLEU, the variation
 is much smaller. For example, a pair of method that has Semantic score
 of 0.5 can possibly have TREED scores in range of 0.7 to 1 while such
 range is 0.5 to 1 for BLEU. TREED shows noticeable improvement over
-BLEU on the correlation with Semantic score on the mppSMT model
-(0.524 to 0.684), and on lpSMT model (0.621 to 0.774).
+BLEU or SED on the correlation with Semantic score on the mppSMT model
+(0.549 to 0.820), on lpSMT model (0.533 to 0.786), and on the GNMT model (0.692 to 0.734). 
 
 %\emph{Observation 1:} For a fixed value of Semantic score, there can be many associated TREED values. Specifically, in the model lpSMT, with a Semantic Score of 1, the TREED scores can be varied greatly between 0-1, which was reflected on the top horizontal line of dots in figure \ref{fig:TREEDlpSMT}. Similarly, in the figure \ref{fig:TREEDmppSMT}, with a Semantic Score of 1, the TREED scores are in the range of 0.7 to 1. 
 %
@@ -114,9 +116,8 @@ than BLEU.
 Figure \ref{fig:GVEDmppSMT} shows the scatter plots between 2 metrics:
 GVED and Semantic score when GVED is applicable. There are 240 of such
 points for the model mppSMT in the total of 375 pairs of methods, and
-75 points for lpSMT, respectively. The correlation coefficient between
-GVED and Semantic score for the model mppSMT is 0.893 and for the
-model lpSMT is 0.980. These values show the better correlations with
+75 points for lpSMT, respectively. The correlation coefficients between
+GVED and Semantic score are 0.910, 0.823, and 0.927 for the 3 models mppSMT, lpSMT, and GNMT respectively. These values show the better correlations with
 Semantic score than any of the BLEU, SED, and TREED metrics.
 %
 %significant improvements on both models comparing to any of the other
@@ -124,13 +125,13 @@ Semantic score than any of the BLEU, SED, and TREED metrics.
 %
 All other three metrics have correlation coefficients with Semantic
 Score less than 0.7 while GVED achieves remarkable correlation
-coefficients of almost 1.0. 
+coefficients of nearly 1.0 . 
 %
 %GVED's promising result makes it an obvious choice to evaluate
 %SMT-based Code Migration systems.
 %
 
-A caveat to this is that not all migrated code is sufficienly correct
+A caveat to this is that not all migrated code is sufficiently correct
 to build the corresponding PDGs.
 %
 %the translated methods have too many errors that cannot be built into
