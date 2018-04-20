@@ -1,8 +1,8 @@
 \subsection{Counter-Examples and Model Selections}
 
-%To prove our hypothesis, we use counterexamples. Specifically, we want to disable and/or 
+%To prove our hypothesis, we use counterexamples. Specifically, we want to disable and/or
 
-%TODO (SON) need to check one more time, make it stronger 
+%TODO (SON) need to check one more time, make it stronger
 %We conducted experiments to provide counterexamples to empirically
 %validate that hypothesis. We choose the language migration task from
 %Java to C\texttt{\#} because they are the most popular and similar
@@ -10,13 +10,14 @@
 %likely work for other pairs of programming languages.
 
 %Son: a good metric SHOULD be independent from models and translation tasks
-%So, we just confidently pick the most popular language migration task (without explanations) 
+%So, we just confidently pick the most popular language migration task (without explanations)
 We conducted experiments to provide counterexamples to empirically
-validate that hypothesis. If BLEU is a good metric for language migration, 
-it should be independent from translation tasks and models. Therefore, 
-choosing the migration tasks does not affect our assessment for BLEU. 
-In this work, we choose the language migration task from Java to C\texttt{\#} 
-which is considered as the most popular task in language migration.
+validate that hypothesis. If BLEU is a good metric for language
+migration, it should be independent from SMT-based migration models
+and programming languages. Therefore, choosing programming languages
+does not affect our assessment for BLEU. In this work, we choose the
+language migration task from Java to C\texttt{\#} which is considered
+as one of the most popular tasks in language migration.
 
 %
 %We will show that BLEU score is not strongly correlated to human
@@ -26,11 +27,13 @@ which is considered as the most popular task in language migration.
 %how close the result is with respect to the given correct solution in
 %the ground truth.
 %
-First, we provide examples to show that BLEU score is not strongly correlated to the 
-semantic accuracy of the migrated code. That is, for a particular 
-translation model, the higher BLEU score does not lead to the higher semantic 
-accuracy of translated results, and the higher semantic accuracy results 
-are also not necessary to achieve higher BLEU scores.
+%First,
+To address {\bf RQ1}, we provide counterexamples to show that BLEU score is
+not strongly correlated to the semantic accuracy of the migrated
+code. That is, for a particular translation model, the higher BLEU
+score does not lead to the higher semantic accuracy of translated
+results, and the higher semantic accuracy results are also not
+necessary to lead to higher BLEU scores.
 %
 %We also show that under some circumstances an improvement in BLEU is
 %not sufficient to reflect an improvement in code migration quality,
@@ -43,22 +46,22 @@ are also not necessary to achieve higher BLEU scores.
 %order to achieve an improvement in migration~quality.
 %
 
-{\bf The higher BLEU, not the higher sematic accuracy.} 
-We chose the migration models that focus on phrase
+{\bf The higher BLEU does not necessarily lead to higher sematic
+  accuracy.}  We chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier,karaivanov14} that
 adapts phrase-to-phrase translation models~\cite{phrasal10}. This type
 of models produces migrated code with high lexical accuracy, i.e.,
 high correctness on the sequences of code tokens. However, several
 tokens or sequences of tokens are placed in the incorrect locations.
-This results in a higher in BLEU but with a lower semantic
-acccuracy in migrated code.
+This results in a higher in BLEU but with a lower semantic accuracy
+in migrated code.
 
 
 \begin{figure}[t]
 \centering
 \begin{lstlisting}[basicstyle=\small\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
   // Java code: ClientQueryResult.java
-  public ClientQueryResult(Transaction ta, int initialSize) {
+  public ClientQueryResult(Transaction ta, int initialSize){
     super(ta, initialSize);
   }
 
@@ -72,35 +75,35 @@ acccuracy in migrated code.
 \label{fig:issueexample2}
 \end{figure}
 
-%{\bf Breaking a parent class' constructor call.} 
+%{\bf Breaking a parent class' constructor call.}
 
 Let us take an example of the resulting migrated code from the tool
 lpSMT~\cite{fse13-nier} ({\em Call to Parent Class' Constructor
-  \code{super(...)}}). Figure~\ref{fig:issueexample2} shows an example
+  \code{super(...)}}). Fig.~\ref{fig:issueexample2} shows an example
 as the lpSMT model translates a call to the constructor of a parent
-class via \code{super} (lines 2-4). In Java, a call to \code{super} is
-made inside the method's body. In contrast, in C\#, a call to the
+class via \code{super} (lines 2--4). In Java, a call to \code{super} is
+made inside the method's body. In contrast, in C\texttt{\#}, a call to the
 constructor is made via \code{base} and occurs in the method
 signature, \ie prior to the method's body as in
 \code{base(ta,initialSize) {}} (line 7). However, in the translation
 version, this call was broken into two pieces: one in the method
-signature \code{'base(ta'} and one in the method body \code{',
-  initialSize);'} (line 10). Thus, the translation code is
+signature \code{'base(ta'} and one in the method~body\\ \code{`, initialSize);'} (line 10). Thus, the translation code is
 syntactically incorrect. In this case, lpSMT translated based on the
 lexemes of tokens in the method signature and the body, however, does
 not consider the entire syntactic unit of a constructor call to the
 parent class in \code{super} for translation. For this example, the
-BLEU score with $n$=4 is {\bf 0.673}. However, the result is not even
+BLEU score with $n$=4 is {\bf 0.673}. However, the translated code is not even
 compiled due to that syntactic error. The effort to find the
 misplacement and to correct this is not trivial.
 
-{\bf The higher semantic accuracy, the higher BLEU score, this is not necessary.} 
+{\bf Higher semantic accuracy does not necessarily lead to higher BLEU
+  score.}
 %We chose the migration models/tools that focus on
 %structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
-%high semantic accuracy but with a wide range of BLEU~scores. 
+%high semantic accuracy but with a wide range of BLEU~scores.
 %
-To validate this argument, we chose the migration models/tools, 
-specifically, mppSMT tool~\cite{ase15}, that has high semantic 
+To validate this argument, we chose the migration models/tools,
+specifically, mppSMT tool~\cite{ase15}, that has high semantic
 accuracy but probably with a wide range of BLEU~scores.
 The key idea behind this choice is that mppSMT uses syntax-directed
 translation, \ie it translates the code within syntactic structures
@@ -112,16 +115,16 @@ achieving higher syntactic and semantic accuracy than other existing
 techniques~\cite{ase15}. An important characteristic of mppSMT is that
 there is a considerable percentage of translated code that are
 semantically correct, however, are different from the manual-migrated
-code. Specifically, those correct code involve 1) code with different
+code. Specifically, those correct code involves 1) code with different
 local variables' names from a reference method, but all variables are
-consistently renamed; 2) code with namespaces being added/ deleted
+consistently renamed; 2) code with namespaces being added/deleted
 to/from a type (e.g., \code{new P.A()} vs \code{new A()}); 3) code
 with `\code{this}' being added/deleted to/from a field or method; and
 4) code with different uses of syntactic units and APIs having the
 same meaning, \eg field accesses versus getters or array accesses
 versus method calls. These variations are all correct, however, the
 BLEU scores among the pairs of the reference and translated code are
-quite different.  
+quite different.
 %From those observations, we chose mppSMT for this experiment.
 
 
@@ -145,15 +148,19 @@ quite different.
 %resulting code are incorrect (not shown).
 %
 %TODO cross models
-Furthermore, we will show that for model comparison in the translation 
-quality, under certain circumstances an improvement in BLEU is not effective 
-in reflecting an improvement in code migration quality. For this experiment, 
-we pick two the two SMT-based models belonging to the two popular groups 
-of SMT: mppSMT, which is based on phrase-based SMT, and GNMT, which 
-is based on neural network models. ({\bf Need help, there might be further reasons})
+
+To answer {\bf RQ2}, we will show that for comparing different
+SMT-based models in the translation quality, under certain
+circumstances an improvement in BLEU is not effective in reflecting an
+improvement in code migration quality. For this experiment, we pick
+the two SMT-based models belonging to the two popular groups of SMT:
+mppSMT~\cite{ase15}, which is based on phrase-based SMT, and
+GNMT~\cite{gnmt}, which is based on neural network models. ({\bf More
+  reasons?})
 
 With these insights, we chose those models and conducted experiments
 to empirically verify how the correlation between the BLEU scores and
-the human judgments on the semantic accuracy of the migrated code. Let
-us explain our data collection, settings, and metrics for our
-experiments.
+the human judgments on the semantic accuracy of the migrated code.
+
+%Let us explain our data collection, settings, and metrics for our
+%experiments.
