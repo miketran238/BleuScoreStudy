@@ -32,14 +32,15 @@ observation, we conclude that the results migrated by certain models
 with high BLEU scores might not archive high semantic scores. 
 %There are two reasons for this. 
 %
+
 In our sample set, these results can fall in two main cases. 
 First, the translated methods might have multiple correct phrases, but in the 
 incorrect order, those method can be incorrect, even incompliable.
 %useless and justified as so in human judgment.
 %
-For example, in Figure~\ref{fig:issueexample2}, the translated method
+For example, in figure~\ref{fig:issueexample2}, the translated method
 misplaces the position of the bracelet which makes the method has low
-Semantic score, but high BLEU score. 
+semantic score, but high BLEU score. 
 %
 %Another reason for this implication is that resulting method does not capture the important
 %program elements. 
@@ -49,7 +50,7 @@ of the target language. For example, the result contains mostly keywords and
 punctuation such as \code{if}, \code{public}, \code{()}, but misses
 out the important program elements such as function calls or variable
 names. In this case, it will have low semantic score while having
-a moderate to high BLEU score. These cases indicate the weakness of BLEU metric 
+a moderate to high BLEU score. These circumstances indicate the weakness of BLEU metric 
 in evaluating the translated results in programing language where syntaxes are well defined.
 
 %\emph{Observation 2:} For a fixed value of Semantic score, there can
@@ -59,11 +60,11 @@ in evaluating the translated results in programing language where syntaxes are w
 %Figure~\ref{fig:BleuSemlpSMT}. Similarly, in
 %Figure~\ref{fig:BleuSemMppSMT}, with the Semantic Score of 1, the BLEU
 %scores are in the range of 0.5 to 1.
-For the results translated by mppSMT (figure \ref{fig:BleuSemMppSMT}), 
+In the results translated by mppSMT (figure \ref{fig:BleuSemMppSMT}), 
 for a particular value of  semantic score, there can be many associated 
-BLEU values that spread out over a wide range. Specifically, in the model 
-mppSMT, with the absolute semantic score, the BLEU scores can vary greatly 
-between 0.5-1. By this empirical results, it can be concluded that for 
+BLEU values that spread out over a wide range. Specifically, 
+with the absolute semantic score, the BLEU scores can vary greatly 
+from 0.5 to 1.0. By this empirical results, it can be concluded that for 
 some models, the method achieving higher semantic score does not necessarily 
 have higher BLEU score. 
 
@@ -75,7 +76,7 @@ to this phenomenon.
 %
 First, a translated method can use different code structure from the 
 reference one to perform the same functionality. Figure \ref{?} shows an example
-that got maximum semantic score, but has low BLEU score (0.4). In this example, 
+that got maximum semantic score, but has low BLEU score, 0.4. In this example, 
 the translated method uses a \code{for} loop instead of a \code{foreach} 
 loop as in the reference code. The second reason causing this phenomenon 
 is that the whitespace issue. For example, in figure \ref{?}, the translated method has the 
@@ -85,7 +86,8 @@ This situation reduces the precision on phrases, but the human subject still
 evaluated the result with high semantic score. By this experiment, we also empirically 
 verify the argument that the forcusing on the lexical precision of BLEU makes
 this metric is not able to capture other aspects such as dependencies 
-that contribute to the sementics of source code.
+that contribute to the sementics of source code. This might lead to the ineffectiveness
+of BLEU in reflecting the semantic accuracy of translated results. 
 
 %TODO need to verify
 In conclusion, BLEU does not reflect well the
