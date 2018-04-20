@@ -42,4 +42,27 @@ We conducted 10 experiments with RANCSAC running on the same dataset from our re
 \end{figure}
 
 \subsubsection{Result classification}
-We manually classify the inliers point into serveral categories....
+We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:result_classification} shows the result of classification for our set of data.
+\begin{table}
+	\caption{Result classification}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Method category & Described \\
+			\hline
+			IDENTIDFIED\_CODE	& Code is the same with the reference \\		
+			\hline
+			SAME\_FUNC\_DIFF\_LEX	& FQN vs PN, For vs Foreach, [i] vs .get(i) \\		
+			\hline
+			SAME\_DATA\_FLOW	& Same data flow but there are still incorrect piece of code \\	
+			\hline
+			DISORDERED\_CODE & Several same pieces of code was disordered \\		
+			\hline
+			SAME\_API\_NAME & Code includes the same APIs and params name with its reference but incorrect usages \\
+			\hline
+			SAME\_SOME\_LOC & There are some lines of code which are same with the reference \\
+			\hline
+			DIFFERENT\_CODE & Code is totally different from the its reference \\
+			\hline
+		\end{tabular}
+		\label{table:result_classification}
+\end{table}
