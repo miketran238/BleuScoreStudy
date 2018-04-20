@@ -13,7 +13,7 @@ corresponding versions, we built a tool to conservatively search for
 only the methods having the same signatures in the classes with the
 same/similar names in the same/similar directory structures in both
 versions. Such pairs of methods likely implement the same
-functionality. We also manually verified a small, randomly selected
+functionality. We aslo manually verified a small, randomly selected
 sample set to have high confidence that the method pairs are in fact
 the respective ones. In total, we collected 34,209 respective methods
 (Table~\ref{tab:systems}).
@@ -67,7 +67,7 @@ the respective ones. In total, we collected 34,209 respective methods
 %\label{table:methods}
 %\end{table}
 
-We used the chosen SMT-based migration models described earlier on the
+We used the chosen SMT-based migration tools described earlier on the
 above dataset. We applied ten-fold cross validation by dividing all
 aligned methods into ten folds with equal numbers of methods. To
 test for a fold, we used the remaining folds for training. The
