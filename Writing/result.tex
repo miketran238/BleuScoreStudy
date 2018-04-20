@@ -38,9 +38,9 @@ First, the translated methods might have multiple correct phrases, but in the
 incorrect order, those method can be incorrect, even incompliable.
 %useless and justified as so in human judgment.
 %
-For example, in Figure~\ref{fig:issueexample2}, the translated method
+For example, in figure~\ref{fig:issueexample2}, the translated method
 misplaces the position of the bracelet which makes the method has low
-Semantic score, but high BLEU score. 
+semantic score, but high BLEU score. 
 %
 %Another reason for this implication is that resulting method does not capture the important
 %program elements. 
@@ -50,7 +50,7 @@ of the target language. For example, the result contains mostly keywords and
 punctuation such as \code{if}, \code{public}, \code{()}, but misses
 out the important program elements such as function calls or variable
 names. In this case, it will have low semantic score while having
-a moderate to high BLEU score. These cases indicate the weakness of BLEU metric 
+a moderate to high BLEU score. These circumstances indicate the weakness of BLEU metric 
 in evaluating the translated results in programing language where syntaxes are well defined.
 
 %\emph{Observation 2:} For a fixed value of Semantic score, there can
@@ -86,7 +86,8 @@ This situation reduces the precision on phrases, but the human subject still
 evaluated the result with high semantic score. By this experiment, we also empirically 
 verify the argument that the forcusing on the lexical precision of BLEU makes
 this metric is not able to capture other aspects such as dependencies 
-that contribute to the sementics of source code.
+that contribute to the sementics of source code. This might lead to the ineffectiveness
+of BLEU in reflecting the semantic accuracy of translated results. 
 
 %TODO need to verify
 In conclusion, BLEU does not reflect well the
