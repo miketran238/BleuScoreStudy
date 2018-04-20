@@ -75,13 +75,13 @@ From our sample data, we observe that there are two main reasons leading
 to this phenomenon.
 %
 First, a translated method can use different code structure from the 
-reference one to perform the same functionality. Figure \ref{?} shows an example
+reference one to perform the same functionality. Figure \ref{fig:mppSMT_example} shows an example
 that got maximum semantic score, but has low BLEU score, 0.4. In this example, 
 the translated method uses a \code{for} loop instead of a \code{foreach} 
 loop as in the reference code. The second reason causing this phenomenon 
-is that the whitespace issue. For example, in figure \ref{?}, the translated method has the 
-tokens \code{changeMe()}, but the reference method has \code{changeMe ()}. The former 
-is interpreted as one token while the former is interpreted as two tokens. 
+is that the whitespace issue. For example, in figure \ref{fig:mppSMT_example}, the translated method has the 
+tokens \code{IsSimilar(}, but the reference method has \code{IsSimiar (}. The former 
+is interpreted as one token while the later is interpreted as two tokens. 
 This situation reduces the precision on phrases, but the human subject still
 evaluated the result with high semantic score. By this experiment, we also empirically 
 verify the argument that the forcusing on the lexical precision of BLEU makes
@@ -93,6 +93,16 @@ of BLEU in reflecting the semantic accuracy of translated results.
 In conclusion, BLEU does not reflect well the
 semantics of source code, and it is not suitable to use in evaluating
 semantic accuracy of a SMT-based code migration system.
+
+\begin{figure}[t]
+\centering
+%\begin{lstlisting}[basicstyle=\small\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
+\lstinputlisting[language=Java]{mppExample.cs}
+%\end{lstlisting}
+\caption{mppSMT Example}
+\label{fig:mppSMT_example}
+\end{figure}
+
 
 \subsection{The Use of BLEU in Comparing Models}
 To validate the use of BLEU in comparing different SMT-based code migration systems, we conduct study to see if an improvement in BLEU score over cross models reflects the improvement in translation quality represented by human judgments of semantic score between those models. For a same set of 375 original Java methods, the two models GNMT and mppSMT generates two sets of 375 translated methods. Each set has its own BLEU scores and Semantic scores.
@@ -108,14 +118,14 @@ Because of the results above, BLEU is not reliable to use in comparing different
 \begin{figure}
 \caption{BLEU metric vs Semantic metric (lpSMT model)}
 \centering
-\includegraphics{img/bleuvssemantic_lpSMT.png}
+\includegraphics[scale=0.5]{img/bleuvssemantic_lpSMT.png}
 \label{fig:BleuSemlpSMT}
 \end{figure}
 
 \begin{figure}
 \caption{BLEU metric vs Semantic metric (mppSMT model)}
 \centering
-\includegraphics{img/bleuvssemantic_mppSMT.png}
+\includegraphics[scale=0.5]{img/bleuvssemantic_mppSMT.png}
 \label{fig:BleuSemMppSMT}
 \end{figure}
 
