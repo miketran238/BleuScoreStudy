@@ -40,25 +40,27 @@ scores}.
 %
 
 %In our sample set, these results can fall in two main cases. 
-There are two main reasons for this result in our dataset.
-First, the translated methods might have multiple correct phrases, but in the 
-incorrect order, those method can be incorrect, even incompliable.
+There are two main reasons for this result in our dataset.  First, the
+translated methods might have multiple correct phrases, but in an
+incorrect order, those method can be incorrect, even not compilable.
 %useless and justified as so in human judgment.
 %
-For example, in figure~\ref{fig:issueexample2}, the translated method
-misplaces the position of the bracelet which makes the method has low
-semantic score, but high BLEU score. 
+For example, in Fig.~\ref{fig:issueexample2}, the translated method
+misplaces the position of the bracelet, making the method have low
+semantic score, however, it has high BLEU score. 
 %
 %Another reason for this implication is that resulting method does not capture the important
 %program elements. 
-In other case, the migrated results are incomplete methods missing elements
-that are trivial for the translation model, but this violate syntactic rules 
-of the target language. For example, the result contains mostly keywords and
-punctuation such as \code{if}, \code{public}, \code{()}, but misses
-out the important program elements such as function calls or variable
-names. In this case, it will have low semantic score while having
-a moderate to high BLEU score. These circumstances indicate the weakness of BLEU metric 
-in evaluating the translated results in programing language where syntaxes are well defined.
+In other cases, the migrated results are incomplete code missing the
+elements that are trivial for the translation model, yet important
+with respect to the syntactic rules of the target language. For
+example, the result contains mostly keywords and punctuations such as
+\code{if}, \code{public}, \code{()}, but misses out the important
+program elements such as function calls or variable names. In this
+case, it will have low semantic score while having a moderate to high
+BLEU score. These circumstances indicate the weakness of BLEU metric
+in evaluating the translated results in programing language where
+syntax rules are well-defined.
 
 %\emph{Observation 2:} For a fixed value of Semantic score, there can
 %be many associated BLEU values. Specifically, in the model lpSMT, with
@@ -68,8 +70,8 @@ in evaluating the translated results in programing language where syntaxes are w
 %Figure~\ref{fig:BleuSemMppSMT}, with the Semantic Score of 1, the BLEU
 %scores are in the range of 0.5 to 1.
 
-\subsubsection{Higher semantic accuracy does not necessarily lead to
-higher BLEU score} In the results translated by mppSMT
+\subsubsection{{\bf Higher semantic accuracy does not necessarily lead to
+higher BLEU score}} In the results translated by mppSMT
 (Fig.~\ref{fig:BleuSemMppSMT}), for a particular value of semantic
 score, there can be many associated BLEU values that spread out over a
 wide range. Specifically, with the absolute semantic score, the BLEU
@@ -106,20 +108,14 @@ semantic accuracy of a SMT-based code migration system.
 \begin{figure}[t]
 \centering
 %\begin{lstlisting}[basicstyle=\small\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
-\lstinputlisting[language=Java]{mppExample.cs}
+\lstinputlisting[basicstyle=\scriptsize\sffamily,language=Java]{mppExample.cs}
 %\end{lstlisting}
 \caption{mppSMT Example}
 \label{fig:mppSMT_example}
 \end{figure}
 
 
-\subsection{The Use of BLEU in Comparing Models}
-To validate the use of BLEU in comparing different SMT-based code migration systems, we conduct study to see if an improvement in BLEU score over cross models reflects the improvement in translation quality represented by human judgments of semantic score between those models. For a same set of 375 original Java methods, the two models GNMT and mppSMT generates two sets of 375 translated methods. Each set has its own BLEU scores and Semantic scores.
-We prove that an improvement in BLEU score does not sufficient nor necessary lead to an improvement in semantic score by showing:
-
-1. From the sample, we choose pairs of results such that their GNMT's BLEU scores are higher than mppSMT's BLEU scores. Then, we perform t-test with alpha confident level of 0.95 on that subset to see if their GNMT's semantic scores are also higher or not. The results show a t-value of ... It meant we would reject the null hypothesis that GNMT's semantic scores are higher than mppSMT's ones. So, it can be concluded that an improvement in BLEU score is not sufficient to achieve a higher semantic score. 
-
-2.  From the sample, we choose pairs of results such that their mppSMT's semantic scores are higher than GNMT's semantic scores. Then, we perform t-test with alpha confident level of 0.95 on that subset to see if their mppSMT's BLEU scores are also higher or not. The results show a t-value of ... It meant we would reject the null hypothesis that mppSMT's BLEU scores are higher than GNMT's ones. So, it can be concluded that an improvement in BLEU score is not necessary to achieve a higher semantic score. 
+\input{cross-models}
 
 %We ignored pairs of translated results if they have the same BLEU score or Semantic score (136 of the cases). For the remaining results, we found out that in \textbf{34\%} of the cases, the change in BLEU score contradicts the change in Semantic score. It means an improvement in BLEU score leads to a decrease in Semantic score and vice versa. In other words, if one function is translated by two migration models, one-third of the time, the result which has higher BLEU score actually has lower translation quality than the other. 
 Because of the results above, BLEU is not reliable to use in comparing different SMT-based migration models. 

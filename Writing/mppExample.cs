@@ -8,7 +8,6 @@
 		}
 		return false;
 	}
-
 	// C# code translated by mppSMT:
 	public bool IsSimilar( String name ) {
 		int idx = name. IndexOf ( '[' );
