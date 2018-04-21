@@ -1,12 +1,12 @@
 \section{Empirical Results}
 \label{sec:bleuresult}
 
-In this section, we present the empirical results to validate our hypothesis that 
+In this section, we present the empirical results to validate our hypothesis that
 \textit{BLEU is not effective in evaluating translation quality of source code migration task}.
 \subsection{Correlation between BLEU and Semantic scores}
-To justify the first part of our hypothesis, BLEU score does not reflect well 
-the semantic accuracy of results translated by a particular model, 
-we show the relation between BLEU scores and human judgments via semantic scores. 
+To justify the first part of our hypothesis, BLEU score does not reflect well
+the semantic accuracy of results translated by a particular model,
+we show the relation between BLEU scores and human judgments via semantic scores.
 We use Pearson's correlation coefficient~\cite{PearsonCorrelation} to gauge
 how strong their relation is. The correlation coefficient has value
 between [-1, 1], where 1 indicates the strongest positive relation, -1
@@ -17,13 +17,13 @@ scatter plots between two metrics: BLEU and Semantic. Each point
 represents the scores of a pair of methods where its $x$-axis value is
 for BLEU scores and $y$-axis value is for semantic scores. The
 correlation coefficient between BLEU and semantic scores for the model
-mppSMT is 0.523 and for the model lpSMT is 0.570. These possitive values 
-are closer to 0.5 than to 1.0. This means there is a {\bf positive but weak 
+mppSMT is 0.523 and for the model lpSMT is 0.570. These positive values
+are closer to 0.5 than to 1.0. This means there is a {\bf positive but weak
 relation} between BLEU score and semantic score. The weak correlations %help me to check grammar
-between the metrics on the results translated by lpSMT and mppSMT are 
+between the metrics on the results translated by lpSMT and mppSMT are
 demonstrated in Fig.~\ref{fig:BleuSemlpSMT} and Fig.~\ref{fig:BleuSemMppSMT}.
 
-%\emph{Observation 1:} 
+%\emph{Observation 1:}
 
 \subsubsection{{\bf Higher BLEU does not necessarily lead to higher
 sematic accuracy}}
@@ -32,14 +32,14 @@ In Fig.~\ref{fig:BleuSemlpSMT}, it is clear that for many specific
 values of BLEU, the corresponding semantic scores can spread out in a
 wide range. For instance, the BLEU score of 0.75, the corresponding
 semantic scores are from 0.25 to 1.
-% \textbf{Ngoc: can u mark in the figure please}. 
+% \textbf{Ngoc: can u mark in the figure please}.
 Thus, from this observation, we conclude that the results migrated by
 these models with {\em high BLEU scores might not achieve high semantic
 scores}.
-%There are two reasons for this. 
+%There are two reasons for this.
 %
 
-%In our sample set, these results can fall in two main cases. 
+%In our sample set, these results can fall in two main cases.
 There are two main reasons for this result in our dataset.  First, the
 translated methods might have multiple correct phrases, but in an
 incorrect order, those method can be incorrect, even not compilable.
@@ -47,19 +47,19 @@ incorrect order, those method can be incorrect, even not compilable.
 %
 For example, in Fig.~\ref{fig:issueexample2}, the translated method
 misplaces the position of the bracelet, making the method have low
-semantic score, however, it has high BLEU score. 
+semantic score, however, it has high BLEU score.
 %
 %Another reason for this implication is that resulting method does not capture the important
-%program elements. 
+%program elements.
 In other cases, the migrated results are incomplete code missing the
 elements that are trivial for the translation model, yet important
 with respect to the syntactic rules of the target language. For
-example, the result contains mostly keywords and punctuations such as
+example, the result contains mostly keywords and separators such as
 \code{if}, \code{public}, \code{()}, but misses out the important
 program elements such as function calls or variable names. In this
 case, it will have low semantic score while having a moderate to high
 BLEU score. These circumstances indicate the weakness of BLEU metric
-in evaluating the translated results in programing language where
+in evaluating the translated results in programming language where
 syntax rules are well-defined.
 
 %\emph{Observation 2:} For a fixed value of Semantic score, there can
@@ -73,37 +73,39 @@ syntax rules are well-defined.
 \subsubsection{{\bf Higher semantic accuracy does not necessarily lead to
 higher BLEU score}} In the results translated by mppSMT
 (Fig.~\ref{fig:BleuSemMppSMT}), for a particular value of semantic
-score, there can be many associated BLEU values that spread out over a
-wide range. Specifically, with the absolute semantic score, the BLEU
-scores can vary from 0.5 to 1.0. By this result, it
-can be concluded that for some models, the method achieving {\bf higher
-semantic score does not necessarily have higher BLEU~score}.
+score, there can be many corresponding BLEU values spreading out in
+a~wide range. Specifically, with the semantic score of 1, the BLEU
+scores can vary from 0.5 to 1.0. Thus, it can be concluded
+that for this model, the migrated code achieving {\bf higher semantic score does not necessarily has higher BLEU~score}.
 
 %From this observation, it can be implied that translated code can have
 %low BLEU score, but high Semantic score. This can be explained by two
-%reasons. 
-From our sample data, we observe that there are two main reasons leading 
-to this phenomenon.
+%reasons.
+From our data, we observe that there are two main reasons leading to
+that result.
 %
-First, a translated method can use different code structure from the 
-reference one to perform the same functionality. Figure \ref{fig:mppSMT_example} shows an example
-that got maximum semantic score, but has low BLEU score, 0.4. In this example, 
-the translated method uses a \code{for} loop instead of a \code{foreach} 
-loop as in the reference code. The second reason causing this phenomenon 
-is that the whitespace issue. For example, in figure \ref{fig:mppSMT_example}, the translated method has the 
-tokens \code{IsSimilar(}, but the reference method has \code{IsSimiar (}. The former 
-is interpreted as one token while the later is interpreted as two tokens. 
-This situation reduces the precision on phrases, but the human subject still
-evaluated the result with high semantic score. By this experiment, we also empirically 
-verify the argument that the forcusing on the lexical precision of BLEU makes
-this metric is not able to capture other aspects such as dependencies 
-that contribute to the sementics of source code. This might lead to the ineffectiveness
-of BLEU in reflecting the semantic accuracy of translated results. 
+First, a translated method can use code structure different from the
+reference one to perform the same
+functionality. Fig.~\ref{fig:mppSMT_example} shows an example that got
+a maximum semantic score, but has low BLEU score of 0.4. In this
+example, the translated method uses a \code{for} loop instead of a
+\code{foreach} loop as in the reference code. The second reason
+for this phenomenon is the whitespace issue. For example, in
+Fig.~\ref{fig:mppSMT_example}, the translated code has the tokens
+\code{IsSimilar(}, but the reference code has \code{IsSimilar (}. The
+former is interpreted as one token while the latter is interpreted as
+two tokens.  This situation reduces the precision on phrases, but the
+human subject still evaluated the result with high semantic score. By
+this experiment, we also empirically verify that the focus on the
+lexical precision of BLEU makes it unable to capture other
+code-related aspects such as program dependencies that contribute to
+source code semantics. This might lead to the ineffectiveness of BLEU
+in reflecting the semantic accuracy of translated results.
 
 %TODO need to verify
-In conclusion, BLEU does not reflect well the
-semantics of source code, and it is not suitable to use in evaluating
-semantic accuracy of a SMT-based code migration system.
+In conclusion, {\em BLEU does not reflect well the
+semantics of source code, and it is not suitable in evaluating
+semantic accuracy of the result from a SMT-based code migration model}.
 
 \begin{figure}[t]
 \centering
@@ -116,9 +118,6 @@ semantic accuracy of a SMT-based code migration system.
 
 
 \input{cross-models}
-
-%We ignored pairs of translated results if they have the same BLEU score or Semantic score (136 of the cases). For the remaining results, we found out that in \textbf{34\%} of the cases, the change in BLEU score contradicts the change in Semantic score. It means an improvement in BLEU score leads to a decrease in Semantic score and vice versa. In other words, if one function is translated by two migration models, one-third of the time, the result which has higher BLEU score actually has lower translation quality than the other. 
-Because of the results above, BLEU is not reliable to use in comparing different SMT-based migration models. 
 
 \begin{figure}
 \caption{BLEU metric vs Semantic metric (lpSMT model)}
