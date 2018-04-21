@@ -2,34 +2,40 @@
 \label{sec:bleuresult}
 
 In this section, we present the empirical results to validate our hypothesis that 
-\textit{BLEU is not effective in evaluating translation quality of source code migration task}
+\textit{BLEU is not effective in evaluating translation quality of source code migration task}.
 \subsection{Correlation between BLEU and Semantic scores}
 To justify the first part of our hypothesis, BLEU score does not reflect well 
 the semantic accuracy of results translated by a particular model, 
 we show the relation between BLEU scores and human judgments via semantic scores. 
 We use Pearson's correlation coefficient~\cite{PearsonCorrelation} to gauge
 how strong their relation is. The correlation coefficient has value
-between -1 and 1, where 1 indicates the strongest positive relation, -1
+between [-1, 1], where 1 indicates the strongest positive relation, -1
 indicates the strongest negative relation, and 0 indicates no relation.
 
-Figures~\ref{fig:BleuSemlpSMT} and~\ref{fig:BleuSemMppSMT} show the
+Fig.~\ref{fig:BleuSemlpSMT} and Fig.~\ref{fig:BleuSemMppSMT} show the
 scatter plots between two metrics: BLEU and Semantic. Each point
 represents the scores of a pair of methods where its $x$-axis value is
 for BLEU scores and $y$-axis value is for semantic scores. The
 correlation coefficient between BLEU and semantic scores for the model
 mppSMT is 0.523 and for the model lpSMT is 0.570. These possitive values 
-are closer to 0.5 than to 1.0. This means there is a positive but weak 
-relationship between BLEU score and semantic score. The weak correlations %help me to check grammar
+are closer to 0.5 than to 1.0. This means there is a {\bf positive but weak 
+relation} between BLEU score and semantic score. The weak correlations %help me to check grammar
 between the metrics on the results translated by lpSMT and mppSMT are 
-demonstrated in figures~\ref{fig:BleuSemlpSMT} and~\ref{fig:BleuSemMppSMT}.
+demonstrated in Fig.~\ref{fig:BleuSemlpSMT} and Fig.~\ref{fig:BleuSemMppSMT}.
 
 %\emph{Observation 1:} 
-In figure ~\ref{fig:BleuSemlpSMT}, for many specific values of BLEU, it 
+
+\subsubsection{The higher BLEU does not necessarily lead to higher
+sematic accuracy}
+
+In Fig.~\ref{fig:BleuSemlpSMT}, for many specific values of BLEU, it 
 is clear that associated semantic scores can be in a wide range. For 
 instance, the BLEU score of 0.75, the associated semantic scores are 
-from 0.25 to 1 \textbf{Ngoc: can u mark in the figure please}. Thus, from this 
-observation, we conclude that the results migrated by certain models 
-with high BLEU scores might not archive high semantic scores. 
+from 0.25 to 1.
+% \textbf{Ngoc: can u mark in the figure please}. 
+Thus, from this observation, we conclude that the results migrated by
+certain models with {\bf high BLEU scores might not achieve high semantic
+scores}.
 %There are two reasons for this. 
 %
 
