@@ -6,8 +6,8 @@ reference code as inverse string \cite{??} , tree \cite{??} and graph
 
 \textbf{String similarity (STS)} is the metric to compare the similarity of 
 source code that is represented as sequence of tokens. The similarity between 
-two sequences is computed as: 
-$$STS = 1 - \frac{SED(S_R, S_T)}{max\left(length(S_R), length(S_T)\right)}$$
+two a translated result $T$ and its reference code $R$ is computed as: 
+$$STS(R, T) = 1 - \frac{SED(S_R, S_T)}{max\left(length(S_R), length(S_T)\right)}$$
 where $SED(S_R, S_T)$ is the editing distance between the 
 reference sequence $S_R$ and the sequence translated code $S_T$, that 
 measures efforts that a user must edit in term of the tokens that need 
@@ -32,9 +32,9 @@ $length(t)$ returns the length of the sequence $t$.
 %delete}, {\em replace}, and {\em move}) to make them identical.
 
 \textbf{Tree similarity (TRS)} is the metric used to measure 
-the similarity between two ASTs representing for the translated code 
-and the reference one:
-$$TRS = 1 -\frac{TED(AST_R, AST_T)}{max\left(CountNodes(AST_R), CountNodes(AST_T)\right)}$$  
+the similarity between two ASTs representing for the translated code ($T$)
+and the reference one ($R$):
+$$TRS(R, T) = 1 -\frac{TED(AST_R, AST_T)}{max\left(CountNodes(AST_R), CountNodes(AST_T)\right)}$$  
 where $TED(AST_R, AST_T)$ is the editing distance between the ASTs 
 of the reference code $AST_R$ and the translated code $AST_T$, that calculated by 
 minimum number of node editing operations ({\em add}, {\em delete}, {\em replace}, 
@@ -83,9 +83,9 @@ $CountNodes(t)$ returns the number of nodes in tree $t$.
 
 %TODO cite Sanfeliu, Alberto; Fu, King-Sun (1983). "A distance measure between attributed relational graphs for pattern recognition"
 In this work, we define \textbf{graph similarity (GRS)} between the translated 
-result and the reference code represented as program dependence graphs 
+result $T$ and the reference code $R$ represented as program dependence graphs 
 by using graph edit distance \cite{??}. That is:
-$$1-\frac{GED(PDG_R, PDG_T)}{max\left(Size(PDG_R), Size(PDG_T)\right)}$$
+$$GRS(R, T) = 1-\frac{GED(PDG_R, PDG_T)}{max\left(Size(PDG_R), Size(PDG_T)\right)}$$
 where $GED(PDG_R, PDG_T)$ is the editing distance between the PDG of the 
 reference code $PDG_R$ and the PDG of the translated code $PDG_T$; $Size(g)$
 is the sum of the number of vertexes and edges of graph $g$. Specifically, 
