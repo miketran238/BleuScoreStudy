@@ -1,58 +1,72 @@
-\section{Alternative Metrics}
+\section{Alternative metrics}
 \label{sec:alternatives}
-Since BLEU did not reflect well the semantic similarity of migrated
-code and reference code, there is a need for an alternative metric
-that can fit better with the task. The nature of the task is to
-compare source code in term of program semantics with respect to a
-programming language.
+%Since BLEU did not reflect well the semantic similarity of migrated
+%code and reference code, there is a need for an alternative metric
+%that can fit better with the task. The nature of the task is to
+%compare source code in term of program semantics with respect to a
+%programming language.
 %
 %To compare the two language bases, they must be represented in some
 %ways. 
-While a language is normally composed by three important parts:
-vocabulary, grammar, and meaning; programming language can be composed
-by the three corresponding parts: lexeme, syntax, and
-semantics. 
+As the previous section shows that BLEU is ineffective in evaluating
+translated results of migrated source code, in this section we will 
+evaluate the effectiveness of various other metrics. The effectiveness of
+a metric is expressed in its abilities to measure the similarity between
+the reference and the migrated code in term of program semantics respect to 
+a programming language.
+%SON: How about the abilities to evaluate the translation quality improvement of models
+%While a language is normally composed by three important parts:
+%vocabulary, grammar, and meaning; programming language can be composed
+%by the three corresponding parts: lexeme, syntax, and semantics. 
+
+In general, a programming language can be composed by the three corresponding parts: 
+lexeme, syntax, and semantics that are corresponding with three important 
+parts in a normal language: vocabulary, grammar, and meaning.
+%Therefore, we consider three representations: tokens, abstract syntax trees
+%(ASTs), and program dependence graphs (PDGs) that reflect each of the
+%three above parts respectively. 
+These parts of a programming language are represented respectively in three 
+abstractions: tokens (text), abstract syntax tree (AST), and program 
+dependence graph (PDG).
 %
-Therefore, we consider three representations: tokens, Abstract Syntax Trees
-(ASTs), and Program Dependence Graphs (PDGs) that reflect each of the
-three above parts respectively. Comparing source code by using those representations would give us three metrics to measure semantics similarity. Each representation would reflect semantics of source code in certain ways.
-For example, a pair of methods that have identical lexemes would have identical program semantics, but if they are different in term of lexeme, it is uncertain to determine their semantic similarity. Therefore, to fully capture how well these representations reflect semantics accuracy, it is necessary to conduct empirical study that measures the correlation between each metric with semantic score graded by human expert.
+Recently, there are a number of clone detection studies, token-based 
+\cite{thay}, tree-based \cite{thay}, and graph-based \cite{thay} techniques 
+that measure the similarity of source code in these three representations.
+These works show that the duplication of source code is detected more 
+precisely in the higher level representations from text, AST, to PDG.
+The cause of this precision might be the more semantics information that
+is stored by the higher abstraction level of source code. Based on this 
+intuition, we have the following hypothesis: \textit{the metric that 
+measures results in the higher abstraction level reflects better the 
+similarity of the translated code and the reference one in term of 
+program semantics}
+
+%Comparing source code by using those 
+%representations would give us three metrics to measure semantics similarity. 
+%Each representation would reflect semantics of source code in certain ways.
+%For example, a pair of methods that have identical lexemes would have 
+%identical program semantics, but if they are different in term of lexeme, 
+%it is uncertain to determine their semantic similarity. Therefore, to fully 
+%capture how well these representations reflect semantics accuracy, it is 
+%necessary to conduct empirical study that measures the correlation between 
+%each metric with semantic score graded by human expert.
 %choose one representation for each of the above part to
 %compare, in order to heuristically estimate the semantic
 %similarity. 
 %Specifically, token, AST and PDG are representations of lexemes,
 %syntax, and semantics respectively. 
 %
-Let us explain the metrics to compare the three above representations.
+%Let us explain the metrics to compare the three above representations.
 %
 %The metrics to compare those representations are SED, TREED and GVED
 %which are defined below. Those metrics are then evaluated to show how
 %well they reflect Semantic score.
-We then present our experiments to evaluate the correlation between
-each of the metrics and the semantic scores.
+To validate the hypothesis, we conduct our experiments to evaluate the
+effectiveness of three metrics: \textbf{string similarity}, 
+\textbf{tree similarity}, and \textbf{graph similarity} that measure 
+the results in the text, tree and graph representations of code respectively, 
+in reflecting the semantic accuracy of translated results.
 
-
-\subsection{Definitions}
-
-\subsubsection{\textbf{String Edit Distance (SED)}}
-String Edit Distance (SED) is the metric to compare source code when
-it is represented as sequence of tokens. SED measures efforts that a
-user must edit in term of the tokens that need to be deleted/added to
-transform the resulting code into the correct one. In our study, we
-used Levenshtein algorithm to calculate that distance. The metric is
-normalized as: $SED = 1 - \frac{EditDistance\left(s_R,
-  s_T\right)}{length\left(s_R\right)}$ where $s_R$ is the sequence of
-tokens representing the reference code; $s_T$ is the sequence of
-tokens represent the translated code; $EditDistance\left(s_R,
-s_T\right)$ is the editing distance between the pair; and the
-denominator is the total length of the reference code. For example,
-$EditDistance\left(s_R, s_T\right)$ between translated code and
-reference code in Figure~\ref{fig:issueexample2} is 4 (two deletions,
-two additions). Then, it is normalized as 0.952. Note that the closer
-the score to 1, the more similar the pair in term of lexical~tokens.
-
-\input{treed}
-
-\input{gved}
+\input{alternative-metrics}
  
 \input{metricResult}
