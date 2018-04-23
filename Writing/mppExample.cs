@@ -18,3 +18,11 @@
 		}
 		return false;
 	}
+	
+	// C# code translated by p-mppSMT
+	public bool } String name ) {
+		int idx = name. IndexOf ( '[' ); 
+		for ( . ] k [ part ( if ) ++k ; 
+		Count part. < k 0; = k int StartsWith ( name ) ) 
+		{ return true; } } 
+		return false; IsSimilar(
