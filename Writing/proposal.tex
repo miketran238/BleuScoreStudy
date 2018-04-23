@@ -78,9 +78,9 @@ is computed in the following formula:
 
 $$
 RUBY(R, T) = \begin{cases}
-				GRS(PDG_R, PDG_T), 	& \mbox{if } PDGs\mbox{ are reliable} \\
-				TRS(AST_R, AST_T), 	& \mbox{if } ASTs\mbox{ are reliable} \\
-				STS(S_R, S_T), 	& \mbox{otherwise}
+				GRS(R, T), 	& \mbox{if } PDGs\mbox{ are applicable} \\
+				TRS(R, T), 	& \mbox{if } ASTs\mbox{ are applicable} \\
+				STS(R, T), 	& \mbox{otherwise}
 			\end{cases}
 $$
 where $R$ and $T$ are the reference and translated code respectively;
