@@ -150,18 +150,26 @@ quite different.
 %
 %TODO cross models
 
-To answer {\bf RQ2}, we will show that for comparing different
-SMT-based models in the translation quality, under certain
-circumstances an improvement in BLEU is not effective in reflecting an
-improvement in code migration quality. For this experiment, we pick
-the two SMT-based models belonging to the two popular groups of SMT:
-mppSMT~\cite{ase15}, which is based on phrase-based SMT, and
-GNMT~\cite{gnmt}, which is based on neural network models. ({\bf More
-  reasons?})
+To answer {\bf RQ2}, we will use counter examples to prove that BLEU is ineffective in evaluating improvement of code migration quality between cross models. Specifically, two models can have the results with identical BLEU score but one will have worse translation quality.
+According to \cite{Callison}, BLEU accepts a large amount of variations because it only considers the numbers of matching n-grams but not their order. Thus, they argued that by reordering a hypothesis translation will not reduce the number of matching n-grams and thus will not reduce the overall Bleu
+score. 
 
-With these insights, we chose those models and conducted experiments
-to empirically verify how the correlation between the BLEU scores and
-the human judgments on the semantic accuracy of the migrated code.
+Following that principle, we modified the model mppSMT to generate a new model mppSMT2 that have identical BLEU score as the original one's. By having identical BLEU score as the original model, mppSMT2 will keep the correct n-grams, but swap positions of the incorrect ones. Although these phrases are incorrect in term of lexical, they may carry syntactical or semantic information. If they are moved into new position, their meaningful information will be lost. The problem is more severe for programming language which has strict syntactical rules and well semantics. For example, the tool mppSMT's result contains a partial name of a type instead of the fully qualified name in the manual migrated code. That partial name would be considered as incorrect phrase and relocated into a new position by the model mppSMT2. However, the type with partial name is only meaningful when placed at the correct location. Moving it will break the syntax/semantics of the code fragment.
+We will empirically compare the results of mppSMT and mppSMT2 to validate our argument: despite having identical BLEU scores, one model can still have worse translation quality than the other.
+
+Beside using a theoretical model, we also conduct the same experiment on two practical models: two SMT-based models belonging to the two popular groups of SMT: mppSMT~\cite{ase15}, which is based on phrase-based SMT, and GNMT~\cite{gnmt}, which is based on neural network models. 
+
+%under certain
+%circumstances an improvement in BLEU is not effective in reflecting an
+%improvement in code migration quality. For this experiment, we pick
+%the two SMT-based models belonging to the two popular groups of SMT:
+%mppSMT~\cite{ase15}, which is based on phrase-based SMT, and
+%GNMT~\cite{gnmt}, which is based on neural network models. ({\bf More
+%  reasons?})
+
+%With these insights, we chose those models and conducted experiments
+%to empirically verify how the correlation between the BLEU scores and
+%the human judgments on the semantic accuracy of the migrated code.
 
 %Let us explain our data collection, settings, and metrics for our
 %experiments.
