@@ -62,3 +62,41 @@ Our work is similar in nature to Callison-Burch {\em et
 BLEU as Callison-Burch {\em et al.}~\cite{Callison} argued that an
 improvement in BLEU metric is not sufficient nor necessary to show an
 improvement in translation quality.
+
+%Several approaches have been proposed to mine migration rules.
+%MAM~\cite{zhong-icse10} mines API mappings via Transformation Graphs.
+%AURA~\cite{aura-icse10} combines call dependency and text analysis to
+%identify many-to-one and one-to-many change rules.
+%HiMa~\cite{meng-icse12} matches each revision pair of a framework and
+%aggregates those rules to obtain evolution
+%rules. Twinning~\cite{nita-icse10} allows to specify changes to
+%migrate code to use new~APIs.
+
+The statistical NLP approaches have been applied in software
+engineering. Hindle {\em et al.}~\cite{natural} use
+$n$-gram~\cite{manning99} with lexical tokens to show that source code
+has high repetitiveness. 
+%
+%Han {\em et al.} \cite{han-ase09} used Hidden Markov Model to infer
+%the next token from user-provided abbreviations.  
+Raychev {\em et al.}~\cite{ethz-pldi14} capture common sequences of
+API calls with $n$-gram to predict next API call.
+NATURALIZE~\cite{barr-codeconvention-fse14} is a $n$-gram-based
+statistical model that learns coding conventions to suggest natural
+identifier names and formatting conventions.  $n$-gram is also used to
+find code templates for a task~\cite{jacob10}, for large-scale
+code mining~\cite{sutton-msr13}, for model
+testing~\cite{tonella-icse14}, etc.
+
+Tu {\em et al.}~\cite{tu-fse14} improve $n$-gram model with caching
+capability for recently seen tokens to increase next-token prediction
+accuracy.
+%
+SLAMC~\cite{fse13} associates to code tokens semantic
+annotations including their token and data types.
+%
+Maddison and Tarlow~\cite{tarlow14} use probabilistic context free
+grammars and neuro-probabilistic language models to build language
+model for source code. Their model is generative and does not use
+semantic context. Oda {\em et al.}~\cite{hide-ase15} uses SMT to
+generate English and Japanese pseudo-code from source~code.
