@@ -8,38 +8,46 @@
 %
 %To compare the two language bases, they must be represented in some
 %ways. 
-As the previous section shows that BLEU is ineffective in evaluating
-translated results of migrated source code, in this section we will 
-evaluate the effectiveness of various other metrics. The effectiveness of
-a metric is expressed in its abilities to measure the similarity between
-the reference and the migrated code in term of program semantics respect to 
-a programming language.
+
+As Section~\ref{sec:bleuresult} shows that BLEU is ineffective in
+evaluating translated code, in this section, we will present our
+evaluation on the effectiveness of various other metrics. The
+effectiveness of a metric is expressed in its abilities to measure the
+similarity between the reference code and the migrated code in term of
+program semantics according to a programming~language.
+
 %SON: How about the abilities to evaluate the translation quality improvement of models
 %While a language is normally composed by three important parts:
 %vocabulary, grammar, and meaning; programming language can be composed
 %by the three corresponding parts: lexeme, syntax, and semantics. 
 
-In general, a programming language can be composed by the three corresponding parts: 
-lexeme, syntax, and semantics that are corresponding with three important 
-parts in a normal language: vocabulary, grammar, and meaning.
+In general, a programming language can be characterized by three
+important parts: lexeme, syntax, and semantics that are corresponding
+with three important parts in a natural language: vocabulary, grammar,
+and meaning.
 %Therefore, we consider three representations: tokens, abstract syntax trees
 %(ASTs), and program dependence graphs (PDGs) that reflect each of the
 %three above parts respectively. 
-These parts of a programming language are represented respectively in three 
+These parts of a programming language could be represented respectively in three 
 abstractions: tokens (text), abstract syntax tree (AST), and program 
 dependence graph (PDG).
 %
-Recently, there are a number of clone detection studies, token-based 
-\cite{thay}, tree-based \cite{thay}, and graph-based \cite{thay} techniques 
-that measure the similarity of source code in these three representations.
-These works show that the duplication of source code is detected more 
-precisely in the higher level representations from text, AST, to PDG.
-The cause of this precision might be the more semantics information that
-is stored by the higher abstraction level of source code. Based on this 
-intuition, we have the following hypothesis: \textit{the metric that 
-measures results in the higher abstraction level reflects better the 
-similarity of the translated code and the reference one in term of 
-program semantics}
+There are a number of clone detection approaches~\cite{clone-tse07},
+which are token-based~\cite{ccfinder},
+tree-based~\cite{baxter98,deckard}, and PDG-based~\cite{deckard2} to
+measure the similarity of source code in these three representations.
+These techniques have shown that the duplication of source code in
+term of functionality can be detected more precisely when the higher
+level representations are applied from text, AST, to
+PDG~\cite{clone-tse07,deckard2}. The higher level of representation is
+used, the higher type of cloned code the technique can detect.
+%The key rationale is that The cause of this precision might be
+%the more semantics information that is stored by the higher
+%abstraction level of source code. 
+Based on that, we have the following hypothesis: \textit{the metric
+  that measures results in the higher abstraction level reflects
+  better the similarity of the translated code and the reference one
+  in term of program semantics}.
 
 %Comparing source code by using those 
 %representations would give us three metrics to measure semantics similarity. 
@@ -62,10 +70,11 @@ program semantics}
 %which are defined below. Those metrics are then evaluated to show how
 %well they reflect Semantic score.
 To validate the hypothesis, we conduct our experiments to evaluate the
-effectiveness of three metrics: \textbf{string similarity}, 
-\textbf{tree similarity}, and \textbf{graph similarity} that measure 
-the results in the text, tree and graph representations of code respectively, 
-in reflecting the semantic accuracy of translated results.
+effectiveness of three metrics: \textbf{string similarity},
+\textbf{tree similarity}, and \textbf{graph similarity} that measure
+the results in the text, tree and graph representations for code
+respectively, in reflecting the semantic accuracy of translated
+results.
 
 \input{alternative-metrics}
  
