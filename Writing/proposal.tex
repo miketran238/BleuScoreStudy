@@ -2,13 +2,13 @@
 \label{sec:proposal}
 
 %, and can reflect well the semantic
-%accuracy of translated results, and inexpensive to compute. 
+%accuracy of translated results, and inexpensive to compute.
 %{\model} is then empirically validated on SMT-based code migration
-%models to show its effectiveness. 
+%models to show its effectiveness.
 
 \subsection{Design}
 
-%\emph{Insight 1 :} 
+%\emph{Insight 1 :}
 %According to Table~\ref{table:correlation} in section 6, we can
 %observe a trend of increasing correlation coefficients with Semantic
 %scores when higher levels of representations are used for source code
@@ -16,23 +16,23 @@
 %
 %there is a trend of increasing correlation coefficient with
 %Semantic score when more complex level of source code's
-%representations are used. 
+%representations are used.
 %Specifically, GVED has the highest correlation, and it is followed by
-%TREED and SED, respectively. 
+%TREED and SED, respectively.
 
-In this section, we introduce {\model}, a novel metric to evaluate 
-SMT-based code migration tools.
-According to empirical results in section \ref{sec:alternatives}, we can
-observe that the metric measuring translated results in the higher level 
-representation archives higher correlation coefficients with semantic scores.
+In this work, we introduce {\model}, a novel metric to evaluate
+SMT-based code migration tools.  From the empirical results
+listed in Section~\ref{sec:alternatives}, we can observe that the
+metric measuring translated results in a higher level representation
+can achieve higher correlation coefficient with semantic score.
 % Tien
 However, as explained earlier, we cannot use GRS as a sole metric to
 evaluate the migrated code because {\em not all resulting migrated
-code is sufficiently correct to build the PDGs or even ASTs}. 
-%to compute the feature vectors. 
+code is sufficiently correct to build the PDGs or even~ASTs}.
+%to compute the feature vectors.
 
 To address this problem, we adapt an idea from machine learning,
-called {\em ensemble methods}~\cite{ensemble}. Ensemble methods 
+called {\em ensemble methods}~\cite{ensemble}. Ensemble methods
 use multiple learning models to obtain better
 predictive performance than could be obtained from any of the
 constituent learning models alone.
@@ -41,27 +41,27 @@ To apply to our problem, we would use the decision made by the most
 reliable metric, which is GRS metric. In the case that the most
 reliable metric is not available (due to the fact that an PDG cannot
 be built from incorrectly migrated code), we would use the next
-reliable one, which is TRS. TRS in turn would face the same issue
-if the migrated code is not syntactically correct. In this case, we
-would resolve to use STS as it is always computable for any given
-piece of code with regard to the reference code. This design strategy
-is reasonable because the probability of a translated method can be
-built into PDG is lower than the probability that it is syntactically
+reliable one, which is TRS. TRS in turn would face the same issue if
+the migrated code is not syntactically correct. In this case, we would
+resolve to use STS as it is always computable for any given piece of
+code with regard to the reference code. This design strategy is
+reasonable because the probability of a translated method can be built
+into PDG is lower than the probability that it is syntactically
 correct because a segment of code needs to be compiled first before we
 can build an PDG. On the other hand, STS can always be computed
-regardless of the quality of migrated code and types of code migration
-systems.
+regardless of the quality of migrated code and the types of code
+migration models.
 
 %Therefore, those metrics should have priority order when are used in
 %evaluating translation results. The Expert System tries to address
 %similar problem by inferring through a knowledge base of \lq if-then
-%\rq rules, and using the best expert aarilable for the
+%\rq rules, and using the best expert available for the
 %problem. Applying the Expert System's idea onto our problem, the best
 %metric available should be used when evaluating translation result.
 
 
 %\emph{Insight 2 :}
-%For SMT-based Code Migration systems, a translated method cannot be guaranteed to be compilable or be built into PDG. It leads to the problems that GVED and TREED are not always applicable even though GVED is better than TREED, and TREED is better than SED. The probability of a translated method can be built into PDG is also lower than  the probability it can be compiled because a segment of code needs to be compiled first before building into PDG.  On the other hand, SED can always be computed regardless of translation result or types of Code Migration systems. To sum up, the 3 metrics have different advantages and disadvantages. Therefore, it is natural to combine the 3 metrics to overcome the disadvantages and boost the advantages. Indeed, there is a theory to backup that combination. In machine learning domain, Ensemble theory is to combine multiple classifiers to form a hopefully better one when each different classifier is more suited for a practical problem. 
+%For SMT-based Code Migration systems, a translated method cannot be guaranteed to be compilable or be built into PDG. It leads to the problems that GVED and TREED are not always applicable even though GVED is better than TREED, and TREED is better than SED. The probability of a translated method can be built into PDG is also lower than  the probability it can be compiled because a segment of code needs to be compiled first before building into PDG.  On the other hand, SED can always be computed regardless of translation result or types of Code Migration systems. To sum up, the 3 metrics have different advantages and disadvantages. Therefore, it is natural to combine the 3 metrics to overcome the disadvantages and boost the advantages. Indeed, there is a theory to backup that combination. In machine learning domain, Ensemble theory is to combine multiple classifiers to form a hopefully better one when each different classifier is more suited for a practical problem.
 
 From the above insight, we design {\model} as an ensemble %expert-based
 metric. {\model} is a combined metric that takes into consideration
@@ -70,21 +70,21 @@ code while aiming to measure the semantic accuracy of translated code
 in a reliable manner. {\model} utilizes the best metric available and
 guarantees to give a reliable semantic accuracy regardless of
 translation results. If the translated code can be built into PDG, we
-calculate {\model} in term of graph similarity. If the translated code 
-cannot be built into PDG, however it is syntactically correct, {\model} 
-is calculated as syntax tree similarity. Finally, if the translated code 
-is not syntactically correct, we take string similarity. Generally, {\model} 
+calculate {\model} in term of graph similarity. If the translated code
+cannot be built into PDG, however it is syntactically correct, {\model}
+is calculated as syntax tree similarity. Finally, if the translated code
+is not syntactically correct, we take string similarity. Generally, {\model}
 is computed in the following formula:
 
 $$
-RUBY(R, T) = \begin{cases} 
-				GRS(PDG_R, PDG_T), 	& \mbox{if } PDGs\mbox{ are reliable} \\ 
+RUBY(R, T) = \begin{cases}
+				GRS(PDG_R, PDG_T), 	& \mbox{if } PDGs\mbox{ are reliable} \\
 				TRS(AST_R, AST_T), 	& \mbox{if } ASTs\mbox{ are reliable} \\
-				STS(S_R, S_T), 	& \mbox{else}
+				STS(S_R, S_T), 	& \mbox{otherwise}
 			\end{cases}
 $$
-where $R$ and $T$ are the reference and translated code respectively; 
-$GRS$, $TRS$, and $STS$ were defined in section~\ref{sec:alternatives}.
+where $R$ and $T$ are the reference and translated code respectively;
+$GRS$, $TRS$, and $STS$ were defined in Section~\ref{sec:alternatives}.
 %$r$ is
 %the reference code, $t$ is the translated code; $r$ and $t$ are tokenized
 %into sequences to use in SED, are parsed into ASTs to use in TREED,
@@ -97,7 +97,7 @@ $GRS$, $TRS$, and $STS$ were defined in section~\ref{sec:alternatives}.
 %\State $\mbox{RUBY}\left(r,t\right) = \mbox{GVED}\left(r,t\right) $
 %\ElsIf { $\mbox{TREED}\left(r,t\right) $ is applicable }
 %\State $\mbox{RUBY}\left(r,t\right) = \mbox{TREED}\left(r,t\right) $
-%\Else 
+%\Else
 %\State $\mbox{RUBY}\left(r,t\right) = \mbox{SED}\left(r,t\right) $
 %\EndIf
 %\end{algorithmic}
@@ -110,7 +110,7 @@ $GRS$, $TRS$, and $STS$ were defined in section~\ref{sec:alternatives}.
 %BLEU has always been doing this and that....
 
 %Researchers usually claim that an improvement in BLEU also meant an
-%improvement in translation quality. So 
+%improvement in translation quality. So
 
 %BLEU has been used for not only evaluating the result but also tuning
 %and developing SMT-based migration system.
@@ -121,7 +121,7 @@ $GRS$, $TRS$, and $STS$ were defined in section~\ref{sec:alternatives}.
 %better metric in order to fit better with programming languages and
 %code migration systems.
 %%
-%%Needed metric should be 
+%%Needed metric should be
 %%Reflect semantical meaning of sources code.
 %%Automated
 %%Low computation's cost
@@ -150,7 +150,7 @@ $GRS$, $TRS$, and $STS$ were defined in section~\ref{sec:alternatives}.
 %%What is Ruby and why Ruby is good.
 %Considering all above requirements, we introduce {\model}, a novel automated metric that can reflect semantic accuracy of translated code. {\model} is also independent of programming languages and machine translation models used in migration system. {\model} measures the semantic accuracy of the resulting code with respect to reference code by comparing their Program Dependence Graph (PDG). PDG captures both the data and control dependencies among program entities. Because those dependencies play an important role in a program, we expect PDG can represent well the semantics of source code. Usually, comparing graph is expensive, but our approach makes it affordable. We estimate the graph edit distance by vectorizing the graph and calculating the vectors edit distance. Because of that, we can save the computational cost and make our approach scalable. Basically, every programming language code can be built into PDG. Hence, our metric can be used for Code Migration systems that migrate different programming languages. Lastly, the way {\model} is measured makes it independent of machine translation models. That means Code Migration systems that deployed different SMT models can still use our metric. Next, we go into details how to formalize the calculation of {\model}
 %
-%%To reduce the high computational cost, we vectorize the PDGs and calculate the vector difference to estimate the graph difference. This way, we would make sure that our model is practical and applicable in large scaled systems. 
+%%To reduce the high computational cost, we vectorize the PDGs and calculate the vector difference to estimate the graph difference. This way, we would make sure that our model is practical and applicable in large scaled systems.
 %
 %When applying MT on source code, there always exists the problem that the translated code is broken in term of syntax. Thus, it is impossible to build PDG or even compile those code. To cope with the problem, our model is designed as best-effort, layered metric  : If the translated code can be built into PDG, we calculate {\model} in term of graph edit distance. If the translated code cannot be built into PDG but is compilable, we calculate {\model} in term of syntax tree edit distance. If the translated code is not compilable, we calculate {\model} in term of string edit distance. We then represent about the 3 metrics graph/tree/string edit distances as follows:
 
