@@ -6,26 +6,32 @@ the overall semantic score of p-mppSMT is \textbf{Z} that is much lower than the
 average for mppSMT, \textbf{T}. That means the deviant of BLEU in comparing 
 models is \textbf{Y} levels of semantic score in our sample set. 
 
-In our dataset, there are two main reasons for these results. First, in some results 
-of mppSMT, these phrases are lexically different from the reference one, but 
-they may carry correct syntactical or semantic information that makes these results
-archive high semantic score. However, for the results translated by p-mppSMT and having
-similar BLEU scores, these meaningful phrases are swapped, this leads to significant 
-decreases in semantic scores. For example, in figure 2, the result translated 
-by p-mppSMT which has a same BLEU score with the result of mppSMT. Meanwhile, the result 
-of mppSMT is correct in term of semantic, the p-mppSMT result is not compilable.
+In our dataset, there are two main reasons for these results. First,
+in some results of mppSMT, these phrases are lexically different those
+in the reference one, but they may carry correct syntactical or
+semantic information, which makes these results achieve high semantic
+score. However, for the results translated by p-mppSMT and having
+similar BLEU scores, these meaningful phrases are swapped, thus, are
+placed in incorrect locations. This leads to significantly decreasing
+in semantic scores. For example, in Fig.~\ref{fig:mppSMT_example}, the
+result translated by p-mppSMT which has the same BLEU score with the
+result of mppSMT. Meanwhile, the result of mppSMT is semantically
+correct, however, the result from p-mppSMT is not compilable.
 %
-Furthermore, although several result of mppSMT might contain phrases that are incorrect 
-in term of lexeme, these phrases are having the information that might provide the developer
-clues to fix the translated one easily. However, these phrases in the corresponding results 
-translated by p-mppSMT are moved into new positions, which also might make the semantic score
-of these results are much lower than mppSMT's ones. For example,...
+Furthermore, although several result of mppSMT might contain phrases
+that are lexically incorrect, these phrases have the information that
+provides developers clues to fix the translated one. However, these
+phrases in the corresponding results translated by p-mppSMT are moved
+into new positions, which also makes the semantic score of these
+results are much lower than that of mppSMT. For example,...
 
-In our work, we additionally conduct an other experiment in the same manner on GNMP and lpSMT. 
-The experimental results also support our hypothesis. That can be found on our website \cite{??}.
+In our work, we additionally conduct an other experiment in the same
+manner on GNMT and lpSMT.  The experimental results also support our
+hypothesis. That can be found on our website \cite{??}. {\bf MORE
+  details as in the Ngoc's version.}
 
-By empirical results, we conclude that \textit{BLEU is not effective in comparing the 
-translation quality of SMT-based models}.
+By empirical results, we conclude that \textit{BLEU is not effective
+  in comparing the translation quality of SMT-based models}.
 
 
 
