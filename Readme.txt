@@ -3,6 +3,7 @@
 	- evaluating impovement --> comparing
 	- permuted model
 	- results
+- Citation for alternative metrics
 - T-test for BLEU, p-mppSMT vs mppSMT
 - RUBY in comparing models:
 	- mppSMT vs p-mppSMT
