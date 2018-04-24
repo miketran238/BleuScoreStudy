@@ -160,18 +160,18 @@ of these models}.
 %
 
 To provide the counterexample, we construct a {\em permuted model,
-  p-mppSMT}, from mppSMT, that applies the same principle introduced
-by Chris {\em et al.}~\cite{Callison}. They argue that BLEU imposes
-no explicit constraints on the order of matching phrases between the
-translated result and the reference one. For example, given the reference, 
-"\textbf{A B C D}", BLEU scores of the two translated results, 
+  p-mppSMT}, from mppSMT, that applies the same principle as
+in Chris {\em et al.}~\cite{Callison}. The idea is that BLEU~imposes
+{\em no explicit constraints on the order of matching phrases} between the
+translated code and the reference code. For~example, given the reference, 
+"\textbf{A B C D}", the BLEU scores of the two translated results, 
 "\textbf{A B} E \textbf{C D}", "\textbf{C D} E \textbf{A B}" 
 are equivalent, because the number of matching phrases such as "A B" and "C D" 
 in the two results are similar. Therefore, for a given reference code and 
 a translated result, there are many possible variants that would have 
 similar BLEU scores with the translated one. {\em By following that 
-principle, the results from p-mppSMT achieve the BLEU score equivalent 
-with the results of mppSMT, but possibly with lower semantic~score}.
+principle, the results from p-mppSMT achieve BLEU score equivalent 
+with the results of mppSMT, but possibly with lower semantic~score}. We'll explain the results later.
 
 %According to \cite{Callison}, BLEU accepts a large amount of variations because it only considers the numbers of matching n-grams but not their order. Thus, they argued that by reordering a hypothesis translation will not reduce the number of matching n-grams and thus will not reduce the overall Bleu
 %score. 
