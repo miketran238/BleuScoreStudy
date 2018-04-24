@@ -1,0 +1,10 @@
+- Abstract, evaluating impovement --> comparing
+- Intro:
+	- evaluating impovement --> comparing
+	- permuted model
+	- results
+- T-test for BLEU, p-mppSMT vs mppSMT
+- RUBY in comparing models:
+	- mppSMT vs p-mppSMT
+	- others
+- Result classification
