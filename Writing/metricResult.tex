@@ -17,7 +17,7 @@ Table~\ref{table:correlation}. These results follow a similar trend:
 for each model, the correlation coefficients increase constantly
 according the abstraction levels of source code from text, AST, to PDG
 in three metrics. For example, for mppSMT, the correlation
-coefficient between  STS and semantic score is 0.549, whereas that
+coefficient between STS and semantic score is 0.549, whereas that
 for TRS is much greater at 0.820. The highest value is the
 correlation coefficient is between GRS and semantic score at 0.910. A
 reason for this phenomenon is that for a pair of source code, if they
@@ -26,13 +26,20 @@ the exact-match in AST leads to the equivalence between the
 corresponding PDGs. Meanwhile, the equivalence in a higher
 abstraction level does not necessarily lead to the equivalence in a
 lower abstraction. For example, Fig.~\ref{fig:mppSMT_example} shows
-two methods with equivalent PDGs, but textually~different.
+two methods with equivalent PDGs, but textually~different. 
 
-\textbf{SON SON}
-The table \ref{table:metrics} \\
+Despite of the increase of the correlation coefficients, GRS and TRS
+are used to measure subsets of methods in our sample set 
+(table \ref{table:metrics}), and the sizes of GRS are greater than 
+TRS's ones, whereas STS is able to apply for all cases. For example, 
+the applicable sets of methods translated by lpSMT are quite limited, 
+75 and 123 (out of 375 methods) for GRS and TRS respectively. The reason
+for this phenomenon is that to construct the higher level representations,
+the translated results need to satisfy certain syntactic and semantic related
+constraints such as resolvable data and control dependencies.
 \begin{table}
 \centering
-\caption{Number of applicable metrics}
+\caption{Numbers of applicable methods of metrics}
 \begin{tabular}{|c|c|c|}
 \hline
   & GRS & TRS\\
