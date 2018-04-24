@@ -4,6 +4,7 @@
 	- permuted model
 	- results
 - T-test for BLEU, p-mppSMT vs mppSMT (=)
+- Example for the second reason BLEU in comparing models
 - RUBY image for GNMT's results (correlation)
 - RUBY in comparing models: (>, <, =)
 	- mppSMT vs p-mppSMT
