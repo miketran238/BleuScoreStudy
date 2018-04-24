@@ -39,18 +39,14 @@ constituent learning models alone.
 % Tien
 To apply to our problem, we would use the decision made by the most
 reliable metric, which is GRS metric. In the case that the most
-reliable metric is not available (due to the fact that an PDG cannot
+reliable metric is not available (due to the fact that a PDG cannot
 be built from incorrectly migrated code), we would use the next
 reliable one, which is TRS. TRS in turn would face the same issue if
 the migrated code is not syntactically correct. In this case, we would
 resolve to use STS as it is always computable for any given piece of
-code with regard to the reference code. This design strategy is
-reasonable because the probability of a translated method can be built
-into PDG is lower than the probability that it is syntactically
-correct because a segment of code needs to be compiled first before we
-can build an PDG. On the other hand, STS can always be computed
-regardless of the quality of migrated code and the types of code
-migration models.
+code with regard to the reference code. In this work, we design 
+{\model} as an ensemble expert-based metric. Generally, {\model} is 
+computed in the following formula:
 
 %Therefore, those metrics should have priority order when are used in
 %evaluating translation results. The Expert System tries to address
@@ -63,18 +59,17 @@ migration models.
 %\emph{Insight 2 :}
 %For SMT-based Code Migration systems, a translated method cannot be guaranteed to be compilable or be built into PDG. It leads to the problems that GVED and TREED are not always applicable even though GVED is better than TREED, and TREED is better than SED. The probability of a translated method can be built into PDG is also lower than  the probability it can be compiled because a segment of code needs to be compiled first before building into PDG.  On the other hand, SED can always be computed regardless of translation result or types of Code Migration systems. To sum up, the 3 metrics have different advantages and disadvantages. Therefore, it is natural to combine the 3 metrics to overcome the disadvantages and boost the advantages. Indeed, there is a theory to backup that combination. In machine learning domain, Ensemble theory is to combine multiple classifiers to form a hopefully better one when each different classifier is more suited for a practical problem.
 
-From the above insight, we design {\model} as an ensemble %expert-based
-metric. {\model} is a combined metric that takes into consideration
-metrics at the lexical, syntactical, and semantic levels of source
-code while aiming to measure the semantic accuracy of translated code
-in a reliable manner. {\model} utilizes the best metric available and
-guarantees to give a reliable semantic accuracy regardless of
-translation results. If the translated code can be built into PDG, we
-calculate {\model} in term of graph similarity. If the translated code
-cannot be built into PDG, however it is syntactically correct, {\model}
-is calculated as syntax tree similarity. Finally, if the translated code
-is not syntactically correct, we take string similarity. Generally, {\model}
-is computed in the following formula:
+%From the above insight, we design {\model} as an ensemble %expert-based
+%metric. {\model} is a combined metric that takes into consideration
+%metrics at the lexical, syntactical, and semantic levels of source
+%code while aiming to measure the semantic accuracy of translated code
+%in a reliable manner. {\model} utilizes the best metric available and
+%guarantees to give a reliable semantic accuracy regardless of
+%translation results. If the translated code can be built into PDG, we
+%calculate {\model} in term of graph similarity. If the translated code
+%cannot be built into PDG, however it is syntactically correct, {\model}
+%is calculated as syntax tree similarity. Finally, if the translated code
+%is not syntactically correct, we take string similarity. 
 
 $$
 RUBY(R, T) = \begin{cases}
