@@ -1,14 +1,15 @@
 \subsection{The use of BLEU in comparing models}
 %TODO gonna be removed
 In our experiment on results translated by mppSMT and p-mppSMT for 375 methods, 
-the average BLEU score of these models are identical, \textbf{X}. Meanwhile, 
-the overall semantic score of p-mppSMT is \textbf{Z} that is much lower than the 
-average for mppSMT, \textbf{T}. That means the deviant of BLEU in comparing 
-models is \textbf{Y} levels of semantic score in our sample set. 
+the average BLEU score of these models are identical, \textbf{0.81}. Meanwhile, 
+the overall semantic score of p-mppSMT is \textbf{0.72} that is lower than the 
+average for mppSMT, \textbf{0.89}. That means the deviant of BLEU in comparing 
+models is \textbf{0.17} levels of semantic score in our sample set. 
 
 %TODO complete and describe t-test results
-In our experiment, to evaluate the abilities of BLEU in comparing the 
-translation quality of models, we show that... \textbf{T-test} see you tomorrow!
+To evaluate the abilities of BLEU in comparing the 
+translation quality of models, we show that the two models mppSMT and p-mppSMT have different semantic score despite having identical BLEU score. We perform the paired t-test on the sample with confident level of 0.95. Our null hypothesis is the semantic scores of two models are equal. The p-value of the t-test is 0. Thus we reject our null hypothesis and conclude that the semantic scores of two models are different with confident level of 95 \%.
+
 
 In our dataset, there are two main reasons for these results. First,
 in some results of mppSMT, these phrases are lexically different those
