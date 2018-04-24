@@ -3,8 +3,8 @@
 In this work, we define the similarity scores on token-based,
 tree-based and graph-based representations between the translated
 result and the reference code as the inverse of string edit
-distance~\cite{??}, tree edit distance~\cite{??}, and graph edit
-distance~\cite{??}, respectively.
+distance~\cite{levenshtein}, tree edit distance~\cite{oopsla10}, and graph edit
+distance~\cite{sanfeliu}, respectively.
 
 \textbf{String similarity (STS)} is the metric to compare the
 similarity of source code that is represented as sequence of
@@ -89,7 +89,7 @@ nodes in the AST $t$.
 %TODO cite Sanfeliu, Alberto; Fu, King-Sun (1983). "A distance measure between attributed relational graphs for pattern recognition"
 In this work, we define \textbf{graph similarity (GRS)} between the
 translated result $T$ and the reference code $R$ represented as PDGs
-by using graph edit distance~\cite{??}. That is:
+by using graph edit distance~\cite{sanfeliu}. That is:
 $$GRS(R, T) = 1-\frac{GED(PDG_R, PDG_T)}{max\left(size(PDG_R),
   size(PDG_T)\right)}$$ where $GED(PDG_R, PDG_T)$ is the edit distance
 between the PDG of the reference code $PDG_R$ and the PDG of the
