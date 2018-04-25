@@ -1,27 +1,60 @@
-\subsubsection{The Use of RUBY in Comparing Models}
-We conducted the same experiment on {\model} as we did with BLEU on cross models. \\ 
-\textbf{mppSMT vs p-mppSMT}\\
-On these two models that have identical BLEU scores, {\model} is able to identify their difference in translation quality estimated by semantic similarity. Specifically, the model mppSMT's average {\model} score is higher than p-mppSMT by \textbf{0.258} which nearly equals to the difference in term of semantic score (0.268). We also perform t-test on the data set to see if there is a significant difference in {\model} scores. With confident level of 0.95, we get the p-value of 7.78E-65. That means, we reject the null hypothesis and conclude that mppSMT's {\model} score is higher than p-mppSMT's ones.
+\subsubsection{The use of {\model} in comparing models}
+To evaluate {\model}'s abilities in comparing the translation quality of models, 
+first, we perform an examination to evaluate the effectiveness of {\model} in 
+comparing mppSMT and p-mppSMT. Additionally, the effectiveness of {\model} is 
+also evaluated in comparing several real-world translation models lpSMT, mppSMT and GNMT.
+%
+We use $t$-test and the mean values of semantic scores to conclude about the translation 
+quality comparison between two models with a given confident level (95\% in our experiments). 
+The conclusion based on {\model} is also drawn in the same manner. The two conclusions will 
+be checked whether consistent or not in order to confirm the effectiveness of {\model} 
+in comparing these two models. 
 
-We also perform experiments to compare the 3 models lpSMT, mppSMT and GNMT in pairwise. For each pair of models, we perform t-test on their semantic scores to test whether there is a significant difference between them. If yes, then the average semantic scores are used to determine if a model has higher semantic score than another. The same process is applied to {\model} score. The \ref{table:rubyCross} demonstrates our result. In all the pairs, {\model} can measure the difference of semantic scores between models. 
+\textbf{Comparing mppSMT and p-mppSMT}. In this experiment, by using $t$-test, we reject the null
+hypothesis \textit{the semantic scores of two models are equal} with $p$-value is 2.81E-85, and
+the average semantic score of mppSMT is greater than p-mppSMT by 0.268. Therefore, we conclude that
+the translation quality of mppSMT is better than p-mppSMT based on semantic score. In the same manner
+for {\model}, the null hypothesis \textit{the {\model} scores of two models are equal} is rejected 
+($p$-value is 7.78E-65), and for mppSMT, the mean value of {\model} scores is higher than p-mppSMT (0.258).
+Hence, the conclusions based on {\model} and semantic score are consistent. By these experimental results, 
+we concluded that the effectiveness of {\model} in comparing mppSMT and p-mppSMT is confirmed.
+%{\model} is able to identify their difference 
+%in translation quality estimated by semantic similarity. Specifically, the model mppSMT's 
+%average {\model} score is higher than p-mppSMT by \textbf{0.258} which nearly equals 
+%to the difference in term of semantic score (0.268). We also perform t-test on the data 
+%set to see if there is a significant difference in 
+%{\model} scores. With confident level of 0.95, we get the p-value of 7.78E-65. 
+%That means, we reject the null hypothesis and conclude that mppSMT's {\model} 
+%score is higher than p-mppSMT's ones.
+
+\textbf{Comparing real-world models}. We also perform experiments to compare the three models 
+lpSMT, mppSMT and GNMT in pairwise. The $p$-values with the null hypothesis \textit{the semantic 
+scores of two models are equal} and the mean values for the translated results of three models 
+are shown in table \ref{??}  and table \ref{??} \textbf{NGOC, tables please}. For all pairs of models,...
+%For each pair of models, we perform t-test on their 
+%semantic scores to test whether there is a significant difference between them. 
+%If yes, then the average semantic scores are used to determine if a model has higher 
+%semantic score than another. The same process is applied to {\model} score. The 
+%\ref{table:rubyCross} demonstrates our result. In all the pairs, {\model} can measure 
+%the difference of semantic scores between models. 
 %Comparing models GNMT and mppSMT, we found out that in \textbf{97.7\%} of the cases, the change in {\model} score indicates the change in the same direction for Semantic score. It means an improvement in {\model} score equivalents an improvement in Semantic scores and vice versa. More interestingly, 83 of 88 cases (\textbf{94.3\%}) if a pair of translated results have the same Semantic score, they also have identical {\model} score. 
-As the results showing, {\model} is a reliable metric to use in comparing different SMT-based migration models. 	
+%As the results showing, {\model} is a reliable metric to use in comparing different SMT-based migration models. 
 
-\begin{table}
-\centering
-\caption{RUBY RESULTS on COMPARING MODELS}
-\begin{tabular}{|p{2.3cm}|p{1.4cm}|p{1.4cm}|p{1.4cm}|}
-\hline
- & GNMT vs mppSMT & mppSMT vs lpSMT & lpSMT vs GNMT\\
-\hline
-Semantic difference & -0.200 & XXX & XXX \\
-\hline
-P-value  & 1.7E-35 & XXX & XXX \\
-\hline
-RUBY difference & -0.163 & XXX & XXX \\
-\hline
-P-value & 2.3E-25 & XXX & XXX \\
-\hline
-\end{tabular}
-\label{table:rubyCross}
-\end{table}
+%\begin{table}
+%\centering
+%\caption{RUBY RESULTS on COMPARING MODELS}
+%\begin{tabular}{|p{2.3cm}|p{1.4cm}|p{1.4cm}|p{1.4cm}|}
+%\hline
+% & GNMT vs mppSMT & mppSMT vs lpSMT & lpSMT vs GNMT\\
+%\hline
+%Semantic difference & -0.200 & XXX & XXX \\
+%\hline
+%P-value  & 1.7E-35 & XXX & XXX \\
+%\hline
+%RUBY difference & -0.163 & XXX & XXX \\
+%\hline
+%P-value & 2.3E-25 & XXX & XXX \\
+%\hline
+%\end{tabular}
+%\label{table:rubyCross}
+%\end{table}
