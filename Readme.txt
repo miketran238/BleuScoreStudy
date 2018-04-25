@@ -1,13 +1,13 @@
-- Abstract, evaluating impovement --> comparing
+- Abstract, evaluating improvement --> comparing
 - Intro:
-	- evaluating impovement --> comparing
+	- evaluating improvement --> comparing
 	- permuted model
 	- results
 - T-test for BLEU, p-mppSMT vs mppSMT (=)
 - Example for the second reason BLEU in comparing models
 - RUBY image for GNMT's results (correlation)
 - RUBY in comparing models: (>, <, =)
-	- mppSMT vs p-mppSMT
+	- mppSMT vs p-mppSMT (done)
 	- others
 - Result classification
 
