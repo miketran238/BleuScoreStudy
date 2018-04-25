@@ -43,20 +43,19 @@ According to the outcome, we chose the dataset result with the \textbf{median} o
 \end{figure}
 
 \subsubsection{Specification category}
+\textbf{Inliers.} We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:inliers_result} shows the result of classification for our set of data.
+\textbf{TODO: Explain table}
 
 
-\textbf{Inliers.} We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:Classification_result} shows the result of classification for our set of data.
-TODO: Explain table
-
-
-\textbf{Outliers.} TODO
+\textbf{Outliers.} The past Stephen Hawking said: "One of the basic rules of the universe is that nothing is perfect. Perfection simply does not exist". Although RUBY metric performces the high correlation in representation semantic score, there exists cases in which RUBY does not work well. With the same manually checking method as done with inliers, the table~\ref{table:outliers_result} shows RUBY's failure in measuring semantic for those phenomenon.
+\textbf{TODO: Explain table}
 \begin{table}[]
 	\centering
-	\caption{Classification result}
-	\label{table:Classification_result}
+	\caption{Inlier classification}
+	\label{table:inliers_result}
 	\begin{tabular}{|m{1cm}|m{3cm}|m{4cm}}
 		\hline
-		Type      & Category name         & Description                                                                                                                    
+		Type      & Category         & Description                                                                                                                    
 		\\
 		\hline
 		High RUBY & IDENTIDFIED           & Code is the same with the reference                                                                                             \\
@@ -66,6 +65,23 @@ TODO: Explain table
 		Low RUBY  & SAME\_KEYWORDS        & Code has the same keywords with the reference, i.e API names, method calls, variables. However, their usage is incorrect           \\
 		& DISORDERED            & Code has some same pieces of code with the reference. However they are disordered                                               \\
 		& DIFFERENT             & Code is totally different from the reference \\
+		\hline                                                                                   
+	\end{tabular}
+\end{table}
+
+
+\begin{table}[]
+	\centering
+	\caption{Outlier classification}
+	\label{table:outliers_result}
+	\begin{tabular}{|m{1cm}|m{3cm}|m{4cm}}
+		\hline
+		Type      & Category         & Description                                                                                                                    
+		\\
+		\hline
+		High RUBY &     INCOMPLETED       &  Code has a lot of syntax errors and it is not completed however it still has a majority of same piece with the reference which include unimportant information \\                                   
+		\hline
+		Low RUBY  & ALGORITHM\_VARIETY        & Code has the same functionarity with the reference, however it has been implemented by other algorithm, the lexical and data flow is almost different           \\
 		\hline                                                                                   
 	\end{tabular}
 \end{table}
