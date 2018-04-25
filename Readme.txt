@@ -3,6 +3,7 @@
 	- evaluating improvement --> comparing
 	- permuted model
 	- results
+- Introduce GNMT?
 - T-test for BLEU, p-mppSMT vs mppSMT (=)
 - Example for the second reason BLEU in comparing models
 - RUBY image for GNMT's results (correlation)
