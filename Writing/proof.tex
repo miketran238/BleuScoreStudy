@@ -46,7 +46,7 @@ necessary to lead to higher BLEU scores.
 %order to achieve an improvement in migration~quality.
 %
 
-{\bf The higher BLEU does not necessarily lead to higher sematic
+{\bf Higher BLEU score does not necessarily reflects higher semantic
   accuracy.}  We chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier,karaivanov14} that
 adapts phrase-to-phrase translation models~\cite{phrasal10}. This type
@@ -96,7 +96,7 @@ BLEU score with $n$=4 is {\bf 0.673}. However, the translated code is not even
 compiled due to that syntactic error. The effort to find the
 misplacement and to correct this is not trivial.
 
-{\bf Higher semantic accuracy does not necessarily lead to higher BLEU
+{\bf Higher semantic accuracy is not necessarily reflected via higher BLEU
   score.}
 %We chose the migration models/tools that focus on
 %structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
@@ -159,24 +159,29 @@ of these models}.
 %
 
 To provide the counterexample, we construct a {\em permuted model,
-  p-mppSMT}, from mppSMT, that applies the same principle as
-in Chris {\em et al.}~\cite{Callison}. The idea is that BLEU {\em does not impose
-explicit constraints on the orders of all matching phrases} between the
-translated code and the reference code. For~example, given the reference, 
-"\textbf{A B C D}", the BLEU scores of the two translated results, 
-$t_1$: "\textbf{A B} E \textbf{C D}", $t_2$: "\textbf{C D} E \textbf{A B}" 
-are the same, because the number of matching phrases such as "A B" and "C D" 
-in the two results are similar. Therefore, for a given reference code and 
-a translated result, there are many possible variants that would have 
-similar BLEU scores with the translated one. However, for code migrated results,
-the difference in the order of phrases between two results might lead to the 
-considerable difference between them in term of semantic. For instance, if 
-"\textbf{A B}", "\textbf{E}", and "\textbf{C D}" represent for the blocks code of 
-opening a file, reading the opened file, and closing the opened file, $t_1$ and 
-$t_2$ are significantly different in term of functionality. Hence, {\em by 
-following that  principle, the results from p-mppSMT achieve BLEU score equivalent 
-with the results of mppSMT, but possibly with lower semantic~score}. 
-We'll explain the results later.
+  p-mppSMT}, from mppSMT, that applies the same principle as in
+Callison-Burch {\em et al.}~\cite{Callison}. Their idea is that BLEU
+{\em does not impose explicit constraints on the orders of all
+  matching phrases} between the translated code and the reference
+code. It enforces the order among the tokens in a $n$-gram, but does
+not enforce the order among matching $n$-grams.
+%
+For~example, given the reference, "\textbf{A B C D}", the BLEU scores
+of the two translated results, $t_1$: "\textbf{A B} E \textbf{C D}",
+$t_2$: "\textbf{C D} E \textbf{A B}" are the same, because the number
+of matching phrases such as "A B" and "C D" in the two results are
+similar. Therefore, for a given reference code and a translated
+result, there are many possible variants that have similar BLEU
+scores with the translated one. However, for code migrated results,
+the difference in the order of phrases between two results might lead
+to the considerable semantic difference between them. For
+instance, if "\textbf{A B}", "\textbf{E}", and "\textbf{C D}"
+represent for the blocks code for opening a file, reading the opened
+file, and closing the opened file, $t_1$ and $t_2$ are significantly
+different in term of functionality. Hence, {\em by following that
+  principle, the results from p-mppSMT achieve BLEU score equivalent
+  with the results of mppSMT, but possibly with lower semantic~score}.
+%We'll explain the results later.
 
 %According to \cite{Callison}, BLEU accepts a large amount of variations because it only considers the numbers of matching n-grams but not their order. Thus, they argued that by reordering a hypothesis translation will not reduce the number of matching n-grams and thus will not reduce the overall Bleu
 %score. 
