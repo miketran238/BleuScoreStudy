@@ -1,18 +1,19 @@
-\subsection{Result analyzing - Draft}
+\subsection{Result Research}
 
 Correlation coefficients are used in statistics to measure how strong a relationship is between two variable space. Concretely, in this case those variable space are Semantic score and RUBY. 
 
 
 We aim to figure out specifics of a dataset in which RUBY can work well. Because RUBY was created to estimate the semantic of code translation, the dataset in which RUBY works well also is the dataset containing the high correlation between Semantic score and RUBY. 
 
-\subsubsection{Using RANSAC}
+\subsubsection{The Use of RANSAC}
 The RANSAC (Random Sample Consensus) algorithm~\cite{ Fischler:1981:RSC:358669.358692} is a simple, yet powerful, technique that is commonly applied to the task of estimating the parameters of a model, using data that may be contaminated by outliers. RANSAC estimates a global relation that fits the data, while simultaneously classifying the data into inliers (points consistent with the relation) and outliers (points not consistent with the relation). Due to its ability to tolerate a large fraction of outliers, the algorithm is a popular choice for a variety of robust estimation problems.
 
 
-RANSAC assumes that the training data consists of inliers that can be explained with the model and outliers that are gross-erroneous samples which don't fit the model at all. So using outliers when training the model would increase our final prediction error, as they contain almost no information about the model. Therefore, in our research scope, we use RANSAC as a mean of classification data which includes points contributing to the correlation of the method (inliers) and points decreasing the correlation of the method (outliers).
+RANSAC assumes that the training data consists of inliers that can be explained with the model and outliers that are gross-erroneous samples which do not fit the model at all. So using outliers when training the model would increase our final prediction error, as they contain almost no information about the model. Therefore, in our research scope, we use RANSAC as a mean of data classifier which returns a set of points contributing to the correlation of the method (inliers) and another set of points decreasing the correlation of the method (outliers).
 
 \subsubsection{Experiments}
-We conducted 10 experiments with RANCSAC running on the same dataset from our result.  (Table~\ref{table:RANSAC_experiments}) shows results of our 10 experiments which contains the number of inlier points and the correlations of those inliers. According to the outcome, we chose the dataset result with the median of correlation that is No5 in the table for analyzing and finding out the specifics of that dataset. Figure~\ref{fig:inliers_outliers} shows the result of experiment No5.
+We conducted independtly 10 experiments with RANCSAC running on the same dataset derived from our result tested on model \textbf{XXX}. The data set contains 375 pairs representing RUBY and Semantic score caculated for the set of traslated methods of \textbf{XXX}. (Table~\ref{table:RANSAC_experiments}) shows results of our 10 experiments which contains the number of inlier points and the correlations of those inliers. The number of inliers is almost around 300 out of 375, while the figure for their correlation is at high rate between 0.93 and 0.95. 
+According to the outcome, we chose the dataset result with the \textbf{median} of correlation that is the experiment No5 (correlation = 0.954874293) in the table for analyzing and finding out the specifics of that dataset. Figure~\ref{fig:inliers_outliers} shows the result of experiment No5 gained from RANCSAC.
 \begin{table}
 	\caption{RANSAC experiments}
 	\begin{tabular}{|c|c|c|c|c|}
@@ -41,8 +42,14 @@ We conducted 10 experiments with RANCSAC running on the same dataset from our re
 	\label{fig:inliers_outliers}
 \end{figure}
 
-\subsubsection{Classification result}
-We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:Classification_result} shows the result of classification for our set of data.
+\subsubsection{Specification category}
+
+
+\textbf{Inliers.} We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:Classification_result} shows the result of classification for our set of data.
+TODO: Explain table
+
+
+\textbf{Outliers.} TODO
 \begin{table}[]
 	\centering
 	\caption{Classification result}
@@ -53,10 +60,10 @@ We manually classify the method set of the inlier points into serveral categorie
 		\\
 		\hline
 		High RUBY & IDENTIDFIED           & Code is the same with the reference                                                                                             \\
-		& SAME\_FUNC\_DIFF\_LEX & Code uses a variety expression for the same functionarity with the reference. E.g for vs foreach, array[i] vs array.get(i)\\
+		& SAME\_FUNC\_DIFF\_LEX & Code uses a variety expression for the same functionarity with the reference, e.g for vs foreach, array[i] vs array.get(i)\\
 		& SAME\_DATA\_FLOW      & Code has the same data flow with the reference but there are still incorrect pieces of code                                     \\
 		\hline
-		Low RUBY  & SAME\_KEYWORDS        & Code has the same keywords with the reference, i.e API name, method call, variable… However, their usage is incorrect           \\
+		Low RUBY  & SAME\_KEYWORDS        & Code has the same keywords with the reference, i.e API names, method calls, variables. However, their usage is incorrect           \\
 		& DISORDERED            & Code has some same pieces of code with the reference. However they are disordered                                               \\
 		& DIFFERENT             & Code is totally different from the reference \\
 		\hline                                                                                   
