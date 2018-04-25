@@ -14,19 +14,19 @@ Section~\ref{sec:bleuresult}.
 The correlation coefficient results between each of the three metrics
 with semantic score are described in
 Table~\ref{table:correlation}. These results follow a similar trend:
-for each model, the correlation coefficients increase constantly
-according the abstraction levels of source code from text, AST, to PDG
-in three metrics. For example, for mppSMT, the correlation
+for each model, the correlation coefficients increase 
+according the abstraction levels of source code from text, syntax, to semantic
+representations in three metrics. For example, for mppSMT, the correlation
 coefficient between STS and semantic score is 0.549, whereas that
 for TRS is much greater at 0.820. The highest value is the
-correlation coefficient is between GRS and semantic score at 0.910. A
+correlation coefficient between GRS and semantic score at 0.910. A
 reason for this phenomenon is that for a pair of source code, if they
 are textually identical, they have the same AST representation, and
 the exact-match in AST leads to the equivalence between the
 corresponding PDGs. Meanwhile, the equivalence in a higher
 abstraction level does not necessarily lead to the equivalence in a
 lower abstraction. For example, Fig.~\ref{fig:mppSMT_example} shows
-two methods with equivalent PDGs, but textually~different. 
+two methods with equivalent PDGs, but with textually~different. 
 
 %Despite of the increase of the correlation coefficients, GRS and TRS
 %are used to measure subsets of methods in our sample set 
@@ -58,12 +58,14 @@ Based on these empirical results, we conclude that the metric that
 measures the results in the higher abstraction level, the better
 metric for reflecting the semantics accuracy. However, the higher
 representation like PDG cannot always be constructed because of
-missing syntactic or semantic related information in the translated results
-that is required to construct ASTs and PDGs. For example, the sets of 
-methods that are translated by lpSMT, and applicable for GRS and TRS 
-are quite limited, 75 and 123 (out of 375 methods). Therefore, in
+missing syntactic or semantic related information in the translated
+results that is required to construct ASTs and PDGs. For example, the
+sets of methods that are translated by lpSMT, and applicable for GRS
+and TRS are quite limited, 75 and 123 (out of 375 methods),
+respectively (the respective numbers for mppSMT are 239 and 292, and
+those for GNMT are 128 and 155). Therefore, in
 Section~\ref{sec:proposal}, we propose a metric to evaluate the
-quality of translated code, that combines the measurement of the
+quality of translated code, that uses the measurement of the
 similarity of translated code and expected results in multiple
 representations.
 
