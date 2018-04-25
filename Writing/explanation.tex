@@ -41,30 +41,24 @@ We conducted 10 experiments with RANCSAC running on the same dataset from our re
 	\label{fig:inliers_outliers}
 \end{figure}
 
-\subsubsection{Result classification}
-We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:result_classification} shows the result of classification for our set of data.
-\begin{table}
-	\caption{Result classification}
-	  \scalebox{1}{
-		\begin{tabular}{|c|m{4.5cm}|}
-			\hline
-			Method category & Description \\
-			\hline
-			IDENTIDFIED\_CODE	& Code is the same with the reference \\		
-			\hline
-			SAME\_FUNC\_DIFF\_LEX	& FQN vs PN, For vs Foreach, [i] vs .get(i) \\		
-			\hline
-			SAME\_DATA\_FLOW	& Same data flow but there are still incorrect piece of code \\	
-			\hline
-			DISORDERED\_CODE & Several same pieces of code was disordered \\		
-			\hline
-			SAME\_API\_NAME & Code includes the same APIs and params name with its reference but incorrect usages \\
-			\hline
-			SAME\_SOME\_LOC & There are some lines of code which are same with the reference \\
-			\hline
-			DIFFERENT\_CODE & Code is totally different from the its reference \\
-			\hline
-		\end{tabular}
-	}
-		\label{table:result_classification}
+\subsubsection{Classification result}
+We manually classify the method set of the inlier points into serveral categories based on the relation between the method and its reference. Table~\ref{table:Classification_result} shows the result of classification for our set of data.
+\begin{table}[]
+	\centering
+	\caption{Classification result}
+	\label{table:Classification_result}
+	\begin{tabular}{|m{1cm}|m{3cm}|m{4cm}}
+		\hline
+		Type      & Category name         & Description                                                                                                                    
+		\\
+		\hline
+		High RUBY & IDENTIDFIED           & Code is the same with the reference                                                                                             \\
+		& SAME\_FUNC\_DIFF\_LEX & Code uses a variety expression for the same functionarity with the reference. E.g for vs foreach, array[i] vs array.get(i)\\
+		& SAME\_DATA\_FLOW      & Code has the same data flow with the reference but there are still incorrect pieces of code                                     \\
+		\hline
+		Low RUBY  & SAME\_KEYWORDS        & Code has the same keywords with the reference, i.e API name, method call, variable… However, their usage is incorrect           \\
+		& DISORDERED            & Code has some same pieces of code with the reference. However they are disordered                                               \\
+		& DIFFERENT             & Code is totally different from the reference \\
+		\hline                                                                                   
+	\end{tabular}
 \end{table}
