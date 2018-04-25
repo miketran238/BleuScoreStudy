@@ -1,43 +1,60 @@
-\subsection{The use of BLEU in comparing models}
+\subsection{The use of BLEU in comparing SMT migration models}
 %TODO gonna be removed
-In our experiment on results translated by mppSMT and p-mppSMT for 375 methods, 
-the average BLEU score of these models are identical. Meanwhile, 
-the overall semantic score of p-mppSMT is \textbf{0.62} that is lower than the 
-average for mppSMT, \textbf{0.88}. That means the deviant of BLEU in comparing 
-models is nearly \textbf{2} level of semantic score in our sample set. 
+In our experiment on results translated by mppSMT and p-mppSMT for 375
+methods, the average BLEU score for these models are
+identical. Meanwhile, the overall semantic score for p-mppSMT is
+\textbf{0.62}, which is lower than the average for mppSMT of
+\textbf{0.88}. This means that the deviant of BLEU in comparing the
+two models is nearly \textbf{2} levels of semantic score lower,
+despite that they have identical BLEU score.
 
 %TODO complete and describe t-test results
-To evaluate the abilities of BLEU in comparing the 
-translation quality of models, we show that the two models mppSMT and p-mppSMT have different semantic score despite having identical BLEU score. We perform the paired t-test on the sample with confident level of 0.95. Our null hypothesis is the semantic scores of two models are equal. The p-value of the t-test is 2.81E-85
-which is much smaller than 0.05. Thus we reject our null hypothesis and conclude that the semantic scores of two models are different with confident level of 95\%.
+To further confirm the difference in the semantic scores for the two
+models even though they have the same BLEU~score, we performed the
+pair $t$-test on those 375 results with the confident level of
+0.95 and a null hypothesis that {\em the semantic scores of two models
+  are equal}. The $p$-value of the $t$-test is 2.81E-85, which is much
+smaller than 0.05. Thus, we rejected the null hypothesis and concluded
+that the semantic scores of two models are different with the confident
+level of~95\%.
+
+%To evaluate the abilities of BLEU in comparing the 
+%translation quality of models, we show that the two models mppSMT and p-mppSMT have different semantic score despite having identical BLEU score. We perform the paired t-test on the sample with confident level of 0.95. Our null hypothesis is the semantic scores of two models are equal. The p-value of the t-test is 2.81E-85
+%which is much smaller than 0.05. Thus we reject our null hypothesis and conclude that the semantic scores of two models are different with confident level of 95\%.
 
 
-In our dataset, there are two main reasons for these results. First,
-in some results of mppSMT, these phrases are lexically different those
-in the reference one, but they may carry correct syntactical or
-semantic information, which makes these results achieve high semantic
-score. However, for the results translated by p-mppSMT and having
-similar BLEU scores, these meaningful phrases are swapped, thus, are
-placed in incorrect locations. This leads to significantly decreasing
-in semantic scores. For example, in Fig.~\ref{fig:mppSMT_example}, the
-result translated by p-mppSMT which has the same BLEU score with the
-result of mppSMT. Meanwhile, the result of mppSMT is semantically
-correct, however, the result from p-mppSMT is not compilable.
+%Tien
+%In our dataset, there are two main reasons for these results. First,
+%in some results of mppSMT, these phrases are lexically different those
+%in the reference one, but they may carry correct syntactical or
+%semantic information, which makes these results achieve high semantic
+%score. However, for the results translated by p-mppSMT and having
+%similar BLEU scores, these meaningful phrases are swapped, thus, are
+%placed in incorrect locations. This leads to significantly decreasing
+%in semantic scores. For example, in Fig.~\ref{fig:mppSMT_example}, the
+%result translated by p-mppSMT which has the same BLEU score with the
+%result of mppSMT. Meanwhile, the result of mppSMT is semantically
+%correct, however, the result from p-mppSMT is not compilable.
 %
-Furthermore, although several result of mppSMT might contain phrases
-that are lexically incorrect, these phrases have the information that
-provides developers clues to fix the translated one. However, these
-phrases in the corresponding results translated by p-mppSMT are moved
-into new positions, which also makes the semantic score of these
-results are much lower than that of mppSMT. For example,...
-\textbf{NGOC, example for this reason}
+%Furthermore, although several result of mppSMT might contain phrases
+%that are lexically incorrect, these phrases have the information that
+%provides developers clues to fix the translated one. However, these
+%phrases in the corresponding results translated by p-mppSMT are moved
+%into new positions, which also makes the semantic score of these
+%results are much lower than that of mppSMT. For example,...
+%\textbf{NGOC, example for this reason}
 
-In our work, we additionally conduct an other experiment in the same
-manner on GNMT and lpSMT.  The experimental results also support our
-hypothesis. That can be found on our website \cite{??}.
+Examining the translated code, we found that p-mppSMT produces the
+code with lower semantic accuracy due to the swapping of the locations
+of the expressions and/or statements in the code. That leads to the
+completely different program semantics and even incompilable code. For
+example, in Fig.~\ref{fig:mppSMT_example}, the phrase with the method
+name \code{isSimilar} is placed in the end of line 28, making the code
+incorrect. Therefore, the semantic score of such result is lower
+than the result from mppSMT.
 
-By empirical results, we conclude that \textit{BLEU is not effective
-  in comparing the translation quality of SMT-based models}.
+%
+
 
 
 
@@ -48,6 +65,7 @@ By empirical results, we conclude that \textit{BLEU is not effective
 %\subsubsection{Practical Models}
 
 %Using the same experiment set up, we have two sets of 375 translated methods from two models GNMT and mppSMT. From the sample, we choose pairs of results such that their GNMT's BLEU scores are higher than mppSMT's BLEU scores. There are 215 of such pairs. Among them, 79 pairs have lower semantic score. Then, we perform t-test with alpha confident level of 0.95 on that subset to see if their GNMT's semantic scores are also significantly higher or not. Our null hypothesis is: GNMT's semantic score are higher than mppSMT's one with confident level of 0.95. The results show a t-value of \textbf{-9.1} which is lower than the critical point of -1.97. It meant we would reject the null hypothesis that GNMT's semantic scores are higher than mppSMT's ones. Our result shows that an improvement in BLEU score does not lead to an improvement in translation quality. 
+
 %To validate the use of BLEU in comparing different SMT-based code migration systems, we conduct study to see if an improvement in BLEU score over cross models reflects the improvement in translation quality represented by human judgments of semantic score between those models. For a same set of 375 original Java methods, the two models GNMT and mppSMT generates two sets of 375 translated methods. Each set has its own BLEU scores and Semantic scores.
 %We prove that an improvement in BLEU score does not sufficient nor necessary lead to an improvement in semantic score by showing:
 %
@@ -58,3 +76,16 @@ By empirical results, we conclude that \textit{BLEU is not effective
 %We ignored pairs of translated results if they have the same BLEU score or Semantic score (136 of the cases). For the remaining results, we found out that in \textbf{34\%} of the cases, the change in BLEU score contradicts the change in Semantic score. It means an improvement in BLEU score leads to a decrease in Semantic score and vice versa. In other words, if one function is translated by two migration models, one-third of the time, the result which has higher BLEU score actually has lower translation quality than the other.
 
 %Because of the results above, BLEU is not reliable to use in comparing different SMT-based migration models.
+
+In our work, we additionally conducted another experiment in the same
+manner to verify our hypothesis on two pairs of SMT-based migration
+models: lpSMT~\cite{fse13} and GNMT~\cite{gnmt}, and
+mppSMT~\cite{ase15} and GNMT~\cite{gnmt}. The results from our
+$t$-tests allowed us to conclude that an improvement in BLEU score is
+not sufficient nor necessary to reflect a higher semantic score with
+the confidence of 0.95. Thus, the experimental results also support
+our hypothesis. The details of this study can be found on our
+website~\cite{ruby-website}.
+
+In brief, we conclude that \textit{BLEU is not effective in comparing
+  the translation quality of SMT-based models}.
