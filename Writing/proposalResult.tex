@@ -1,7 +1,7 @@
-\subsection{{\model} result}
+\subsection{Empirical results for {\model}}
 \subsubsection{Correlation of {\model} and semantic scores}
 To evaluate the effectiveness {\model} compared to BLEU, we conducted experiments 
-in the same manner with BLEU on three models lpSMT and mppSMT. 
+in the same manner with BLEU on three models GNMT, mppSMT, and lpSMT. 
 %{\model}'s efficiency was tested on a large number
 %of methods translated by those models. 
 
@@ -24,7 +24,7 @@ semantic score are \textbf{0.764}, \textbf{0.815}, and \textbf{0.747} for the
 3 models GNMT, mppSMT, and lpSMT  respectively. Comparing to the correlation 
 of BLEU of 0.658, 0.523, and 0.570, {\model}'s results are much higher. 
 In statistics, these values indicate a strong positive linear relationship between two 
-quantitative metrics. That means {\model} is effective in reflecting the 
+quantitative metrics. That also shows the effectiveness of {\model} in reflecting the 
 semantic accuracy of translated results.
 
 %Figures~\ref{fig:RubySemlpSMT} and~\ref{fig:RubySemMppSMT} show the
@@ -55,7 +55,7 @@ a subset of results. In our sample data, the sizes of these applicable set of me
 are quite small.
 %, for lpSMT they are \textbf{75/375} and \textbf{123/375}, and these figures
 %for mppSMT are \textbf{239} and \textbf{292} respectively. 
-The summary results about correlation with semantic score is presented in \ref{fig:summary}
+%The summary results about correlation with semantic score is presented in figure \ref{fig:summary}
 
 %While GRS is
 %only computed with the migrated code with sufficient semantic
@@ -64,9 +64,10 @@ The summary results about correlation with semantic score is presented in \ref{f
 %given code. On the other hand, in comparison with TRS, STS
 %and BLEU, {\model} always outperforms the other three metrics.
 \input{rubyCross}
-	    
-\begin{figure}
-\centering
-\includegraphics[scale=0.85]{img/summary.jpg}
-\label{fig:summary}
-\end{figure}
+
+%\begin{figure}[t]
+%	\caption{The correlation coefficients between metrics and semantic score}
+%	\includegraphics[scale=0.85]{img/summary.jpg}
+%	\centering
+%	\label{fig:summary}
+%\end{figure}
