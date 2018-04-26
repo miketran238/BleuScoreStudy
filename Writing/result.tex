@@ -12,6 +12,7 @@ how strong their relation is. The correlation coefficient has value
 between [-1, 1], where 1 indicates the strongest positive relation, -1
 indicates the strongest negative relation, and 0 indicates no relation.
 
+%TODO BLEU, n-gram, n=???
 Fig.~\ref{fig:BleuSemlpSMT} and Fig.~\ref{fig:BleuSemMppSMT} show the
 scatter plots between two metrics: BLEU and Semantic. Each point
 represents the scores of a pair of methods where its $x$-axis value is
@@ -24,6 +25,8 @@ between the metrics on the results translated by lpSMT and mppSMT are
 demonstrated in Fig.~\ref{fig:BleuSemlpSMT} and Fig.~\ref{fig:BleuSemMppSMT}.
 
 %\emph{Observation 1:}
+
+%TODO mark what we want to talk about on figures
 
 \subsubsection{{\bf Higher BLEU does not necessarily reflect higher
 sematic accuracy}}
@@ -102,17 +105,18 @@ code-related aspects such as program dependencies that contribute to
 source code semantics. This might lead to the ineffectiveness of BLEU
 in reflecting the semantic accuracy of translated results.
 
-%TODO need to verify
+
 In conclusion, {\em BLEU does not reflect well the
 semantics of source code, and it is not suitable in evaluating
 semantic accuracy of the result from a SMT-based code migration model}.
 
+%TODO split translated results
 \begin{figure}[t]
 \centering
 %\begin{lstlisting}[basicstyle=\small\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
 \lstinputlisting[basicstyle=\scriptsize\sffamily,language=Java]{mppExample.cs}
 %\end{lstlisting}
-\caption{mppSMT Example}
+\caption{Translated results and the corresponding reference code}
 \label{fig:mppSMT_example}
 \end{figure}
 
