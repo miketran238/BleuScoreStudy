@@ -10,6 +10,6 @@
 - RUBY in comparing models: (>, <, =)
 	- mppSMT vs p-mppSMT (done)
 	- others
-- Result classification
+- (done) Result classification
 
 - (done) Citation for alternative metrics

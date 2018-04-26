@@ -163,8 +163,10 @@ To provide the counterexample, we construct a {\em permuted model,
 Callison-Burch {\em et al.}~\cite{Callison}. Their idea is that BLEU
 {\em does not impose explicit constraints on the orders of all
   matching phrases} between the translated code and the reference
-code. It enforces the order among the tokens in a $n$-gram, but does
-not enforce the order among matching $n$-grams.
+code, even though it enforces the order among the tokens in a $n$-gram 
+matching phrases. 
+%It enforces the order among the tokens in a $n$-gram, 
+%but does not enforce the order among matching $n$-grams.
 %
 For~example, given the reference, "\textbf{A B C D}", the BLEU scores
 of the two translated results, $t_1$: "\textbf{A B} E \textbf{C D}",
