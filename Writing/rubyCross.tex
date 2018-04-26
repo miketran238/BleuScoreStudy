@@ -31,15 +31,15 @@ scores, we consider {\model} as effective in comparing the models.
 \textbf{Comparing mppSMT and p-mppSMT}. In this experiment, 
 to compare the two models mppSMT and p-mppSMT, by using $t$-test, we
 were able to reject the null hypothesis that \textit{the semantic
-scores of two models are equal} with $p$-value of 2.81E-85 and the difference must be larger than 0.04 to be considered significant. Because the average semantic score of mppSMT
+scores of two models are equal} with $p$-value of 2.81E-85. Because the average semantic score of mppSMT
 is greater than p-mppSMT by 0.268, we conclude that the translation
 quality of mppSMT is better than p-mppSMT based on the semantic
 scores.
 %
-To compare mppSMT and p-mppSMT using {\model}, we performed an
+To compare mppSMT and p-mppSMT using {\model}, we performed another
 $t$-test with the null hypothesis that \textit{the {\model} scores of
 two models are equal}. We were able to reject it with $p$-value of
-7.78E-65 ant t-critical value of 1.97 at 95\% confident interval. For mppSMT, the mean value of {\model} scores is higher than
+7.78E-65 and confident interval for the difference between means is $\pm0.01$ at 95\% level of confident. For mppSMT, the mean value of {\model} scores is higher than
 that of p-mppSMT (0.258). Hence, the conclusion that mppSMT is better
 than p-mppSMT is consistently stated by {\model} and by the semantic
 scores.
@@ -57,8 +57,8 @@ mppSMT and p-mppSMT is confirmed.
 
 \textbf{Comparing real-world models}. We also perform experiments to perform pairwise comparison among 
 the three models lpSMT~\cite{fse13}, mppSMT~\cite{ase15} and
-GNMT~\cite{gnmt}. The null hypothesis in our $t$-test is
-that \textit{the semantic scores of two models are equal}.
+GNMT~\cite{gnmt}. In our $t$-tests, for all pairs, we were able to reject the null hypotheses that
+that \textit{the semantic scores of two models are equal} and \textit{the {\model} scores of two models are equal}. When comparing the average scores, {\model}'s decision is always consistent with semantic score. 
 %
 The results including the $p$-values and the mean values for the
 translated results of three models are shown in
