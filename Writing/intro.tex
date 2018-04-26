@@ -108,7 +108,8 @@ For the second part, we construct an artificial model, p-mppSMT, from mppSMT
 ~\cite{Callison}. The important property of p-mppSMT is that given a method,
  the translated result archives the same BLEU score as the result migrated 
 by mppSMT. However, a minor lexical difference in these translated methods 
-might result in considerable differences in term of semantic. This could lead translated results with the same BLEU score, but they are functionally different. For this part, we also...
+might result in considerable differences in term of semantic. This could lead 
+translated results with the same BLEU score, but they are functionally different. 
 
 %  reflect well the semantic accuracy on the migrated source code}
 %syntactic and semantics, we hypothesize that {\em BLEU metric does not
@@ -148,17 +149,16 @@ migrated method and the automatically migrated one from a tool, we
 assigned a semantic accuracy score and computed the BLEU score. The
 semantic accuracy score was given by a developer after examining the
 original code in Java, the manually migrated code in C\texttt{\#} and
-the auto-migrated code in C\texttt{\#} by a tool. For the first part
-of our hypothesis, we then computed the correlation between the BLEU
-scores and semantic scores of all the pairs. Our result shows that the
+the auto-migrated code in C\texttt{\#} by a tool \textbf{NGOC, Manual effort}. 
+For the first part of our hypothesis, we then computed the correlation 
+between the BLEU scores and semantic scores of all the pairs. Our result shows that the
 BLEU metric has a weak correlation to the semantic accuracy of the
 migrated code. For the second part of our hypothesis, we compared the
 translated results of the same set of 375 methods for the two models
 mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
 %
-We showed that the improvement of BLEU score from one model to another
-does not indicate an improvement in semantic accuracy of migrated
-code.
+We showed that the equivalence of BLEU scores of models does not indicate 
+the equivalence in the quality of their translation results.
 %In nearly half of those methods, an improvement of BLEU score does not
 %indicate an improvement in semantic score, and vice-versa.
 %Conclusion
@@ -193,7 +193,7 @@ SMT-based migration tools.
 %The contributions of this paper include:
 
 In this work, we introduce, {\model}, a novel metric to evaluate the
-results of the SMT-based code migration tools.  The intuition is that
+results of the SMT-based code migration tools. The intuition is that
 the metric that measures the results in the higher abstraction level,
 the better metric for reflecting the semantics accuracy. However, in
 code migration, the translated code might miss information that is
