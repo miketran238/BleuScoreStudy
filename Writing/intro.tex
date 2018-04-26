@@ -77,7 +77,8 @@ for the translation results by a single model or its use to compare
 the results across models, this key hypothesis can further be divided
 into two parts: (1) BLEU does not reflect well the semantic accuracy
 of migrated source code with regard to the original code when they are
-translated by a model, and (2) the quality comparison between translation models cannot be drawn by using the BLEU metric.
+translated by a model, and (2) the quality comparison between translation 
+models cannot be drawn by using the BLEU metric.
 %
 We conducted experiments to provide counterexamples to empirically
 validate that hypothesis. We choose the language migration task
@@ -149,13 +150,14 @@ migrated method and the automatically migrated one from a tool, we
 assigned a semantic accuracy score and computed the BLEU score. The
 semantic accuracy score was given by a developer after examining the
 original code in Java, the manually migrated code in C\texttt{\#} and
-the auto-migrated code in C\texttt{\#} by a tool. In total, $375 * 6 = 2,250$ pairs of methods were checked and assigned semantic scores. 
-For the first part of our hypothesis, we then computed the correlation 
-between the BLEU scores and semantic scores of all the pairs. Our result shows that the
-BLEU metric has a weak correlation to the semantic accuracy of the
-migrated code. For the second part of our hypothesis, we compared the
-translated results of the same set of 375 methods for the two models
-mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
+the auto-migrated code in C\texttt{\#} by a tool. In our work, 2,250
+translated results were manually checked and assigned semantic scores 
+for about 45 hours. For the first part of our hypothesis, we then computed 
+the correlation between the BLEU scores and semantic scores of all the pairs. 
+Our result shows that the BLEU metric has a weak correlation to the semantic 
+accuracy of the migrated code. For the second part of our hypothesis, 
+we compared the translated results of the same set of 375 methods for 
+the two models mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
 %
 We showed that the equivalence of BLEU scores of models does not indicate 
 the equivalence in the quality of their translation results.
@@ -208,23 +210,28 @@ level representations that can be constructed for both versions. To
 evaluate the effectiveness of {\model} in assessing the quality of
 migrated source code compared to BLEU, we conducted two experiments to
 evaluate {\model} on the abilities to reflect the semantic accuracy
-and the improvement of translation models. Our result shows that the
+and the translation quality change between models. Our results show that the
 new metric {\model} is highly correlated to the semantic accuracy of
-the resulting migrated code. The correlation coefficients between {\model} and semantic score in average is 0.775. {\model} can also be used to compare
-different SMT-based code migration models as {\model} results always consistent with semantic score.
+the resulting migrated code. The average correlation coefficients between 
+{\model} and semantic accuracy is 0.775, compared to 0.583 of BLEU score. 
+Our results also demonstrate the effectiveness of {\model} in comparing 
+SMT-based code migration models in the consistent results of {\model} 
+with semantic score.
 
 %The contributions of this paper include:
 
 In summary, in this paper, our main contributions are:
 
 \begin{itemize}
-	\item An empirical evidence to show that BLEU metric does not reflect
+	\item An empirical evidence to show that BLEU metric does not only reflect
 well the semantic accuracy of the migrated code for SMT-based
-migration tools.
+migration tools, but also is not effective in comparing translation 
+quality of models.
 
 	\item {\model}, a novel metric to evaluate the results of the SMT-based
 code migration tools, that integrates the scores at the lexical,
 syntactical, and semantic levels in source code.
+
 	\item An extensive empirical study to evaluate {\model} on multiple SMT-based code migration systems. 
 \end{itemize}
 
