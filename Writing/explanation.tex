@@ -1,5 +1,7 @@
 \subsection{Further Insights}
 
+\subsubsection{Experimental Procedure}
+
 In this experiment, we aimed to empirically investigate further the
 characteristics of {\model} in reflecting the semantic accuracy in
 migrated results. To achieve that, we focused on the migrated code
@@ -55,9 +57,23 @@ can found in~\cite{Fischler:1981:RSC:358669.358692}.
 
 
 
-\subsubsection{Experiments}
-We conducted independtly 10 experiments with RANCSAC running on the same dataset derived from our result tested on model \textbf{mppSMT}. The data set contains 375 method pairs representing {\model} and Semantic score caculated for the set of traslated methods of \textbf{mppSMT}. Table~\ref{table:RANSAC_experiments} shows results of our 10 experiments which contains the number of pairs in \textbf{GOOD\_SET} and the correlations of those sets. The number of pairs in each set is in range of 224 and 315, while the figure for their correlation is at high rate between 0.93 and 0.95. 
-According to the outcome, we chose the dataset result with the \textbf{median} of correlation of \textbf{GOOD\_SET} that is the experiment number 5 (correlation = 0.954874293) in the table and the number of pairs is 308.
+%\subsubsection{Experiments}
+Since RANSAC is a learning algorithm, we conducted independtly 10
+experiments with RANCSAC running on the same dataset of translated
+code from the model \textbf{mppSMT}. The data set contains 375 method
+pairs representing {\model} and Semantic score caculated for the set
+of traslated methods of
+\textbf{mppSMT}. Table~\ref{table:RANSAC_experiments} shows the
+results of our 10 times, which contains the number of pairs in
+\textbf{GOOD\_SET} and the correlation coefficient corresponding to
+each subset for each time.
+%
+The size of each subset ranges from 224 to 315, while the their
+correlation value is at high rate (between 0.93 and 0.95).  From the
+table, we chose the subset with the \textbf{median} of the correlation
+values as \textbf{GOOD\_SET}. That is the experiment number 5
+(correlation = 0.954874293) in the table and the number of pairs is
+308.
 
 %Figure~\ref{fig:inliers_outliers} shows the result of experiment No5 gained from RANCSAC.
 
@@ -89,9 +105,20 @@ According to the outcome, we chose the dataset result with the \textbf{median} o
 %	\label{fig:inliers_outliers}
 %\end{figure}
 
-\subsubsection{Specification category}
-Working on \textbf{GOOD\_SET} and \textbf{BAD\_SET} from the 5-th experiement, we manually classify pairs of these sets into different groups that have common characteristics.
-The principle for classification is that we aim to understand in which phenomenon {\model} could work well and could not work properly from \textbf{GOOD\_SET} and \textbf{BAD\_SET}, respectively.
+\subsubsection{Result Categorization}
+
+Examining \textbf{GOOD\_SET}, we classify each migrated result into
+different groups with common characteristics. Our goal of
+classification is to find the characteristics of {\model} to see how
+it reflects correctly the semantic accuracy. For the {\bf BAD\_SET},
+we also have the goal of understanding in which cases, {\model} does
+not work well.
+
+%the pairs of these sets into different groups that have common
+%characteristics.  The principle for classification is that we aim to
+%understand in which phenomenon {\model} could work well and could not
+%work properly from \textbf{GOOD\_SET} and \textbf{BAD\_SET},
+%respectively.
 
 
 \textbf{GOOD\_SET.} {\model} works well on this dataset due to capturing certain features of code in lexical and structure terms as the groups descirbed below:
