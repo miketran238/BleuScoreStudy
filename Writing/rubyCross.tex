@@ -55,10 +55,22 @@ mppSMT and p-mppSMT is confirmed.
 %That means, we reject the null hypothesis and conclude that mppSMT's {\model} 
 %score is higher than p-mppSMT's ones.
 
-\textbf{Comparing real-world models}. We also perform experiments to compare the three models 
-lpSMT, mppSMT and GNMT in pairwise. The $p$-values with the null hypothesis \textit{the semantic 
-scores of two models are equal} and the mean values for the translated results of three models 
-are shown in table \ref{table:tTestResult}  and table \ref{table:avgRubySem}  For all pairs of models, {\model} shows consistent results with semantic scores. An improvement in {\model} scores when comparing between models always equivalents to an improvement in translation quality represented by semantic scores.  
+\textbf{Comparing real-world models}. We also perform experiments to perform pairwise comparison among 
+the three models lpSMT~\cite{fse13}, mppSMT~\cite{ase15} and
+GNMT~\cite{gnmt}. The null hypothesis in our $t$-test is
+that \textit{the semantic scores of two models are equal}.
+%
+The results including the $p$-values and the mean values for the
+translated results of three models are shown in
+Tables~\ref{table:tTestResult} and~\ref{table:avgRubySem}. 
+%
+As seen, for all pairs of models, an improvement in {\model} scores
+when comparing between models always reflects an improvement in
+translation quality (represented by semantic scores). Therefore,
+{\em {\model} reflects well the semantic scores}.
+%
+%For all pairs of models, {\model} shows consistent results with
+%semantic scores. 
 %For each pair of models, we perform t-test on their 
 %semantic scores to test whether there is a significant difference between them. 
 %If yes, then the average semantic scores are used to determine if a model has higher 
@@ -69,7 +81,8 @@ are shown in table \ref{table:tTestResult}  and table \ref{table:avgRubySem}  Fo
 %As the results showing, {\model} is a reliable metric to use in comparing different SMT-based migration models. 
 \begin{table}
 \centering
-\caption{P-value Results}
+\tabcolsep 3pt
+\caption{P-value results in comparing models}
 \begin{tabular}{|c|c|c|c|}
 \hline
  & GNMT \& mppSMT & lpSMT \& mppSMT & lpSMT \& GNMT \\
