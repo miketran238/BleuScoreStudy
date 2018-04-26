@@ -77,15 +77,11 @@ for the translation results by a single model or its use to compare
 the results across models, this key hypothesis can further be divided
 into two parts: (1) BLEU does not reflect well the semantic accuracy
 of migrated source code with regard to the original code when they are
-translated by a model, and (2) the improvement of a model over another
-cannot be measured by the BLEU metric.
+translated by a model, and (2) the quality comparison between translation models cannot be drawn by using the BLEU metric.
 %
 We conducted experiments to provide counterexamples to empirically
 validate that hypothesis. We choose the language migration task
 because it is a popular SE task that applies SMT.
-
-%\textbf{Son: What is the general principle of selections?}
-%\textbf{Ngoc: popular migration models that used SMT}
 
 For the first part, we chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier} that adapts a
@@ -98,15 +94,21 @@ code. We also chose the migration models that focus on
 structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
 high semantic accuracy but with a wide range of BLEU
 scores. Importantly, we aimed to show that BLEU has weak correlation
-with semantic accuracy of the translated code. For second part, we
-chose the two SMT-based models belonging to the two popular groups of
-SMT: mppSMT~\cite{ase15}, which is based on phrase-based SMT, and
-GNMT~\cite{gnmt}, which is based on neural network models.
-%three most popular models: lpSMT~\cite{fse13-nier},
-%mppSMT~\cite{ase15}, and GNMT~\cite{tien}.
-We showed that an improvement in BLEU is not sufficient nor necessary
-to reflect an improvement in the quality of code migration. Therefore,
-BLEU cannot be used to compare SMT-based code migration models.
+with semantic accuracy of the translated code. 
+%
+%For second part, we chose the two SMT-based models belonging to the two 
+%popular groups of SMT: mppSMT~\cite{ase15}, which is based on phrase-based 
+%SMT, and GNMT~\cite{gnmt}, which is based on neural network models.
+%We showed that an improvement in BLEU is not sufficient nor necessary
+%to reflect an improvement in the quality of code migration. Therefore,
+%BLEU cannot be used to compare SMT-based code migration models.
+%
+For the second part, we construct an artificial model, p-mppSMT, from mppSMT
+\cite{ase15} that applies the idea introduced by Callison-Burch {\em et al.}
+~\cite{Callison}. The important property of p-mppSMT is that given a method,
+ the translated result archives the same BLEU score as the result migrated 
+by mppSMT. However, a minor lexical difference in these translated methods 
+might result in considerable differences in term of semantic. This could lead translated results with the same BLEU score, but they are functionally different. For this part, we also...
 
 %  reflect well the semantic accuracy on the migrated source code}
 %syntactic and semantics, we hypothesize that {\em BLEU metric does not

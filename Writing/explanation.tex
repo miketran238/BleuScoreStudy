@@ -1,12 +1,21 @@
-\subsection{Further Insights}
+\subsection{Further insights}
+\textbf{Experimental procedure}. To empirically investigate further the characteristics of {\model} in reflecting the semantic accuracy, we collect subsets of methods in the
+set of translated results that {\model} reflects well and not well the 
+quality of them. The subset of results, on that {\model} reflects well 
+their translation quality, archive {\model} scores that correlate well to 
+the semantic scores. In this work, we aim to collect in our sample set 
+the largest subset of migrated results whose {\model} scores correlate 
+highest to the semantic scores. The subset of results, on that {\model} 
+reflects not well their translation quality, contains the remaining 
+methods in the sample set.
 
-In this experiment, we aimed to empirically investigate further the
-characteristics of {\model} in reflecting the semantic accuracy in
-migrated results. To achieve that, we focused on the migrated code
-that {\model} works well, \ie {\model} scores reflect well the
-semantic accuracy with respect to the reference code. Therefore, we
-aimed to collect the set of migrated results whose {\model} scores
-correlate highest to the semantic scores given by the human subject.
+%In this experiment, we aimed to empirically investigate further the
+%characteristics of {\model} in reflecting the semantic accuracy in
+%migrated results. To achieve that, we focused on the migrated code
+%that {\model} works well, \ie {\model} scores reflect well the
+%semantic accuracy with respect to the reference code. Therefore, we
+%aimed to collect in our sample set the subset of migrated results whose 
+%{\model} scores correlate highest to the semantic scores given by the human subject.
 
 %Correlation coefficients are used in statistics to measure how strong
 %a relationship is between two variable space. Concretely, in this case
@@ -20,19 +29,28 @@ correlate highest to the semantic scores given by the human subject.
 
 %\subsubsection{The Use of RANSAC}
 
-To do that, we used an algorithm called Random Sample Consensus
-(RANSAC)~\cite{Fischler:1981:RSC:358669.358692}. Given two spaces
-({\model} scores and semantic scores) for a dataset of 375 pairs of
-methods, RANSAC will return two sets: 1) a set of pairs called {\bf
-  GOOD\_SET} containing the largest number of pairs and having highest
-correlation coefficient between {\model} scores and semantic scores;
-and 2) the complementary set of {\bf GOOD\_SET}, called {\bf
-  BAD\_SET}, containing pairs with the scores inconsistent between two
-spaces. Technically, RANSAC estimates a global relation that fits the
-data, while simultaneously classifying the dataset into an inlier set
-including the data points consistent with the relation and an outlier
-set including points not consistent with the relation. More details
-can found in~\cite{Fischler:1981:RSC:358669.358692}.
+To do that, we use RANSAC ~\cite{Fischler:1981:RSC:358669.358692} to select two subsets of sample set of results:  
+1) the largest set of method that have highest correlation coefficient 
+between {\model} scores and semantic scores of the elements (Subset 1); and 2) the remaining pairs in the sample set, they get inconsistent between semantic score and {\model} score (Subset 2).
+%Technically, RANSAC estimates a global relation that fits the
+%data, while simultaneously classifying the dataset into an inlier set
+%including the data points consistent with the relation and an outlier
+%set including points not consistent with the relation. More details
+%can found in~\cite{Fischler:1981:RSC:358669.358692}.
+
+%To do that, we used an algorithm called Random Sample Consensus
+%(RANSAC)~\cite{Fischler:1981:RSC:358669.358692}. Given two spaces
+%({\model} scores and semantic scores) for a dataset of 375 pairs of
+%methods, RANSAC will return two sets: 1) a set of pairs called {\bf
+%  GOOD\_SET} containing the largest number of pairs and having highest
+%correlation coefficient between {\model} scores and semantic scores;
+%and 2) the complementary set of {\bf GOOD\_SET}, called {\bf
+%  BAD\_SET}, containing pairs with the scores inconsistent between two
+%spaces. Technically, RANSAC estimates a global relation that fits the
+%data, while simultaneously classifying the dataset into an inlier set
+%including the data points consistent with the relation and an outlier
+%set including points not consistent with the relation. More details
+%can found in~\cite{Fischler:1981:RSC:358669.358692}.
 
 %RANSAC is a simple, yet powerful, technique that is commonly applied
 %to the task of estimating the parameters of a model, using data that
@@ -55,9 +73,13 @@ can found in~\cite{Fischler:1981:RSC:358669.358692}.
 
 
 
-\subsubsection{Experiments}
-We conducted independtly 10 experiments with RANCSAC running on the same dataset derived from our result tested on model \textbf{mppSMT}. The data set contains 375 method pairs representing {\model} and Semantic score caculated for the set of traslated methods of \textbf{mppSMT}. Table~\ref{table:RANSAC_experiments} shows results of our 10 experiments which contains the number of pairs in \textbf{GOOD\_SET} and the correlations of those sets. The number of pairs in each set is in range of 224 and 315, while the figure for their correlation is at high rate between 0.93 and 0.95. 
-According to the outcome, we chose the dataset result with the \textbf{median} of correlation of \textbf{GOOD\_SET} that is the experiment number 5 (correlation = 0.954874293) in the table and the number of pairs is 308.
+%\subsubsection{Experiments}
+In order to \textbf{DO SOMETHING????}, we independently run RANCSAC a 
+certain number times on the sample set of translated results. Table~\ref{table:RANSAC_experiments} shows the results of our 10 times, which contains the sizes of subsets, on that  {\model} reflect well semantic accuracy, and the corresponding correlation coefficients.
+%
+The size of each subset ranges from 224 to 315, while the their
+correlation value is at high rate (between 0.93 and 0.95).  From the
+table, we investigate the subset with the \textbf{median} of the correlation, 0.954874293, with the size of 308.
 
 %Figure~\ref{fig:inliers_outliers} shows the result of experiment No5 gained from RANCSAC.
 
@@ -88,21 +110,66 @@ According to the outcome, we chose the dataset result with the \textbf{median} o
 %	\centering
 %	\label{fig:inliers_outliers}
 %\end{figure}
+%
+%Examining $\Theta$, we classify each migrated result into
+%different groups with common characteristics. Our goal of
+%classification is to find the characteristics of {\model} to see how
+%it reflects correctly the semantic accuracy. For the $\Delta$,
+%we also have the goal of understanding in which cases, {\model} does
+%not work well.
 
-\subsubsection{Specification category}
-Working on \textbf{GOOD\_SET} and \textbf{BAD\_SET} from the 5-th experiement, we manually classify pairs of these sets into different groups that have common characteristics.
-The principle for classification is that we aim to understand in which phenomenon {\model} could work well and could not work properly from \textbf{GOOD\_SET} and \textbf{BAD\_SET}, respectively.
+%the pairs of these sets into different groups that have common
+%characteristics.  The principle for classification is that we aim to
+%understand in which phenomenon {\model} could work well and could not
+%work properly from \textbf{GOOD\_SET} and \textbf{BAD\_SET},
+%respectively.
 
 
-\textbf{GOOD\_SET.} {\model} works well on this dataset due to capturing certain features of code in lexical and structure terms as the groups descirbed below:
+\textbf{Subset 1}. On this set, the code features relating to dependency, 
+syntax that contribute to the semantic of the translated methods are 
+captured by {\model}. By manually analyzing Subset 1, we 
+categorize them into the following main cases.
 
-\begin{compactitem}
-\item {\bf Group 1}: The translated code contains program elements with different lexical but same functionality with the reference. In this case, {\model} can capture these elements by using data dependency graph. For example, as can be seen in fig.~\ref{fig:mppSMT_example}, code translated by mppSMT used loop \textbf{for} which is the same meaning with \textbf{foreach} in the reference version. Besides, accessing to an array element could be implemented by  different ways such as \textbf{part[k]} or using iterator. The case number for this phenomenon is \textbf{32} over \textbf{308} pairs of the set.
+First, there are 32/308 cases that {\model} is able to capture program 
+elements having the same functionality but the different lexical with 
+the reference. This feature is only fully captured by using data dependency 
+graph. For example, in fig.~\ref{fig:mppSMT_example}, the code translated
+used loop \texttt{for} which is the same meaning with \texttt{foreach} 
+in the  reference version. Furthermore, accessing to an array element could 
+be implemented by different ways such as \texttt{part[k]} or using iterator.
+%
 
-\item {\bf Group 2}: Translated code contains the main program elements such as API names, method calls, variables reflected on the reference. even their usages are incorrect. By comparing tree representations - TRS, {\model} can capture these elements based on the common subtrees of translated and reference code. In the function \textbf{TestParserGrammarThere} of Fig.~\ref{fig:samples}, variable \textbf{grammar}, \textbf{found} and method call \textbf{Assert.AreEqual} appear in both translated and reference version but value assignments are not incorrect. There are \textbf{66} pairs involved in this situation.
+Additionally, there are 66 translated methods that contain the main program 
+elements such as APIs, method calls, variables reflected on the reference. 
+even their usages are incorrect. By comparing tree representations - TRS, 
+{\model} can capture these elements based on the common subtrees of translated 
+and reference code. In function \texttt{TestParserGrammarThere} of Fig.~\ref{fig:samples}, 
+variable \texttt{grammar}, \texttt{found} and method call \texttt{Assert.AreEqual} 
+appear in both translated and reference version but value assignments are not 
+incorrect.
+%
 
-\item {\bf Group 3}: Translated code contains the same structure and data flow with the reference. As can be seen from function \textbf{ContentAppend} Fig.~\ref{fig:samples}, the code structure in the translated version is similar to the reference with condition branches \textbf{if} and throwing exception \textbf{IllegalPdfSyntaxException}. {\model} can reflect semantic similarity by comparing code structure. By using GRS, {\model} can reflect similarity of source code in term of structure. Usually, when manually evaluate translation quality, developers have high regard for code structure. That is the reason for why {\model} can evaluate sematic well in this case. There is a majority of pairs falling into this group,  \textbf{112} pairs in total of \textbf{GOOD\_SET}, to be exact.
-\end{compactitem}
+Finally, in Subset 1, the translated result contains the same structure and data flow, but 
+lexically differ from the reference. For example, in fig.~\ref{fig:samples}, the structure 
+of \texttt{ContentAppend} in the translated version is similar to the reference one with 
+condition branches \texttt{if} and throwing exception \texttt{IllegalPdfSyntaxException}. 
+\textbf{I DONT UNDERSTAND THE FOLLOWING SENTENCES}.
+{\model} can reflect semantic similarity by comparing code structure. By using GRS, 
+{\model} can reflect similarity of source code in term of structure. Usually, when 
+manually evaluate translation quality, developers have high regard for code structure. 
+That is the reason for why {\model} can evaluate semantic well in this case. 
+%There 
+%is a majority of pairs falling into this group, \texttt{112} pairs in total of 
+%\textbf{GOOD\_SET}, to be exact.
+
+
+%\begin{enumerate}
+%\item The translated code contains program elements with different lexical but same functionality with the reference. In this case, {\model} can capture these elements by using data dependency graph. For example, as can be seen in fig.~\ref{fig:mppSMT_example}, code translated by mppSMT used loop \textbf{for} which is the same meaning with \textbf{foreach} in the reference version. Besides, accessing to an array element could be implemented by  different ways such as \textbf{part[k]} or using iterator. The case number for this phenomenon is \textbf{32} over \textbf{308} pairs of the set.
+%
+%\item Translated code contains the main program elements such as API names, method calls, variables reflected on the reference. even their usages are incorrect. By comparing tree representations - TRS, {\model} can capture these elements based on the common subtrees of translated and reference code. In the function \textbf{TestParserGrammarThere} of Fig.~\ref{fig:samples}, variable \textbf{grammar}, \textbf{found} and method call \textbf{Assert.AreEqual} appear in both translated and reference version but value assignments are not incorrect. There are \textbf{66} pairs involved in this situation.
+%
+%\item Translated code contains the same structure and data flow with the reference. As can be seen from function \textbf{ContentAppend} Fig.~\ref{fig:samples}, the code structure in the translated version is similar to the reference with condition branches \textbf{if} and throwing exception \textbf{IllegalPdfSyntaxException}. {\model} can reflect semantic similarity by comparing code structure. By using GRS, {\model} can reflect similarity of source code in term of structure. Usually, when manually evaluate translation quality, developers have high regard for code structure. That is the reason for why {\model} can evaluate sematic well in this case. There is a majority of pairs falling into this group,  \textbf{112} pairs in total of \textbf{GOOD\_SET}, to be exact.
+%\end{enumerate}
 
 
 
@@ -115,7 +182,12 @@ The principle for classification is that we aim to understand in which phenomeno
 	\label{fig:samples}
 \end{figure}
 
-\textbf{BAD\_SET.} The past Stephen Hawking said: "One of the basic rules of the universe is that nothing is perfect. Perfection simply does not exist". Although {\model} can detect and capture well in some cases listed above, {\model} still has some drawbacks. By analyzing method pairs from \textbf{BAD\_SET}, it can be seen that {\model} does not work well on incomplete code. It means that when it comes with the code having syntax errors, the RUBY's eveluation is not high accuracy. The reason is that when the code can not be compiled due to syntax errors, both PDGs and ASTs are not applicable and RUBY is built based on lexical. Measuring semantic using lexical has limits as mentioned in this work before like using BLEU. 
+\textbf{Subset 2}. In general, {\model} tries to measure the similarity between the translated code 
+and the references one in the highest applicable representation level of code. However, in our sample 
+set, there are some cases that are incorrect syntax code but still meaningful in the human perspective. 
+In these cases, the effectiveness level of {\model} is only achieved as the level of STS or BLEU. 
+
+%The past Stephen Hawking said: "One of the basic rules of the universe is that nothing is perfect. Perfection simply does not exist". Although {\model} can detect and capture well in some cases listed above, {\model} still has some drawbacks. By analyzing method pairs from \textbf{BAD\_SET}, it can be seen that {\model} does not work well on incomplete code. It means that when it comes with the code having syntax errors, the RUBY's eveluation is not high accuracy. The reason is that when the code can not be compiled due to syntax errors, both PDGs and ASTs are not applicable and RUBY is built based on lexical. Measuring semantic using lexical has limits as mentioned in this work before like using BLEU. 
 
 
 %\begin{table}[]
