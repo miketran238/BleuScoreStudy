@@ -11,9 +11,9 @@ despite that they have identical BLEU score.
 %TODO complete and describe t-test results
 To further confirm the difference in the semantic scores for the two
 models even though they have the same BLEU~score, we performed the
-pair $t$-test on those 375 results with the confident level of
+paired $t$-test\cite{geek_2015} on those 375 results with the confident level of
 0.95 and a null hypothesis that {\em the semantic scores of two models
-  are equal}. The $p$-value of the $t$-test is 2.81E-85, which is much
+  are equal}. According to t-test result, the t-critical value is 1.967 which implies the difference between semantic scores must be larger than 0.04 to be considered significant. The $p$-value (the probability that the results occurred by chance) of our test is 2.81E-85, which is much
 smaller than 0.05. Thus, we rejected the null hypothesis and concluded
 that the semantic scores of two models are different with the confident
 level of~95\%.

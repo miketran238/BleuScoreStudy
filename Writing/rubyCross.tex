@@ -12,7 +12,7 @@ and GNMT~\cite{gnmt}.
 %real-world translation models lpSMT, mppSMT and GNMT.
 %
 For any two models $M$ and $M'$, we proceeded as follows. First, we
-performed $t$-test (with the confident level of 95\%) and the mean
+performed $t$-test (at the confident level of 95\%) with the mean
 values of the semantic scores on the two sets of results migrated by
 the two models to compare them. We then processed $t$-test in the same
 manner on the two sets of {\model}'s scores for the results migrated
@@ -31,8 +31,7 @@ scores, we consider {\model} as effective in comparing the models.
 \textbf{Comparing mppSMT and p-mppSMT}. In this experiment, 
 to compare the two models mppSMT and p-mppSMT, by using $t$-test, we
 were able to reject the null hypothesis that \textit{the semantic
-scores of two models are equal} with $p$-value of 2.81E-85, {\bf Ngoc:
-more on epsilon thing!}. Because the average semantic score of mppSMT
+scores of two models are equal} with $p$-value of 2.81E-85 and the difference must be larger than 0.04 to be considered significant. Because the average semantic score of mppSMT
 is greater than p-mppSMT by 0.268, we conclude that the translation
 quality of mppSMT is better than p-mppSMT based on the semantic
 scores.
@@ -40,9 +39,9 @@ scores.
 To compare mppSMT and p-mppSMT using {\model}, we performed an
 $t$-test with the null hypothesis that \textit{the {\model} scores of
 two models are equal}. We were able to reject it with $p$-value of
-7.78E-65. For mppSMT, the mean value of {\model} scores is higher than
+7.78E-65 ant t-critical value of 1.97 at 95\% confident interval. For mppSMT, the mean value of {\model} scores is higher than
 that of p-mppSMT (0.258). Hence, the conclusion that mppSMT is better
-than p-mppSMT is consistent stated by {\model} and by the semantic
+than p-mppSMT is consistently stated by {\model} and by the semantic
 scores.
 %based on {\model} and semantic score are consistent. 
 Thus, we conclude that the effectiveness of {\model} in comparing
@@ -59,7 +58,7 @@ mppSMT and p-mppSMT is confirmed.
 \textbf{Comparing real-world models}. We also perform experiments to compare the three models 
 lpSMT, mppSMT and GNMT in pairwise. The $p$-values with the null hypothesis \textit{the semantic 
 scores of two models are equal} and the mean values for the translated results of three models 
-are shown in table \ref{??}  and table \ref{??} \textbf{NGOC, tables please}. For all pairs of models,...
+are shown in table \ref{table:tTestResult}  and table \ref{table:avgRubySem}  For all pairs of models, {\model} shows consistent results with semantic scores. An improvement in {\model} scores when comparing between models always equivalents to an improvement in translation quality represented by semantic scores.  
 %For each pair of models, we perform t-test on their 
 %semantic scores to test whether there is a significant difference between them. 
 %If yes, then the average semantic scores are used to determine if a model has higher 
@@ -68,22 +67,34 @@ are shown in table \ref{??}  and table \ref{??} \textbf{NGOC, tables please}. Fo
 %the difference of semantic scores between models. 
 %Comparing models GNMT and mppSMT, we found out that in \textbf{97.7\%} of the cases, the change in {\model} score indicates the change in the same direction for Semantic score. It means an improvement in {\model} score equivalents an improvement in Semantic scores and vice versa. More interestingly, 83 of 88 cases (\textbf{94.3\%}) if a pair of translated results have the same Semantic score, they also have identical {\model} score. 
 %As the results showing, {\model} is a reliable metric to use in comparing different SMT-based migration models. 
+\begin{table}
+\centering
+\caption{P-value Results}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & GNMT \& mppSMT & lpSMT \& mppSMT & lpSMT \& GNMT \\
+\hline
+Semantic  & 1.70E-35 & 3.32E-4 & 3.22E-26  \\
+\hline
+RUBY  & 2.27E-25 & 1.10E-3 & 9.72E-26  \\
 
-%\begin{table}
-%\centering
-%\caption{RUBY RESULTS on COMPARING MODELS}
-%\begin{tabular}{|p{2.3cm}|p{1.4cm}|p{1.4cm}|p{1.4cm}|}
-%\hline
-% & GNMT vs mppSMT & mppSMT vs lpSMT & lpSMT vs GNMT\\
-%\hline
-%Semantic difference & -0.200 & XXX & XXX \\
-%\hline
-%P-value  & 1.7E-35 & XXX & XXX \\
-%\hline
-%RUBY difference & -0.163 & XXX & XXX \\
-%\hline
-%P-value & 2.3E-25 & XXX & XXX \\
-%\hline
-%\end{tabular}
-%\label{table:rubyCross}
-%\end{table}
+\hline
+\end{tabular}
+\label{table:tTestResult}
+\end{table}
+
+\begin{table}
+\centering
+\caption{Average semantic and RUBY scores}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & GNMT & lpSMT & mppSMT \\
+\hline
+Semantic average & 0.714 & 0.879 & 0.914  \\
+\hline
+{\model} average & 0.743 & 0.886 & 0.905  \\
+\hline
+\end{tabular}
+\label{table:avgRubySem}
+\end{table}
+
