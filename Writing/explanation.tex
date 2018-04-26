@@ -1,19 +1,59 @@
-\subsection{Further insight}
+\subsection{Further Insights}
 
-Correlation coefficients are used in statistics to measure how strong a relationship is between two variable space. Concretely, in this case those variable space are Semantic score and {\model}. 
+In this experiment, we aimed to empirically investigate further the
+characteristics of {\model} in reflecting the semantic accuracy in
+migrated results. To achieve that, we focused on the migrated code
+that {\model} works well, \ie {\model} scores reflect well the
+semantic accuracy with respect to the reference code. Therefore, we
+aimed to collect the set of migrated results whose {\model} scores
+correlate highest to the semantic scores given by the human subject.
 
+%Correlation coefficients are used in statistics to measure how strong
+%a relationship is between two variable space. Concretely, in this case
+%those variable space are semantic scores and {\model} scores.
+%
+%We aim to figure out specifics of a dataset in which {\model} can work
+%well. Because {\model} was created to estimate the semantic of code
+%translation, the dataset in which {\model} works well also is the
+%dataset containing the high correlation between Semantic score and
+%{\model}.
 
-We aim to figure out specifics of a dataset in which {\model} can work well. Because {\model} was created to estimate the semantic of code translation, the dataset in which {\model} works well also is the dataset containing the high correlation between Semantic score and {\model}. 
+%\subsubsection{The Use of RANSAC}
 
-\subsubsection{The Use of RANSAC}
-The RANSAC (Random Sample Consensus) algorithm~\cite{ Fischler:1981:RSC:358669.358692} is a simple, yet powerful, technique that is commonly applied to the task of estimating the parameters of a model, using data that may be contaminated by outliers. RANSAC estimates a global relation that fits the data, while simultaneously classifying the data into a inlier set including points consistent with the relation and a outlier set including points not consistent with the relation. 
+To do that, we used an algorithm called Random Sample Consensus
+(RANSAC)~\cite{Fischler:1981:RSC:358669.358692}. Given two spaces
+({\model} scores and semantic scores) for a dataset of 375 pairs of
+methods, RANSAC will return two sets: 1) a set of pairs called {\bf
+  GOOD\_SET} containing the largest number of pairs and having highest
+correlation coefficient between {\model} scores and semantic scores;
+and 2) the complementary set of {\bf GOOD\_SET}, called {\bf
+  BAD\_SET}, containing pairs with the scores inconsistent between two
+spaces. Technically, RANSAC estimates a global relation that fits the
+data, while simultaneously classifying the dataset into an inlier set
+including the data points consistent with the relation and an outlier
+set including points not consistent with the relation. More details
+can found in~\cite{Fischler:1981:RSC:358669.358692}.
+
+%RANSAC is a simple, yet powerful, technique that is commonly applied
+%to the task of estimating the parameters of a model, using data that
+%may be contaminated by outliers. 
+%
+%RANSAC estimates a global relation that fits the data, while
+%simultaneously classifying the data into a inlier set including points
+%consistent with the relation and a outlier set including points not
+%consistent with the relation.
+
+%In our research scope, we use RANSAC as a mean of data classifier
+%which returns a set of pairs called \textbf{GOOD\_SET} contributing to
+%the correlation between {\model} and semantic score and another set of
+%pairs called \textbf{BAD\_SET} inconsistent the correlation.
 
 %Due to its ability to tolerate a large fraction of outliers, the algorithm is a popular choice for a variety of robust estimation problems.
 
 
 %RANSAC assumes that the training data consists of inliers that can be explained with the model and outliers that are gross-erroneous samples which do not fit the model at all. So using outliers when training the model would increase our final prediction error, as they contain almost no information about the model. 
 
-In our research scope, we use RANSAC as a mean of data classifier which returns a set of pairs called \textbf{GOOD\_SET} contributing to the correlation between {\model} and semantic score and another set of pairs called \textbf{BAD\_SET} inconsistent the correlation.
+
 
 \subsubsection{Experiments}
 We conducted independtly 10 experiments with RANCSAC running on the same dataset derived from our result tested on model \textbf{mppSMT}. The data set contains 375 method pairs representing {\model} and Semantic score caculated for the set of traslated methods of \textbf{mppSMT}. Table~\ref{table:RANSAC_experiments} shows results of our 10 experiments which contains the number of pairs in \textbf{GOOD\_SET} and the correlations of those sets. The number of pairs in each set is in range of 224 and 315, while the figure for their correlation is at high rate between 0.93 and 0.95. 
