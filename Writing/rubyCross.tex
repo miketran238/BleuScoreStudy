@@ -1,23 +1,52 @@
 \subsubsection{The use of {\model} in comparing models}
-To evaluate {\model}'s abilities in comparing the translation quality of models, 
-first, we perform an examination to evaluate the effectiveness of {\model} in 
-comparing mppSMT and p-mppSMT. Additionally, the effectiveness of {\model} is 
-also evaluated in comparing several real-world translation models lpSMT, mppSMT and GNMT.
+To evaluate {\model}'s abilities in comparing the translation quality
+of models, we performed an evaluation of RUBY used in comparing
+the two models mppSMT and p-mppSMT.
+%examination to evaluate the effectiveness of {\model} in comparing
+%mppSMT and p-mppSMT. 
 %
-We use $t$-test and the mean values of semantic scores to conclude about the translation 
-quality comparison between two models with a given confident level (95\% in our experiments). 
-The conclusion based on {\model} is also drawn in the same manner. The two conclusions will 
-be checked whether consistent or not in order to confirm the effectiveness of {\model} 
-in comparing these two models. 
+Then, we also evaluated {\model} in comparing three real-world
+SMT-based migration models lpSMT~\cite{fse13}, mppSMT~\cite{ase15},
+and GNMT~\cite{gnmt}.  
+%the effectiveness of {\model} is also evaluated in comparing several
+%real-world translation models lpSMT, mppSMT and GNMT.
+%
+For any two models $M$ and $M'$, we proceeded as follows. First, we
+performed $t$-test (with the confident level of 95\%) and the mean
+values of the semantic scores on the two sets of results migrated by
+the two models to compare them. We then processed $t$-test in the same
+manner on the two sets of {\model}'s scores for the results migrated
+by the two models to compare them. If the decision whether $M$ is
+better than $M'$ by {\model} is consistent with that by the semantic
+scores, we consider {\model} as effective in comparing the models.
 
-\textbf{Comparing mppSMT and p-mppSMT}. In this experiment, by using $t$-test, we reject the null
-hypothesis \textit{the semantic scores of two models are equal} with $p$-value is 2.81E-85, and
-the average semantic score of mppSMT is greater than p-mppSMT by 0.268. Therefore, we conclude that
-the translation quality of mppSMT is better than p-mppSMT based on semantic score. In the same manner
-for {\model}, the null hypothesis \textit{the {\model} scores of two models are equal} is rejected 
-($p$-value is 7.78E-65), and for mppSMT, the mean value of {\model} scores is higher than p-mppSMT (0.258).
-Hence, the conclusions based on {\model} and semantic score are consistent. By these experimental results, 
-we concluded that the effectiveness of {\model} in comparing mppSMT and p-mppSMT is confirmed.
+%We use $t$-test and the mean values of semantic scores to conclude
+%about the translation quality comparison between two models with a
+%given confident level (95\% in our experiments).  The conclusion based
+%on {\model} is also drawn in the same manner. The two conclusions will
+%be checked whether consistent or not in order to confirm the
+%effectiveness of {\model} in comparing these two models.
+
+
+\textbf{Comparing mppSMT and p-mppSMT}. In this experiment, 
+to compare the two models mppSMT and p-mppSMT, by using $t$-test, we
+were able to reject the null hypothesis that \textit{the semantic
+scores of two models are equal} with $p$-value of 2.81E-85, {\bf Ngoc:
+more on epsilon thing!}. Because the average semantic score of mppSMT
+is greater than p-mppSMT by 0.268, we conclude that the translation
+quality of mppSMT is better than p-mppSMT based on the semantic
+scores.
+%
+To compare mppSMT and p-mppSMT using {\model}, we performed an
+$t$-test with the null hypothesis that \textit{the {\model} scores of
+two models are equal}. We were able to reject it with $p$-value of
+7.78E-65. For mppSMT, the mean value of {\model} scores is higher than
+that of p-mppSMT (0.258). Hence, the conclusion that mppSMT is better
+than p-mppSMT is consistent stated by {\model} and by the semantic
+scores.
+%based on {\model} and semantic score are consistent. 
+Thus, we conclude that the effectiveness of {\model} in comparing
+mppSMT and p-mppSMT is confirmed.
 %{\model} is able to identify their difference 
 %in translation quality estimated by semantic similarity. Specifically, the model mppSMT's 
 %average {\model} score is higher than p-mppSMT by \textbf{0.258} which nearly equals 
