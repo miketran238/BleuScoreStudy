@@ -149,7 +149,7 @@ migrated method and the automatically migrated one from a tool, we
 assigned a semantic accuracy score and computed the BLEU score. The
 semantic accuracy score was given by a developer after examining the
 original code in Java, the manually migrated code in C\texttt{\#} and
-the auto-migrated code in C\texttt{\#} by a tool \textbf{NGOC, Manual effort}. 
+the auto-migrated code in C\texttt{\#} by a tool. In total, $375 * 6 = 2,250$ pairs of methods were checked and assigned semantic scores. 
 For the first part of our hypothesis, we then computed the correlation 
 between the BLEU scores and semantic scores of all the pairs. Our result shows that the
 BLEU metric has a weak correlation to the semantic accuracy of the
@@ -210,9 +210,9 @@ migrated source code compared to BLEU, we conducted two experiments to
 evaluate {\model} on the abilities to reflect the semantic accuracy
 and the improvement of translation models. Our result shows that the
 new metric {\model} is highly correlated to the semantic accuracy of
-the resulting migrated code. {\model} can also be used to compare
-different SMT-based code migration models as it can successfully
-measure 95\% of the cases of the change in translation quality.
+the resulting migrated code. The correlation coefficients between {\model} and semantic score in average is 0.775. {\model} can also be used to compare
+different SMT-based code migration models as {\model} results always consistent with semantic score.
+
 %The contributions of this paper include:
 
 In summary, in this paper, our main contributions are:
@@ -225,6 +225,7 @@ migration tools.
 	\item {\model}, a novel metric to evaluate the results of the SMT-based
 code migration tools, that integrates the scores at the lexical,
 syntactical, and semantic levels in source code.
+	\item An extensive empirical study to evaluate {\model} on multiple SMT-based code migration systems. 
 \end{itemize}
 
 %Our dataset is publicly available for evaluation.
