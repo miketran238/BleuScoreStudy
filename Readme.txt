@@ -1,9 +1,9 @@
-- Abstract, evaluating improvement --> comparing
+- (done) Abstract, evaluating improvement --> comparing
 - Intro:
-	- evaluating improvement --> comparing
-	- permuted model
+	- (done) evaluating improvement --> comparing
+	- (done) permuted model
 	- results
-- Introduce GNMT?
+	- manual effort
 - T-test for BLEU, p-mppSMT vs mppSMT (=)
 - Example for the second reason BLEU in comparing models
 - RUBY image for GNMT's results (correlation)
