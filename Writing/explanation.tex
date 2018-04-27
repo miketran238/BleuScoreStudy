@@ -1,13 +1,13 @@
 \subsection{Further insights}
 \textbf{Experimental procedure}. To empirically investigate further
 the characteristics of {\model} in reflecting the semantic accuracy in
-migrated results, we collected the subsets of methods in the set of
+migrated results, we collect the subsets of methods in the set of
 translated results that {\model} scores reflect well and not well the
 quality of the results. The subset of results in which {\model}
 reflects well the translation quality is the set with the {\model}
 scores that correlate well with the semantic scores. 
 %
-Therefore, we aimed to collect in our sample dataset the largest
+Therefore, we aim to collect in our sample dataset the largest
 subset of migrated results whose {\model} scores correlate highest to
 the semantic scores. The subset of results in which {\model} reflects
 not well their translation quality, contains the remaining results in
@@ -38,7 +38,7 @@ To do that, we use Random Sample Consensus
 of sample dataset of migrated code: 1) the largest set of translated
 results that have highest correlation coefficient between {\model}
 scores and semantic scores of the results (Subset 1); and 2) the
-remaining pairs in the sample dataset, in which they get inconsistent
+remaining translated methods in the sample dataset, in which they get inconsistent
 between semantic scores and {\model} scores (Subset 2).
 %Technically, RANSAC estimates a global relation that fits the
 %data, while simultaneously classifying the dataset into an inlier set
@@ -76,10 +76,7 @@ between semantic scores and {\model} scores (Subset 2).
 %RANSAC assumes that the training data consists of inliers that can be explained with the model and outliers that are gross-erroneous samples which do not fit the model at all. So using outliers when training the model would increase our final prediction error, as they contain almost no information about the model. 
 %
 %\subsubsection{Experiments}
-In order to achieve the precise Subsets 1 and 2, we independently run
-RANSAC 10 times on the sample dataset of translated
-results. In this work, we selected to investigate the subset with the 
-\textbf{median} of the correlation, 0.955, with the size of 308.
+RANSAC algorithm at first selects randomly the minimum number of results to determine the model parameters. Therefore, the chosen subsets depend on randomization. In order to achieve the Subsets 1 and 2, we independently run RANSAC 10 times on the sample dataset of translated results. In this work, we selecte to investigate the subset with the \textbf{median} of the correlation, 0.955, with the size of 308.
 %Table~\ref{table:RANSAC_experiments} shows the result, which
 %contains the sizes of subsets, in which {\model} reflects well
 %semantic accuracy, and the respective correlation coefficients.
@@ -133,7 +130,7 @@ results. In this work, we selected to investigate the subset with the
 %respectively.
 
 
-\textbf{Subset 1}. On this subset, the code features relating to
+\textbf{Subset 1}. On this subset, the code features related to
 program dependencies and syntaxes that contribute to the semantics of
 the translated methods are captured by {\model}. By manually analyzing
 Subset 1, we categorize them into the following main cases.
@@ -153,11 +150,10 @@ the key program elements such as API elements, method calls, and
 variables as in the reference code, even though their usages are
 incorrect. By comparing tree representations with TRS, {\model} can
 capture these elements based on the common subtrees of translated and
-reference code. In function \code{TestParserGrammar} of
+reference code. In function \code{TestImaginaryTokenNoCopyFromTokenSetText} of
 Fig.~\ref{fig:samples}, the variables \code{grammar} and
 \code{found}, and the method call \code{Assert.AreEqual} appear in
-both translated and reference code, but the left-hand-side values are
-not correct.
+both translated and reference code, but the first parameter is not correct.
 %
 
 %Tien
@@ -165,11 +161,11 @@ Finally, in Subset 1, there are the translated results containing the
 same structures and data flows as reference code, but lexically
 differring from the reference ones. For example, in
 Fig.~\ref{fig:samples}, the structure of the method
-\code{ContentAppend} in the translated version is similar to the
+\code{CurveTo} in the translated version is similar to the
 reference one with the condition branches \code{if} and throwing
 exception \code{IllegalPdfSyntaxException}. {\model} reflects this
 similarity via the similarity in the data and control dependencies
-among entities.
+among program entities.
 
 %\textbf{I DONT UNDERSTAND THE FOLLOWING SENTENCES}.  {\model} can
 %reflect semantic similarity by comparing code structure. By using GRS,
@@ -202,7 +198,7 @@ among entities.
 	\label{fig:samples}
 \end{figure}
 
-\textbf{Subset 2}. In general, {\model} tries to measure the
+\textbf{Subset 2}. The past Stephen Hawking said: "One of the basic rules of the universe is that nothing is perfect. Perfection simply does not exist". In general, {\model} tries to measure the
 similarity between the translated code and the reference one in the
 highest applicable representation level among text, AST, and
 PDG. However, in our sample set, there are some results that are
