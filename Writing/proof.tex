@@ -16,7 +16,7 @@ validate that hypothesis. If BLEU is a good metric for language
 migration, it should be independent from SMT-based migration models
 and programming languages. Therefore, choosing programming languages
 does not affect our assessment for BLEU. In this work, we choose the
-language migration task from Java to C\texttt{\#} which is considered
+language migration task from Java to C\texttt{\#}, which is considered
 as one of the most popular tasks in language migration.
 
 %
@@ -28,12 +28,12 @@ as one of the most popular tasks in language migration.
 %the ground truth.
 %
 %First,
-To address {\bf RQ1}, we provide counterexamples to show that BLEU score is
-not strongly correlated to the semantic accuracy of the migrated
-code. That is, for a particular translation model, the higher BLEU
-score does not lead to the higher semantic accuracy of translated
-results, and the higher semantic accuracy results are also not
-necessary to lead to higher BLEU scores.
+To address {\bf RQ1}, we provide counterexamples to show that BLEU
+score is not strongly correlated to the semantic accuracy of the
+migrated code. That is, for a particular translation model, the higher
+BLEU score does not reflect the higher semantic accuracy of translated
+results, and the higher semantic accuracy results are not 
+necessarily reflected by higher BLEU scores.
 %
 %We also show that under some circumstances an improvement in BLEU is
 %not sufficient to reflect an improvement in code migration quality,
@@ -50,7 +50,7 @@ necessary to lead to higher BLEU scores.
   accuracy.}  We chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier,karaivanov14} that
 adapts phrase-to-phrase translation models~\cite{phrasal10}. This type
-of models produces migrated code with high lexical accuracy, i.e.,
+of models produces migrated code with high lexical accuracy, \ie
 high correctness on the sequences of code tokens. However, several
 tokens or sequences of tokens are placed in the incorrect locations.
 This results in a higher in BLEU but with a lower semantic accuracy
@@ -59,7 +59,7 @@ in migrated code.
 %TODO make code style consistent
 \begin{figure}[t]
 \centering
-\begin{lstlisting}[basicstyle=\small\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
+\begin{lstlisting}[basicstyle=\scriptsize\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
   // Java code: ClientQueryResult.java
   public ClientQueryResult(Transaction ta, int initialSize){
     super(ta, initialSize);
@@ -92,9 +92,9 @@ syntactically incorrect. In this case, lpSMT translated based on the
 lexemes of tokens in the method signature and the body, however, does
 not consider the entire syntactic unit of a constructor call to the
 parent class in \code{super} for translation. For this example, the
-BLEU score with $n$=4 is {\bf 0.673}. However, the translated code is not even
+BLEU score with $n$=4 is 0.673. However, the translated code is not even
 compiled due to that syntactic error. The effort to find the
-misplacement and to correct this is not trivial.
+misplacement and to correct it is not trivial.
 
 {\bf Higher semantic accuracy is not necessarily reflected via higher BLEU
   score.}
@@ -118,7 +118,7 @@ semantically correct, however, are different from the manual-migrated
 code. Specifically, those correct code involves 1) code with different
 local variables' names from a reference method, but all variables are
 consistently renamed; 2) code with namespaces being added/deleted
-to/from a type (e.g., \code{new P.A()} vs \code{new A()}); 3) code
+to/from a type (\eg \code{new P.A()} vs \code{new A()}); 3) code
 with `\code{this}' being added/deleted to/from a field or method; and
 4) code with different uses of syntactic units and APIs having the
 same meaning, \eg field accesses versus getters or array accesses
@@ -164,25 +164,25 @@ Callison-Burch {\em et al.}~\cite{Callison}. Their idea is that BLEU
 {\em does not impose explicit constraints on the orders of all
   matching phrases} between the translated code and the reference
 code, even though it enforces the order among the tokens in a $n$-gram 
-matching phrases. 
+matching phrase. 
 %It enforces the order among the tokens in a $n$-gram, 
 %but does not enforce the order among matching $n$-grams.
 %
 For~example, given the reference, "\textbf{A B C D}", the BLEU scores
 of the two translated results, $t_1$: "\textbf{A B} E \textbf{C D}",
 $t_2$: "\textbf{C D} E \textbf{A B}" are the same, because the number
-of matching phrases such as "A B" and "C D" in the two results are
+of matching phrases such as "{\bf A B}" and "{\bf C D}" in the two results are
 similar. Therefore, for a given reference code and a translated
 result, there are many possible variants that have similar BLEU
-scores with the translated one. However, for code migrated results,
+scores with the translated one. However, for migrated results,
 the difference in the order of phrases between two results might lead
 to the considerable semantic difference between them. For
 instance, if "\textbf{A B}", "\textbf{E}", and "\textbf{C D}"
-represent for the blocks code for opening a file, reading the opened
-file, and closing the opened file, $t_1$ and $t_2$ are significantly
+represent for the blocks of code for opening a file, reading the opened
+file, and closing it, $t_1$ and $t_2$ are significantly
 different in term of functionality. Hence, {\em by following that
-  principle, the results from p-mppSMT achieve BLEU score equivalent
-  with the results of mppSMT, but possibly with lower semantic~score}.
+  principle, the results from p-mppSMT achieve the BLEU score equivalent
+  to the results of mppSMT, but possibly with lower semantic~score}.
 %We'll explain the results later.
 
 %According to \cite{Callison}, BLEU accepts a large amount of variations because it only considers the numbers of matching n-grams but not their order. Thus, they argued that by reordering a hypothesis translation will not reduce the number of matching n-grams and thus will not reduce the overall Bleu

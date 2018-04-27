@@ -1,19 +1,21 @@
 \subsection{Data Collection}
 
-For our study, we collected a parallel corpus of \textbf{34,209} pairs
-of methods written in both Java and C\texttt{\#}. Those methods were
-created manually by developers, and used in 9 open-source systems that
-were originally developed in Java and then ported to
-C\texttt{\#}. They are well-recognized systems such that both Java and
-C\# versions have been used in practice and research~\cite{ase15}.
-
+We collected a parallel corpus of 34,209 pairs of methods written in
+both Java and C\texttt{\#}. Those methods were created manually by
+developers, and used in 9 open-source systems that were originally
+developed in Java and then ported to C\texttt{\#}.
+%
+%They are well-recognized systems such that
+Both Java and C\# versions have been used in practice and
+research~\cite{ase15}.
+%
 Not all of the methods in Java version has a respective one in the
 C\texttt{\#} version. To collect respective methods in each pair of
 corresponding versions, we built a tool to conservatively search for
 only the methods having the same signatures in the classes with the
 same/similar names in the same/similar directory structures in both
 versions. Such pairs of methods likely implement the same
-functionality. We aslo manually verified a small, randomly selected
+functionality. We also manually verified a randomly selected
 sample set to have high confidence that the method pairs are in fact
 the respective ones. In total, we collected 34,209 respective methods
 (Table~\ref{tab:systems}).
