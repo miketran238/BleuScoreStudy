@@ -8,7 +8,7 @@
 
 To evaluate the abilities of STS, TRS and GRS in reflecting the
 semantic accuracy of translated code, we conducted three experiments
-for these three metrics in the same manner as the study described in
+for these three metrics in the same manner as the experiment described in
 Section~\ref{sec:bleuresult}.
 
 The correlation coefficient results between each of the three metrics
@@ -24,7 +24,7 @@ reason for this phenomenon is that for a pair of source code, if they
 are textually identical, they have the same AST representation, and
 the exact-match in AST leads to the equivalence between the
 corresponding PDGs. Meanwhile, the equivalence in a higher
-abstraction level does not necessarily lead to the equivalence in a
+abstraction level does not necessarily mean the equivalence in a
 lower abstraction. For example, Fig.~\ref{fig:mppSMT_example} shows
 two methods with equivalent PDGs, but with textually~different. 
 
@@ -57,17 +57,17 @@ two methods with equivalent PDGs, but with textually~different.
 Based on these empirical results, we conclude that the metric that
 measures the results in the higher abstraction level, the better
 metric for reflecting the semantics accuracy. However, the higher
-representation like PDG cannot always be constructed because of
-missing syntactic or semantic related information in the translated
+representation like PDG cannot always be constructed due to the
+missing syntactic or semantic-related information in the translated
 results that is required to construct ASTs and PDGs. For example, the
 sets of methods that are translated by lpSMT, and applicable for GRS
 and TRS are quite limited, 75 and 123 (out of 375 methods),
 respectively (the respective numbers for mppSMT are 239 and 292, and
 those for GNMT are 128 and 155). Therefore, in
 Section~\ref{sec:proposal}, we propose a metric to evaluate the
-quality of translated code, that uses the measurement of the
+quality of translated code, which uses the measurement of the
 similarity of translated code and expected results in multiple
-representations.
+representations at different abstraction levels.
 
 %It is not worth to use SED instead of BLEU since it still has the same
 %problems as BLEU while its advantage is insignificant.
