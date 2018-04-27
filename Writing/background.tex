@@ -103,8 +103,8 @@ $n$-grams to $n$-grams with various values of $n$ (phrases to
 phrases):
 \[BLEU = BP.{e^{\frac{1}{n}(\log {P_1} + ... + \log {P_n})}}\]
 where $BP$ is the {\em brevity penalty value}, which equals to 1 if
-the total length (i.e., the number of words) of the resulting sentences
-is longer than that of the {\em reference sentences} (i.e., the correct
+the total length (\ie the number of words) of the resulting sentences
+is longer than that of the {\em reference sentences} (\ie the correct
 sentences in the oracle). Otherwise, it equals to the ratio between
 those two lengths. $P_i$ is the metrics for the overlapping between
 the bag of $i$-grams (repeating items are allowed) appearing in the
