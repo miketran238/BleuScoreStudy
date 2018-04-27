@@ -1,13 +1,13 @@
 \subsection{Code similarity metrics}
 
-In this work, we define the similarity scores on token-based,
-tree-based and graph-based representations between the translated
-result and the reference code as the inverse of string edit
-distance~\cite{levenshtein}, tree edit distance~\cite{oopsla10}, and graph edit
-distance~\cite{sanfeliu}, respectively.
+We define the similarity scores on token-based, tree-based and
+graph-based representations between the translated result and the
+reference code as the inverse of string edit
+distance~\cite{levenshtein}, tree edit distance~\cite{oopsla10}, and
+graph edit distance~\cite{sanfeliu}, respectively.
 
 \textbf{String similarity (STS)} is the metric to compare the
-similarity of source code that is represented as sequence of
+similarity of source code that is represented as a sequence of
 tokens. The similarity between the translated result $T$ and its
 reference code $R$ is computed as:
 $$STS(R, T) = 1 - \frac{SED(S_R, S_T)}{max\left(length(S_R), length(S_T)\right)}$$
@@ -35,8 +35,8 @@ $length(t)$ refers to the length of the sequence~$t$.
 %delete}, {\em replace}, and {\em move}) to make them identical.
 
 \textbf{Tree similarity (TRS)} is the metric used to measure
-the similarity between two ASTs representing for the translated code ($T$)
-and the reference one ($R$):
+the similarity between two ASTs representing for the translated code $T$
+and the reference code $R$:
 $$TRS(R, T) = 1 -\frac{TED(AST_R, AST_T)}{max\left(size(AST_R),
   size(AST_T)\right)}$$ where $TED(AST_R, AST_T)$ is the edit
 distance between the ASTs of the reference code $AST_R$ and the
@@ -97,7 +97,7 @@ translated code $PDG_T$; $size(g)$ is the sum of the number of
 vertexes and edges of the graph $g$. Specifically, $GED(PDG_R, PDG_T)$
 is computed as the minimum number of graph edit operations to
 transform one graph to another. The feasible graph edit operations on
-vertexes and edges includes {\em insert}, {\em delete}, and {\em
+vertexes and edges include {\em insert}, {\em delete}, and {\em
   substitute}.  However, computing the graph edit distance between two
 graphs is NP-hard.  In this work, we use Exas~\cite{fase09}, a highly
 precise approximate technique to compute $GED$.
