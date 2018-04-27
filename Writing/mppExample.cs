@@ -18,7 +18,6 @@
 		}
 		return false;
 	}
-	
 	// C# code translated by p-mppSMT
 	public bool } String name ) {
 		int idx = name. IndexOf ( '[' ); 
