@@ -60,16 +60,16 @@ in migrated code.
 \begin{figure}[t]
 \centering
 \begin{lstlisting}[basicstyle=\scriptsize\sffamily, stepnumber=1, numbers=left, language=Java, aboveskip=1pt,  belowskip=1pt, numbersep=-5pt]
-  // Java code: ClientQueryResult.java
-  public ClientQueryResult(Transaction ta, int initialSize){
-    super(ta, initialSize);
-  }
+		// Java code: ClientQueryResult.java
+		public ClientQueryResult(Transaction ta, int initialSize){
+			super(ta, initialSize);
+		}
 
-  // C# code: ClientQueryResult.cs
-  public ClientQueryResult(Transaction ta, int initialSize) : base(ta, initialSize) {}
+		// C# code: ClientQueryResult.cs
+		public ClientQueryResult(Transaction ta, int initialSize) : base(ta, initialSize) {}
 
-  // Translated by lpSMT:
-  public ClientQueryResult(Transaction ta, int initialSize) : base(ta {, initialSize) ; }
+		// Translated by lpSMT:
+		public ClientQueryResult(Transaction ta, int initialSize) : base(ta {, initialSize) ; }
 \end{lstlisting}
 \caption{lpSMT Example~\cite{fse13-nier}}
 \label{fig:issueexample2}
