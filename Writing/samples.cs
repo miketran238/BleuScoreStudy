@@ -8,7 +8,7 @@
 	public void TestImaginaryTokenNoCopyFromTokenSetText() {
 		string grammar = "grammar_T;\n" + ...;
 		string found = execParser("T.g", grammar, ...;
-		Assert.AreEqual( < unk > +NewLine, found );
+		Assert.AreEqual( < unk > + NewLine, found );
 	}
 	// Reference code
 	public void CurveTo ( float x1 , float y1 ...) {
