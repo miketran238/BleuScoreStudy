@@ -39,12 +39,13 @@ scores.
 To compare mppSMT and p-mppSMT using {\model}, we performed another
 $t$-test with the null hypothesis that \textit{the {\model} scores of
 two models are equal}. We were able to reject it with $p$-value of
-7.78E-65 and confident interval for the difference between means is $\pm0.01$ at 95\% level of confident. For mppSMT, the mean value of {\model} scores is higher than
-that of p-mppSMT (0.258). Hence, the conclusion that mppSMT is better
-than p-mppSMT is consistently stated by {\model} and by the semantic
-scores.
+7.78E-65. The confident interval for the difference between means is
+$\pm0.01$ at 95\% level of confident. For mppSMT, the mean value of
+{\model} scores is higher than that of p-mppSMT (0.258). Hence, the
+conclusion that mppSMT is better than p-mppSMT is consistently stated
+by {\model} and by the semantic scores.
 %based on {\model} and semantic score are consistent. 
-Thus, we conclude that the effectiveness of {\model} in comparing
+Thus, the effectiveness of {\model} in comparing
 mppSMT and p-mppSMT is confirmed.
 %{\model} is able to identify their difference 
 %in translation quality estimated by semantic similarity. Specifically, the model mppSMT's 
@@ -55,7 +56,7 @@ mppSMT and p-mppSMT is confirmed.
 %That means, we reject the null hypothesis and conclude that mppSMT's {\model} 
 %score is higher than p-mppSMT's ones.
 
-\textbf{Comparing real-world models}. We also perform experiments to perform pairwise comparison among 
+\textbf{Comparing real-world models}. We also performed another experiment to perform pairwise comparison among 
 the three models lpSMT~\cite{fse13}, mppSMT~\cite{ase15} and
 GNMT~\cite{gnmt}. In our $t$-tests, for all pairs, we were able to reject the null hypotheses that
 that \textit{the semantic scores of two models are equal} and \textit{the {\model} scores of two models are equal}. When comparing the average scores, {\model}'s decision is always consistent with semantic score. 
@@ -99,7 +100,7 @@ RUBY  & 2.27E-25 & 1.10E-3 & 9.72E-26  \\
 
 \begin{table}
 \centering
-\caption{Mean semantic and RUBY scores}
+\caption{Mean semantic scores and {\model} scores}
 \begin{tabular}{|c|c|c|c|}
 \hline
  & GNMT & lpSMT & mppSMT \\
