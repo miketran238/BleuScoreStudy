@@ -109,7 +109,7 @@ For the second part, we construct an artificial model, p-mppSMT, from mppSMT
 ~\cite{Callison}. The important property of p-mppSMT is that given a method,
  the translated result archives the same BLEU score as the result migrated 
 by mppSMT. However, a minor lexical difference in these translated methods 
-might result in considerable differences in term of semantic. This could lead 
+might result in considerable differences in term of semantic. This could lead to
 translated results with the same BLEU score, but they are functionally different. 
 
 %  reflect well the semantic accuracy on the migrated source code}
@@ -157,7 +157,8 @@ the correlation between the BLEU scores and semantic scores of all the pairs.
 Our result shows that the BLEU metric has a weak correlation to the semantic 
 accuracy of the migrated code. For the second part of our hypothesis, 
 we compared the translated results of the same set of 375 methods for 
-the two models mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
+mppSMT~\cite{ase15} and its artificial variant, p-mppSMT.
+%mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
 %
 We showed that the equivalence of BLEU scores of models does not indicate 
 the equivalence in the quality of their translation results.
@@ -206,7 +207,7 @@ of source code in a multi-layer and increasing manner from lexeme
 (text), abstract syntax tree (AST), to program dependence
 graph (PDG). For a translated result, the {\model} is the similarity
 score between the source code and the expected result in the highest
-level representations that can be constructed for both versions. To
+level representation that can be constructed for both versions. To
 evaluate the effectiveness of {\model} in assessing the quality of
 migrated source code compared to BLEU, we conducted two experiments to
 evaluate {\model} on the abilities to reflect the semantic accuracy
