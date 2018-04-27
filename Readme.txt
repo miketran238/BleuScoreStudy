@@ -1,15 +1,15 @@
 - (done) Abstract, evaluating improvement --> comparing
-	- results
+	- (done) results
 - Intro:
 	- (done) evaluating improvement --> comparing
 	- (done) permuted model
-	- results
-	- manual effort
+	- (done) results
+	- (done) manual effort
 	- contributions
 - (done) T-test for BLEU, p-mppSMT vs mppSMT (=)
 - RUBY in comparing models: (>, <, =)
-	- mppSMT vs p-mppSMT (done)
-	- others
+	- (done) mppSMT vs p-mppSMT 
+	- (done) others
 - (done) Result classification
 
 - (done) Citation for alternative metrics
