@@ -27,7 +27,7 @@
 			if (writer.IsTagged()) {
 				EndText();
 			} else {
-				throw new IllegalPdfSyntaxException(...).Append(font.).Append( < unk > ) .
+				throw new IllegalPdfSyntaxException(...).Append(font.).Append(...
 				Append( < unk > ) ...
 			}
 		}
