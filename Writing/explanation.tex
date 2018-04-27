@@ -82,8 +82,7 @@ subsets depend on randomization. In order to achieve the Subsets 1 and
 2, we independently run RANSAC 10 times on the sample dataset of
 translated results.
 %
-The size of each subset for each time ranges from 224 to 315, while
-the their correlation value is at high rate (between 0.93 and 0.95).
+The size of each subset for each time ranges from 224 to 315, while their correlation values are at the high rate (between 0.93 and 0.95).
 %
 In our experiment, we chose to investigate the
 subset with the median of the correlation, 0.955, with the
@@ -152,7 +151,7 @@ different from the reference code. This feature is only fully captured
 by using PDGs in {\model}. For example, in
 Fig.~\ref{fig:mppSMT_example}, the translated code uses a \code{for}
 loop, which is the same meaning as \code{foreach} in the reference
-code. Moreover, accessing to an array element could be implemented by
+code. Moreover, access to an array element could be implemented by
 different ways such as \code{part[k]} or using Iterator.
 %
 
@@ -217,7 +216,7 @@ similarity between the translated code and the reference one in the
 highest applicable representation level among text, AST, and
 PDG. However, in our sample set, there are some results that are
 syntactically incorrect but still meaningful in human perspective. In
-these cases, the effectiveness level of {\model} is only achieved as
+these cases, the effectiveness level of {\model} is only achieved at
 the lexical level via STS. Thus, it is not as effective.
 
 %The past Stephen Hawking said: "One of the basic rules of the universe is that nothing is perfect. Perfection simply does not exist". Although {\model} can detect and capture well in some cases listed above, {\model} still has some drawbacks. By analyzing method pairs from \textbf{BAD\_SET}, it can be seen that {\model} does not work well on incomplete code. It means that when it comes with the code having syntax errors, the RUBY's eveluation is not high accuracy. The reason is that when the code can not be compiled due to syntax errors, both PDGs and ASTs are not applicable and RUBY is built based on lexical. Measuring semantic using lexical has limits as mentioned in this work before like using BLEU.

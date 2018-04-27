@@ -13,7 +13,7 @@
 %So, we just confidently pick the most popular language migration task (without explanations)
 We conducted experiments to provide counterexamples to empirically
 validate that hypothesis. If BLEU is a good metric for language
-migration, it should be independent from SMT-based migration models
+migration, it should be independent of SMT-based migration models
 and programming languages. Therefore, choosing programming languages
 does not affect our assessment for BLEU. In this work, we choose the
 language migration task from Java to C\texttt{\#}, which is considered
@@ -46,7 +46,7 @@ necessarily reflected by higher BLEU scores.
 %order to achieve an improvement in migration~quality.
 %
 
-{\bf Higher BLEU score does not necessarily reflects higher semantic
+{\bf Higher BLEU score does not necessarily reflect higher semantic
   accuracy.}  We chose the migration models that focus on phrase
 translation, for example, lpSMT~\cite{fse13-nier,karaivanov14} that
 adapts phrase-to-phrase translation models~\cite{phrasal10}. This type
@@ -80,7 +80,7 @@ in migrated code.
 Let us take an example of the resulting migrated code from the tool
 lpSMT~\cite{fse13-nier} ({\em Call to Parent Class' Constructor
   \code{super(...)}}). Fig.~\ref{fig:issueexample2} shows an example
-as the lpSMT model translates a call to the constructor of a parent
+of the lpSMT model translates a call to the constructor of a parent
 class via \code{super} (lines 2--4). In Java, a call to \code{super} is
 made inside the method's body. In contrast, in C\texttt{\#}, a call to the
 constructor is made via \code{base} and occurs in the method
@@ -113,7 +113,7 @@ integrates during the translation process the mappings of types and
 API usages between two languages. This strategy has been efficient in
 achieving higher syntactic and semantic accuracy than other existing
 techniques~\cite{ase15}. An important characteristic of mppSMT is that
-there is a considerable percentage of translated code that are
+there is a considerable percentage of translated code that is
 semantically correct, however, are different from the manual-migrated
 code. Specifically, those correct code involves 1) code with different
 local variables' names from a reference method, but all variables are
@@ -171,7 +171,7 @@ matching phrase.
 For~example, given the reference, "\textbf{A B C D}", the BLEU scores
 of the two translated results, $t_1$: "\textbf{A B} E \textbf{C D}",
 $t_2$: "\textbf{C D} E \textbf{A B}" are the same, because the number
-of matching phrases such as "{\bf A B}" and "{\bf C D}" in the two results are
+of matching phrases such as "{\bf A B}" and "{\bf C D}" in the two results is
 similar. Therefore, for a given reference code and a translated
 result, there are many possible variants that have similar BLEU
 scores with the translated one. However, for migrated results,
@@ -182,7 +182,7 @@ represent for the blocks of code for opening a file, reading the opened
 file, and closing it, $t_1$ and $t_2$ are significantly
 different in term of functionality. Hence, {\em by following that
   principle, the results from p-mppSMT achieve the BLEU score equivalent
-  to the results of mppSMT, but possibly with lower semantic~score}.
+  to the results of mppSMT, but possibly with a lower semantic~score}.
 %We'll explain the results later.
 
 %According to \cite{Callison}, BLEU accepts a large amount of variations because it only considers the numbers of matching n-grams but not their order. Thus, they argued that by reordering a hypothesis translation will not reduce the number of matching n-grams and thus will not reduce the overall Bleu

@@ -18,7 +18,7 @@ for the target sequence \textit{t} that has the maximum probability:
 $$ P\left(t \mid s \right) = \frac{P\left(s \mid t\right) \, P\left(t\right)}{P\left(s\right)} $$
 
 To do that, it utilizes the two models: 1) the language model and 2)
-the translation model. The language model learns from monolingual
+the translation model. The language model learns from the monolingual
 corpus of $L_T$ to derive the possibility of feasible sequences in it
 ($P\left(t\right)$: how likely sequence \textit{t} occurs in
 $L_T$). On the other hand, the translation model computes the
@@ -31,7 +31,7 @@ languages.
 
 Traditionally, SMT is used widely for translating natural
 languages~\cite{smtbook}. With the success of SMT, several researchers
-have adapted it to use on programming languages to migrate source code
+have adapted it to use in programming languages to migrate source code
 from one language to another (called {\em code migration} or {\em
   language migration}). lpSMT~\cite{fse13-nier} is a model that
 directly applies Phrasal, a phrase-based SMT tool, to migrate Java
@@ -64,7 +64,7 @@ forming the contexts involving the semantic relations among code
 tokens including occurrence association among code tokens, data and
 control dependencies among program entities, visibility constraints of
 entities, and the consistency in declarations and accesses of
-variables, fields and methods.
+variables, fields, and methods.
 
 
 %One of its notable application is for the task Code Migration. In the
