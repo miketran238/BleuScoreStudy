@@ -10,15 +10,14 @@ texts based on the statistical models whose parameters are trained
 from a corpus of corresponding texts in two languages. SMT has
 been successful in translating natural-language texts.  Google
 Translate~\cite{googletranslate} is a SMT-based tool~that can accept
-inputs in 15 natural languages and supports the translation of texts
-into one of 53 languages. Microsoft Translator~\cite{mstranslator}
-also supports instant translation for more than 40~languages.
+inputs and support text translation of over 100 languages. Microsoft Translator~\cite{mstranslator}
+also supports instant translation for more than 60~languages.
 
 The statistical machine translation community relies on the {\em
   BiLingual Evaluation Understudy} (BLEU) metric for the purpose of
 evaluating SMT models. {\em BLEU metric}, also called {\em
   BLEU~score}, measures translation quality by the accuracy of
-translating text phrases to another with various phrases'
+translating text phrases to the reference with various phrases'
 lengths. BLEU score was shown to be highly correlated with human judgments
 on the translated texts from natural-language SMT
 tools~\cite{Papineni2002}.
@@ -44,7 +43,7 @@ languages~\cite{fse13-nier,icse14-demo,karaivanov14,ase15,icsme16}. The
 problem is called {\em language migration}. In the modern world of
 computing, language migration is important. Software vendors often
 develop a software product for multiple operating platforms in
-different languages. For example, the same mobile app could be
+different languages. For example, a mobile app could be
 developed for iOS (in Objective-C), Android (in Java), and Windows
 Phone (in C\texttt{\#}).
 %Rather than developing each version of a software product
@@ -70,7 +69,7 @@ effectiveness of BLEU score in applying to source code in language
 migration.
 
 Because the BLEU metric measures the lexical phrase-to-phrase translation
-while source code has well syntactic and dependencies, we hypothesize that
+while source code has well syntax and dependencies, we hypothesize that
 {\em BLEU metric is not effective in evaluating the translated results of
 migrated source code}. With respect to the use of BLEU
 for the translation results by a single model or its use to compare
@@ -104,7 +103,7 @@ with semantic accuracy of the translated code.
 %to reflect an improvement in the quality of code migration. Therefore,
 %BLEU cannot be used to compare SMT-based code migration models.
 %
-For the second part, we construct an artificial model, p-mppSMT, from
+For the second part, we constructed an artificial model, p-mppSMT, from
 mppSMT~\cite{ase15} that applies the idea introduced by Callison-Burch
 {\em et al.}~\cite{Callison}. The important property of p-mppSMT is
 that given a method, the translated result achieves the same BLEU
@@ -208,7 +207,7 @@ evaluate the quality of translated code, that integrates the
 measurement in three representation levels of source code in a
 multi-layer and increasing manner from lexeme (text), abstract syntax
 tree (AST), to program dependence graph (PDG). For a translated
-result, the {\model} score is the similarity score between the source
+result, {\model} score is the similarity score between the source
 code and the expected result in the highest representation level that
 can be constructed for both versions. To evaluate the effectiveness of
 {\model} in assessing the quality of migrated source code compared to
