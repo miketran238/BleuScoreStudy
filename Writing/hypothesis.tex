@@ -1,4 +1,4 @@
-\section{Hypothesis and Research Question}
+\section{Hypothesis and Research Questions}
 
 BLEU has been widely used in evaluating the translation quality of SMT
 models in NLP. It has been empirically~validated to be correlated with
@@ -11,10 +11,11 @@ texts~\cite{Papineni2002}.
 %
 However, the use of BLEU metric in evaluating the migrated code from
 SMT-based code migration would raise two key issues. First,
-programming languages aim to be used with automated tools, thus, have
-well-defined syntaxes and program dependencies. Source code has strict syntactic
-structure while natural-language texts are less strict in that aspect
-to enable creativity, poetry and metaphors.
+programming languages are often used with automated tools, thus, have
+well-defined syntaxes and program dependencies. Source code has strict
+syntactic structure while natural-language texts are less strict in
+that aspect.
+%to enable creativity, poetry and metaphors.
 %
 %there are two reasons to be concern about the use of BLEU on SMT-based
 %Code Migration system. First, programming language is much difference
@@ -31,12 +32,11 @@ to enable creativity, poetry and metaphors.
 Second, there is a gap between the purpose of BLEU and the task of
 evaluating migrated code. BLEU measures the lexical precision of
 translating results. However, when evaluating translated source code,
-it is more important to consider the semantics and functionality of
+it is more important to consider the semantics/functionality of
 the generated code.
 %
 The closer in term of semantics/functionality between the translated
-code and the reference code, the better quality of
-translation.
+code and the reference code, the better translation quality.
 %
 %Statically speaking, functionality of sources code is represented
 %semantically by program dependence graph (PDG) as data and control
@@ -47,18 +47,18 @@ translation.
 Due to those two intuitive reasons, we have the following hypothesis:
 {\em BLEU score does not measure well the quality of translated results
 that is estimated based on the similarity in term of
-semantics between the reference and migrated source code}. To validate
+semantics/functionality between the reference source code and the migrated one}. To validate
 this hypothesis, we aim to answer these following research questions:
 %
 %\textbf{RQ1:} Does BLEU score reflect the semantic similarity between
 %the resulting code and the reference code in the ground truth?
 
 {\bf RQ1:} Does BLEU score reflect well the semantic similarity between
-the translated code and the reference code in the ground truth?
+the translated source code and the reference code in the ground truth?
 
 %{\bf RQ2:} Is BLEU effective in evaluating the translation quality
 %improvement of a model over another?
-{\bf RQ2:} Is BLEU effective in comparing the translation quality of models?
+{\bf RQ2:} Is BLEU effective in comparing the translation quality of SMT-based code migration models?
 
 
 Furthermore, we aim to answer a relevant research question:
