@@ -5,13 +5,14 @@ Statistical Machine Translation (SMT)~\cite{smtbook} is a
 natural~language processing (NLP) approach that uses statistical
 learning to derive the translation ``rules'' from a training data and
 applies the trained model to translate a sequence from the source
-language to the target one. SMT produces translated
-texts based on the statistical models whose parameters are trained
-from a corpus of corresponding texts in two languages. SMT has
-been successful in translating natural-language texts.  Google
-Translate~\cite{googletranslate} is an SMT-based tool~that can accept
-inputs and support text translation of over 100 languages. Microsoft Translator~\cite{mstranslator}
-also supports instant translation for more than 60~languages.
+language to the target one.
+%SMT produces translated texts based on the statistical models whose parameters
+SMT models are trained from a corpus of corresponding texts in two
+languages. SMT has been successful in translating natural-language
+texts.  Google Translate~\cite{googletranslate} is an SMT-based
+tool that can support text translation of over 100
+languages. Microsoft Translator~\cite{mstranslator} also supports
+instant translation for more than 60 languages.
 
 The statistical machine translation community relies on the {\em
   BiLingual Evaluation Understudy} (BLEU) metric for the purpose of
@@ -40,17 +41,16 @@ models to build automated SE tools. SMT has been directly used or
 adapted to be used to translate/migrate source code in different
 programming
 languages~\cite{fse13-nier,icse14-demo,karaivanov14,ase15,icsme16}. The
-problem is called {\em language migration}. In the modern world of
-computing, language migration is important. Software vendors often
-develop a software product for multiple operating platforms in
-different languages. For example, a mobile app could be
-developed for iOS (in Objective-C), Android (in Java), and Windows
-Phone (in C\texttt{\#}).
+problem is called {\em code migration}. In the modern world of
+computing, code migration is important. Software vendors often develop
+a product for multiple operating platforms in different languages. For
+example, a mobile app could be developed for iOS (in Objective-C),
+Android (in Java), and Windows Phone (in C\texttt{\#}).
 %Rather than developing each version of a software product
 %independently, it would be more economical to develop the product in
 %one platform/language and then migrate to another.
-Thus, there is an increasing need for migration/translation
-of source code from one programming language to another.
+Thus, there is an increasing need for migration of source code from
+one programming language to another.
 %
 
 Unlike natural-language texts, source code follows syntactic rules and
