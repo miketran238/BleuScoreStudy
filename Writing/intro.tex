@@ -100,23 +100,35 @@ correctness for sequences of code tokens. However, several tokens or
 sequences of tokens are placed in incorrect locations.  This results
 in a higher BLEU score but with a lower semantic accuracy in migrated
 code. We also chose the migration models that focus on
-structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
-high semantic accuracy but with a wide range of BLEU
-scores. Importantly, we aimed to show that BLEU has weak correlation
+structures. Specifically, we picked mppSMT~\cite{ase15} whose results have
+high semantic accuracy but a wide range of BLEU
+scores. In this case, we aimed to show that BLEU has weak correlation
 with semantic accuracy of the translated code.
 %
-For the second condition, we constructed an artificial model, p-mppSMT, from
-mppSMT~\cite{ase15} that applies the idea introduced by Callison-Burch
-{\em et al.}~\cite{Callison}. The important property of p-mppSMT is
-that given a method, the translated result achieves the same BLEU
-score as the result migrated by mppSMT. However, a minor lexical
-difference in these translated methods might result in considerable
-semantic differences. This could lead to translated results with the
-same BLEU score, but they are functionally different.
+For the second condition, adapting Callison-Burch {\em et
+  al.}~\cite{Callison}'s method, we constructed an artificial model,
+p-mppSMT, from mppSMT~\cite{ase15} that produces the migrated code
+with the same BLEU score as the result from mppSMT. However, a result
+from p-mppSMT for a given method contains a minor lexical difference
+from the one from mppSMT, thus, creating as a consequence 
+the considerable differences in program semantics. That is, p-mppSMT
+produces migrated code that has the same BLEU score but is
+functionally different.
 %
-Finally, because the two necessary conditions are false,
-the assumption statement is false, thus, BLEU score is ineffective in
+Finally, since the~two necessary conditions are false,
+the assumption statement is~false, thus, BLEU is ineffective in
 evaluating migrated source code.
+
+%For the second condition, we constructed an artificial model,
+%p-mppSMT, from mppSMT~\cite{ase15} that applies the idea introduced by
+%Callison-Burch {\em et al.}~\cite{Callison}. The important property of
+%p-mppSMT is that given a method, the translated result achieves the
+%same BLEU score as the result migrated by mppSMT. However, a minor
+%lexical difference in these translated methods might result in
+%considerable semantic differences. This could lead to translated
+%results with the same BLEU score, but they are functionally different.
+%0---
+
 
 %
 %For second part, we chose the two SMT-based models belonging to the two
@@ -164,13 +176,13 @@ migrated method and the automatically migrated one from a tool, we
 assigned a semantic accuracy score and computed the BLEU score. The
 semantic accuracy score was given by a developer after examining the
 original code in Java, the manually migrated code in C\texttt{\#} and
-the auto-migrated code in C\texttt{\#} by a tool. In total, 2,250
+the code in C\texttt{\#} migrated by a tool. In total, 2,250
 translated results were manually checked and assigned with semantic
 scores in about 45 hours. For the necessary condition (1), we then
 computed the correlation between the BLEU scores and semantic scores
 of all the pairs.  Our result shows that the BLEU metric has a weak
 correlation with the semantic accuracy of the migrated code. For the
-necessary condition (2), we compared the translated results of the
+necessary condition~(2), we compared the translated results of the
 same set of 375 methods for mppSMT~\cite{ase15} and its artificial
 variant, p-mppSMT.
 %mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
@@ -218,12 +230,12 @@ that the metric that measures the results in the higher abstraction
 level, the better metric for reflecting the semantics
 accuracy. However, in code migration, the translated code might miss
 information that is required to construct the higher level
-representations. Therefore, we propose a multi-level metric to
+representations. Therefore, we propose a {\em multi-level metric to
 evaluate the quality of translated code, that integrates the
 measurement in three representation levels of source code in a
 multi-layer and increasing manner from lexeme (text), abstract syntax
-tree (AST), to program dependence graph (PDG). For a translated
-result, {\model} score is the similarity score between the source code
+tree (AST), to program dependence graph (PDG)}. For a translated
+result, {\model} score is the similarity score between the migrated code
 and the expected result in the highest representation level that can
 be constructed for both versions. Furthermore,
 %To evaluate the effectiveness of {\model},
@@ -241,7 +253,7 @@ models.
 
 %The contributions of this paper include:
 
-In summary, in this paper, our main contributions are:
+In summary, in this paper, our main contributions include:
 
 \begin{itemize}
 	\item An empirical evidence to show that BLEU metric does not only reflect
