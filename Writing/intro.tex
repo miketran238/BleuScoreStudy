@@ -10,7 +10,7 @@ language to the target one.
 SMT models are trained from a corpus of corresponding texts in two
 languages. SMT has been successful in translating natural-language
 texts.  Google Translate~\cite{googletranslate} is an SMT-based
-tool that can support text translation of over 100
+tool that support text translation of over 100
 languages. Microsoft Translator~\cite{mstranslator} also supports
 instant translation for more than 60 languages.
 
@@ -55,36 +55,45 @@ one programming language to another.
 
 Unlike natural-language texts, source code follows syntactic rules and
 has well-defined semantics with respect to programming languages. A
-natural question is {\em how effective BLEU score is in~evaluating the
+natural question is {\em how effective BLEU score is in evaluating the
   results of migrated source code in language migration}. The answer
 to this question is important because if it does, we could~establish
 an automated metric to evaluate the quality of SMT-based code
-migration tools.
-%Son: Em nghi khong nhat thiet phai hoi truc tiep cau nay
-%, and otherwise, a relevant question should be raised:
-%{\em what is an alternative metric?}
-Unfortunately, there has not yet
-any empirical evidence to either validate or invalidate the
-effectiveness of BLEU score in applying to source code in language
-migration.
+migration tools. Unfortunately, there has not yet any empirical
+evidence to either validate or invalidate the effectiveness of BLEU
+score in applying to source code in language migration.
 
-Because the BLEU metric measures the lexical phrase-to-phrase translation
-while source code has well syntax and dependencies, we hypothesize that
-{\em BLEU metric is not effective in evaluating the translated results of
-migrated source code}. With respect to the use of BLEU
-for the translation results by a single model or its use to compare
-the results across models, this key hypothesis can further be divided
-into two parts: (1) BLEU does not reflect well the semantic accuracy
-of migrated source code with regard to the original code when they are
-translated by a model, and (2) the quality comparison between translation 
-models cannot be drawn by using the BLEU metric.
+Because BLEU score measures the lexical phrase-to-phrase
+translation while source code has well syntax and dependencies, we
+hypothesized that {\em BLEU score is not effective in evaluating
+  migrated source code}.
 %
-We conducted experiments to provide counterexamples to empirically
-validate that hypothesis. We choose the language migration task
-because it is a popular SE task that applies SMT.
+We proved this hypothesis by contradiction. First, we assumed that
+{\em BLEU score is effective in evaluating migrated source code}.
+%
+With respect to the use of BLEU for the translation results by a
+single model or its use to compare the results across models, the
+above assumption leads to {\em two necessary conditions}
+(1) BLEU reflects well the semantic accuracy of migrated source code
+with regard to the original code when they are translated by a model,
+and (2) the quality comparison between translation models can be drawn
+by using the BLEU metric.
+%
+%
+%With respect to the use of BLEU for the translation results by a
+%single model or its use to compare the results across models, this key
+%hypothesis can further be divided into two parts: (1) BLEU does not
+%reflect well the semantic accuracy of migrated source code with regard
+%to the original code when they are translated by a model, and (2) the
+%quality comparison between translation models cannot be drawn by using
+%the BLEU metric.
+%
+We then conducted experiments to provide counterexamples to
+empirically invalidate those two conditions. We choose the code
+migration task because it is a popular SE task that applies SMT.
 
-For the first part, we chose the migration models that focus on phrase
-translation, for example, lpSMT~\cite{fse13-nier} that adapts a
+For the first condition, we chose the migration models that focus on
+phrase translation, for example, lpSMT~\cite{fse13-nier} that adapts a
 phrase-to-phrase translation model~\cite{phrasal10}. This type of
 models produces migrated code with high lexical accuracy, \ie high
 correctness for sequences of code tokens. However, several tokens or
@@ -94,16 +103,9 @@ code. We also chose the migration models that focus on
 structures. Specifically, we picked mppSMT tool~\cite{ase15} that has
 high semantic accuracy but with a wide range of BLEU
 scores. Importantly, we aimed to show that BLEU has weak correlation
-with semantic accuracy of the translated code. 
+with semantic accuracy of the translated code.
 %
-%For second part, we chose the two SMT-based models belonging to the two 
-%popular groups of SMT: mppSMT~\cite{ase15}, which is based on phrase-based 
-%SMT, and GNMT~\cite{gnmt}, which is based on neural network models.
-%We showed that an improvement in BLEU is not sufficient nor necessary
-%to reflect an improvement in the quality of code migration. Therefore,
-%BLEU cannot be used to compare SMT-based code migration models.
-%
-For the second part, we constructed an artificial model, p-mppSMT, from
+For the second condition, we constructed an artificial model, p-mppSMT, from
 mppSMT~\cite{ase15} that applies the idea introduced by Callison-Burch
 {\em et al.}~\cite{Callison}. The important property of p-mppSMT is
 that given a method, the translated result achieves the same BLEU
@@ -111,6 +113,19 @@ score as the result migrated by mppSMT. However, a minor lexical
 difference in these translated methods might result in considerable
 semantic differences. This could lead to translated results with the
 same BLEU score, but they are functionally different.
+%
+Finally, because the two necessary conditions are false,
+the assumption statement is false, thus, BLEU score is ineffective in
+evaluating migrated source code.
+
+%
+%For second part, we chose the two SMT-based models belonging to the two
+%popular groups of SMT: mppSMT~\cite{ase15}, which is based on phrase-based
+%SMT, and GNMT~\cite{gnmt}, which is based on neural network models.
+%We showed that an improvement in BLEU is not sufficient nor necessary
+%to reflect an improvement in the quality of code migration. Therefore,
+%BLEU cannot be used to compare SMT-based code migration models.
+%
 
 %  reflect well the semantic accuracy on the migrated source code}
 %syntactic and semantics, we hypothesize that {\em BLEU metric does not
@@ -141,34 +156,35 @@ same BLEU score, but they are functionally different.
 
 In our experiment, we used a dataset of 34,209 pairs of methods in 9
 projects that were manually migrated from Java to C\texttt{\#} by
-developers. The dataset was used for evaluating the code migration
-models in existing research~\cite{ase15}. We used those above
-SMT-based migration models to perform code migration for those
-methods. We then manually investigated 375 randomly-selected pairs of
-methods for each model. For each pair of the manually migrated method
-and the automatically migrated one from a tool, we assigned a semantic
-accuracy score and computed the BLEU score. The semantic accuracy
-score was given by a developer after examining the original code in
-Java, the manually migrated code in C\texttt{\#} and the auto-migrated
-code in C\texttt{\#} by a tool. In total, 2,250 translated results
-were manually checked and assigned with semantic scores in about 45
-hours. For the first part of our hypothesis, we then computed the
-correlation between the BLEU scores and semantic scores of all the
-pairs.  Our result shows that the BLEU metric has a weak correlation
-with the semantic accuracy of the migrated code. For the second part of
-our hypothesis, we compared the translated results of the same set of
-375 methods for mppSMT~\cite{ase15} and its artificial variant,
-p-mppSMT.
+developers. The dataset was used in evaluating existing code migration
+models~\cite{ase15}. We ran those above SMT-based migration models on
+those methods. We then manually investigated 375 randomly-selected
+pairs of methods for each model. For each pair of the manually
+migrated method and the automatically migrated one from a tool, we
+assigned a semantic accuracy score and computed the BLEU score. The
+semantic accuracy score was given by a developer after examining the
+original code in Java, the manually migrated code in C\texttt{\#} and
+the auto-migrated code in C\texttt{\#} by a tool. In total, 2,250
+translated results were manually checked and assigned with semantic
+scores in about 45 hours. For the necessary condition (1), we then
+computed the correlation between the BLEU scores and semantic scores
+of all the pairs.  Our result shows that the BLEU metric has a weak
+correlation with the semantic accuracy of the migrated code. For the
+necessary condition (2), we compared the translated results of the
+same set of 375 methods for mppSMT~\cite{ase15} and its artificial
+variant, p-mppSMT.
 %mppSMT~\cite{ase15} and GNMT~\cite{gnmt}.
 %
-We showed that the equivalence of BLEU scores of models does not indicate 
+We showed that the equivalence of BLEU scores of models does not indicate
 the equivalence in the quality of their translation results.
 %In nearly half of those methods, an improvement of BLEU score does not
 %indicate an improvement in semantic score, and vice-versa.
 %Conclusion
-%By the results of the two experiments, 
+%By the results of the two experiments,
 From those results, we concluded that BLEU is not an effective~metric
-for evaluating the translation quality of SMT migration tools.
+in evaluating 
+%translation quality of
+SMT-based migration tools.
 
 %Tien
 %We propose a metric: GVED that measure the similarity between graph
@@ -207,19 +223,21 @@ evaluate the quality of translated code, that integrates the
 measurement in three representation levels of source code in a
 multi-layer and increasing manner from lexeme (text), abstract syntax
 tree (AST), to program dependence graph (PDG). For a translated
-result, {\model} score is the similarity score between the source
-code and the expected result in the highest representation level that
-can be constructed for both versions. To evaluate the effectiveness of
-{\model} in assessing the quality of migrated source code compared to
-BLEU, we conducted two experiments to evaluate {\model} on the
-abilities to reflect the semantic accuracy and the change in
-translation quality between models. Our results show that the new
-metric {\model} is highly correlated to the semantic accuracy of the
-resulting migrated code. The average correlation coefficients between
-{\model} and semantic accuracy is 0.775, in comparison to 0.583 of
-BLEU score.  Our consistent results of {\model} with semantic scores
-also demonstrate the effectiveness of {\model} in comparing SMT-based
-code migration models.
+result, {\model} score is the similarity score between the source code
+and the expected result in the highest representation level that can
+be constructed for both versions. Furthermore,
+%To evaluate the effectiveness of {\model},
+%in assessing the quality of migrated source code compared to
+%BLEU,
+we also conducted two experiments to evaluate {\model} on the abilities to
+reflect the semantic accuracy and the comparison in translation quality
+between models. Our results show that the new metric {\model} is
+highly correlated to the semantic accuracy of the resulting migrated
+code. The average correlation coefficients between {\model} and
+semantic accuracy is 0.775, in comparison to 0.583 of BLEU score.  Our
+consistent results of {\model} with semantic scores also demonstrate
+the effectiveness of {\model} in comparing SMT-based code migration
+models.
 
 %The contributions of this paper include:
 
@@ -228,14 +246,14 @@ In summary, in this paper, our main contributions are:
 \begin{itemize}
 	\item An empirical evidence to show that BLEU metric does not only reflect
 well the semantic accuracy of the migrated code for SMT-based
-migration tools, but is also not effective in comparing translation 
+migration tools, but is also not effective in comparing translation
 quality of models.
 
 	\item {\model}, a novel metric to evaluate the results of the SMT-based
 code migration tools, that integrates the scores at the lexical,
 syntactical, and semantic levels in source code.
 
-	\item An extensive empirical study to evaluate {\model} on multiple SMT-based code migration systems. 
+	\item An extensive empirical study to evaluate {\model} on multiple SMT-based code migration systems.
 \end{itemize}
 
 %Our dataset is publicly available for evaluation.
