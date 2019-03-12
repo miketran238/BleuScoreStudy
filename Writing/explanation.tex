@@ -1,17 +1,18 @@
-\subsection{Further Insights}
-\textbf{Experimental procedure}. To empirically investigate further
-the characteristics of {\model} in reflecting the semantic accuracy in
-migrated results, we collect the subsets of methods in the set of
-translated results that {\model} scores reflect well and not well the
-quality of the results. The subset of results in which {\model}
-reflects well the translation quality is the set with the {\model}
-scores that correlate well with the semantic scores.
+\subsection{Further Study}
+
+\noindent {\bf Experimental procedure:} To empirically investigate
+further the characteristics of {\model} in reflecting the semantic
+accuracy in migrated results, we collect the subsets of the results in
+the set of all translation results that {\model} scores reflect well
+and not so well the translation quality. The subset of results in
+which {\model} reflects well the translation quality is the set with
+the {\model} scores that correlate well with the semantic scores.
 %
-Therefore, we aim to collect in our sample dataset the largest
-subset of migrated results whose {\model} scores correlate highest to
-the semantic scores. The subset of results in which {\model} reflects
-not well their translation quality, contains the remaining translated results in
-the sample dataset.
+Therefore, we aim to collect in our sample dataset the largest subset
+of the results whose {\model} scores correlate highest to the
+semantic scores. The subset of results in which {\model} does reflect
+well their translation quality, contains the remaining translation
+results in the sample dataset.
 
 %In this experiment, we aimed to empirically investigate further the
 %characteristics of {\model} in reflecting the semantic accuracy in
@@ -33,13 +34,14 @@ the sample dataset.
 
 %\subsubsection{The Use of RANSAC}
 
-To do that, we use Random Sample Consensus
-(RANSAC)~\cite{Fischler:1981:RSC:358669.358692} to select two subsets
-of sample dataset of migrated code: 1) the largest subset of translated
+To do that, we make use of Random Sample Consensus (RANSAC)
+algorithm~\cite{Fischler:1981:RSC:358669.358692} to select two subsets
+of the sample dataset of the results: 1) the largest subset of the
 results that have highest correlation coefficient between {\model}
-scores and semantic scores of the results (Subset 1); and 2) the
-remaining translated methods in the sample dataset, in which they get inconsistent
-between semantic scores and {\model} scores (Subset 2).
+scores and semantic scores (Subset 1); and 2) the remaining
+translation results in the sample dataset, in which they have
+inconsistencies between semantic scores and {\model} scores (Subset 2).
+
 %Technically, RANSAC estimates a global relation that fits the
 %data, while simultaneously classifying the dataset into an inlier set
 %including the data points consistent with the relation and an outlier
@@ -80,7 +82,7 @@ RANSAC algorithm at first selects randomly the minimum number of
 results to determine the model parameters. Therefore, the chosen
 subsets depend on randomization. In order to achieve the Subsets 1 and
 2, we independently run RANSAC 10 times on the sample dataset of
-translated results.
+translation results.
 %
 The size of each subset for each time ranges from 224 to 315, while their correlation values are at the high rate (between 0.93 and 0.95).
 %
@@ -140,22 +142,22 @@ size of 308.
 %respectively.
 
 
-\textbf{Subset 1}. On this subset, the code features related to
-program dependencies and syntaxes that contribute to the semantics of
-the translated methods are captured by {\model}. By manually analyzing
-Subset 1, we categorize them into the following~cases.
+\noindent \textbf{Subset 1:} On this subset, the code features related
+to program dependencies and syntaxes that contribute to the semantics
+of the translated methods are captured by {\model}. By manually
+analyzing Subset 1, we categorize them into the following~cases.
 
-First, there are 32/308 cases that {\model} is able to capture program
-elements having the same functionality but with the lexical tokens
-different from the reference code. This feature is only fully captured
-by using PDGs in {\model}. For example, in
+First, there are 32 out of 308 cases that {\model} is able to capture
+program elements having the same functionality but with the lexical
+tokens different from the reference code. This feature is only fully
+captured by using PDGs in {\model}. For example, in
 Fig.~\ref{fig:mppSMT_example}, the translated code uses a \code{for}
 loop, which is the same meaning as \code{foreach} in the reference
-code. Moreover, access to an array element could be implemented by
-different ways such as \code{part[k]} or using Iterator.
+code. Moreover, access to an array element could be implemented in
+different ways such as via \code{part[k]} or \code{Iterator}.
 %
 
-Additionally, there are 66 translated results that correctly contain
+Additionally, there are 66 translation results that correctly contain
 the key program elements such as API elements, method calls, and
 variables as in the reference code, even though their usages are
 incorrect. By comparing tree representations with TRS, {\model} can
@@ -167,9 +169,9 @@ both translated and reference code, but the first parameter is not correct.
 %
 
 %Tien
-Finally, in Subset 1, there are the translated results containing the
+Finally, in Subset 1, there are the translation results containing the
 same structures and data flows as in the reference code, but lexically
-differ from them. For example, in Fig.~\ref{fig:samples}, the
+differ from one another. For example, in Fig.~\ref{fig:samples}, the
 structure of the method \code{CurveTo} in the translated version is
 similar to the reference one with the condition branches \code{if} and
 throwing exception \code{IllegalPdfSyntaxException}. {\model} reflects
@@ -207,11 +209,11 @@ dependencies among program entities.
 	\label{fig:samples}
 \end{figure}
 
-\textbf{Subset 2}.
-%The past Stephen Hawking said: "One of the basic rules of the universe
-%is that nothing is perfect. Perfection simply does not
+\noindent \textbf{Subset 2:}
+%The past Stephen Hawking said: "One of the basic rules of the
+%universe is that nothing is perfect. Perfection simply does not
 %exist".
-{\model} also suffers limitations.  {\model} aims to measure the
+{\model} also suffers limitations. {\model} aims to measure the
 similarity between the translated code and the reference one in the
 highest applicable representation level among text, AST, and
 PDG. However, in our sample set, there are some results that are
