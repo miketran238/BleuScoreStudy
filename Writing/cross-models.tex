@@ -84,14 +84,18 @@ than the result from mppSMT.
 %Because of the results above, BLEU is not reliable to use in comparing different SMT-based migration models.
 
 In our work, we additionally conducted another experiment in the same
-manner to verify our hypothesis on two pairs of SMT-based migration
-models: lpSMT~\cite{fse13} and GNMT~\cite{gnmt}, and
-mppSMT~\cite{ase15} and GNMT~\cite{gnmt}. The results from our
-$t$-tests allowed us to conclude that an improvement in BLEU score is
-not sufficient nor necessary to reflect a higher semantic score with
-the confidence of 0.95. Thus, the experimental results also support
-our hypothesis. The details of this study can be found on our
-website~\cite{ruby-website}.
+manner on two pairs of SMT-based migration models: lpSMT~\cite{fse13}
+and GNMT~\cite{gnmt}, and mppSMT~\cite{ase15} and
+GNMT~\cite{gnmt}. The results from our $t$-tests allowed us to
+conclude that an improvement in BLEU score is not sufficient nor
+necessary to reflect a higher semantic score with the confidence of
+0.95. Thus, the experimental results also invalidate the conditions. All
+results can be found on our website~\cite{ruby-website}.
 
-In brief, we conclude that \textit{BLEU is not effective in comparing
-  the translation quality of SMT-based code migration models}.
+In brief, {\em BLEU is not effective in comparing SMT-based code
+  migration models}. Finally, because both of the above necessary
+conditions are false, we can conclude that {\em BLEU score does not
+  measure well the quality of translated results}.
+
+%In brief, we conclude that \textit{BLEU is not effective in comparing
+%  the translation quality of SMT-based code migration models}.
