@@ -5,63 +5,61 @@ similarity of source code, which utilize the similarities of
 structures and 
 dependencies~\cite{clone-tse07,roy09,baker97,ccfinder,cpminer,deckard,deckard2,horwitz01,baxter98}.
 %ducasse99
-Specifically, several approaches in the code {\bf clone detection}
-literature have been
-proposed~\cite{clone-tse07,roy09}. Generally, they can be
-classified based on their code representations. The typical categories
-are {\em text-based}~\cite{ducasse-icsm99},
-{\em token-based}~\cite{baker97,ccfinder,cpminer,mende08},
-{\em tree-based}~\cite{baxter98,deckard}, and
+Specifically, several approaches in the {\em code clone detection}
+literature have been proposed~\cite{clone-tse07,roy09}. Generally,
+they can be classified based on their code representations. The
+typical categories are {\em text-based}~\cite{ducasse-icsm99}, {\em
+  token-based}~\cite{baker97,ccfinder,cpminer,mende08}, {\em
+  tree-based}~\cite{baxter98,deckard}, and
 %evan07
 {\em graph-based}~\cite{deckard2,horwitz01,liu06}.
 %Mende \emph{et al.}~\cite{mende08} proposed a token-based similarity
 %approach for grow-and-prune model in evolving software.
 
 The text-based~\cite{ducasse-icsm99} and token-based~\cite{ccfinder}
-approaches are usually efficient, scalable, and independent of the
-programming languages. However, they could not detect the code clones
-with different syntactic structures. AST-based
-approaches~\cite{baxter98} overcome that limitation but is
-language-dependent and has higher computational complexity. Other
-approaches~\cite{fase09,deckard} make use of vector computation to
-represent tree-based structures to reduce such complexity.
-Deckard~\cite{deckard} introduced the use of vectors in clone
-detection. In Exas~\cite{fase09}, the authors showed that vector
+approaches are efficient, scalable, and independent of the programming
+languages. However, they cannot detect the code clones with different
+syntactic structures. AST-based approaches~\cite{baxter98} overcome
+that limitation but is language-dependent and has higher computational
+complexity. Other approaches~\cite{fase09,deckard} make use of vector
+computation to represent tree-based structures to reduce such
+complexity.  Deckard~\cite{deckard} introduced the use of vectors in
+clone detection. In Exas~\cite{fase09}, the authors showed that vector
 representation for tree-based fragments is more generalized. Deckard
-tool counts only distinct AST node types in a subtree for a fragment,
-while Exas captures structural features via paths and sibling
-sets. However, they could not detect semantic clones.
+counts only distinct AST node types in a subtree for a fragment, while
+Exas captures structural features via paths and sibling sets.
+%However, they could not detect semantic clones.
 %
 %Jia \emph{et al.}~\cite{kclone} proposed the combination of lexical
 %and local dependence analysis. 
 %Cordy \emph{et al.}~\cite{cordy-cascon04} used lexical comparison
 %tools and language-specific extractors to locate potential clones.
-NICAD~\cite{nicad08} detects near-miss intentional clones using flexible
-pretty-printing and code normalization.
+NICAD~\cite{nicad08} detects near-miss clones using flexible
+pretty-printing and code~normalization.
 %Other research aims to use visualization, code analysis, data mining
 %techniques to support code clone
 %management~\cite{girba-icpc06,ahmed-scam07,inoue07,lanza-wcre04,jeffgray04}.
 %Chilowicz \emph{et al.}~\cite{chi09} propose a signature for a subtree
 %using a tree database fingerprint method.
 
-Graph-based clone detection approaches, though providing clones
-of the higher level of abstraction, are time-consuming in detecting
+Graph-based clone detection approaches, though providing clones of the
+higher level of abstraction, are of high complexity in detecting
 similar subgraphs. Krinke's tool detects code clones via a program
 dependence graph (PDG)~\cite{krinke01}. It finds the maximal
 isomorphic subgraphs in a PDG by calculating the maximal $k$-limited
 path induced subgraphs. Such induced subgraphs are defined as the
 maximal similar subgraphs that are induced by $k$-limited paths
-starting at two vertices. Their approach is more heavy-weight than the use
-of vector-based calculation after structural feature extraction in Exas.
+starting at two vertices. Their approach is more heavy-weight than the
+use of vector-based calculation after structural feature extraction in
+Exas.
 
 
-
-
-Our work is similar in nature to Callison-Burch {\em et
-  al.}~\cite{Callison}'s study in NLP area. There exists criticism on
-BLEU as Callison-Burch {\em et al.}~\cite{Callison} argued that an
-improvement in BLEU metric is not sufficient nor necessary to show an
-improvement in translation quality.
+Our study
+%on BLEU score on code migration
+is similar in nature to Callison-Burch {\em et al.}~\cite{Callison}'s
+in NLP area. There exists criticism on BLEU as the authors argued that
+an improvement in BLEU metric is not sufficient nor necessary to show
+an improvement in translation quality.
 
 %Several approaches have been proposed to mine migration rules.
 %MAM~\cite{zhong-icse10} mines API mappings via Transformation Graphs.
@@ -92,7 +90,7 @@ Tu {\em et al.}~\cite{tu-fse14} improve $n$-gram model with caching
 capability for recently seen tokens to increase next-token prediction
 accuracy.
 %
-SLAMC~\cite{fse13} associates to code tokens semantic
+SLAMC~\cite{fse13} associates to code tokens the semantic
 annotations including their token and data types.
 %
 Maddison and Tarlow~\cite{tarlow14} use probabilistic context free

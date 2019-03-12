@@ -1,17 +1,18 @@
 \section{Conclusion}
-In this work, we invalidated the use of BLEU for code
-migration. We showed counterexamples to prove that BLEU is not
-effective in reflecting the semantic accuracy of translated code and
-in comparing different SMT-based migration systems. Our empirical
-study illustrated that BLEU has weak correlation with human judgment
-in the task of measuring semantics of translated source code. Also,
-BLEU's conclusion about the difference between models' translation
-quality is inconsistent with that from semantic scores. We concluded
-that BLEU is not suitable for source code migration, and proposed a
-new alternative metric {\model} to replace BLEU. {\model} is a novel
-ensemble metric that takes into account three representation levels of
-source code. We validated {\model} on multiple SMT-based code
-migration models to show its reliability in estimating semantic
-accuracy and comparing translation quality between those models.  With
-its advantages, {\model} can be used to evaluate SMT-based code
-migration~models.
+In this work, we invalidated the use of BLEU for code migration. We
+showed counterexamples to prove that BLEU is not effective in
+reflecting the semantic accuracy of translated code and in comparing
+different SMT-based code migration systems. Our empirical study
+illustrated that BLEU has weak correlation with human judgment in the
+task of measuring semantics of translated source code. Also, BLEU's
+decision on the difference between models' translation quality is
+inconsistent with that from semantic scores. We concluded that BLEU is
+not suitable for source code migration, and proposed a new alternative
+metric {\model} to replace BLEU. {\model} is a novel ensemble metric
+that takes into account three representation levels of source code. We
+validated {\model} on multiple SMT-based code migration models to show
+its reliability in estimating semantic accuracy and comparing
+translation quality between those models. {\model} is always definable
+for any code fragment even when not all three representations can be
+built. With its advantages, {\model} can be used to evaluate
+SMT-based code migration~models.
