@@ -12,7 +12,7 @@ tokens. The similarity between the translated result $T$ and its
 reference code $R$ is computed as:
 $$STS(R, T) = 1 - \frac{SED(S_R, S_T)}{max\left(length(S_R), length(S_T)\right)}$$
 where $SED(S_R, S_T)$ is the string edit distance between the
-reference sequence $S_R$ and the translated sequence $S_T$, that
+reference sequence $S_R$ and the translated sequence $S_T$. $SED$
 measures efforts that a user must edit in term of the tokens that need
 to be deleted/added to transform the resulting code into the correct one;
 $length(t)$ refers to the length of the sequence~$t$.
@@ -39,7 +39,7 @@ the similarity between two ASTs representing for the translated code $T$
 and the reference code $R$:
 $$TRS(R, T) = 1 -\frac{TED(AST_R, AST_T)}{size(AST_R) + size(AST_T)}$$ where $TED(AST_R, AST_T)$ is the edit
 distance between the ASTs of the reference code $AST_R$ and the
-translated code $AST_T$, which is calculated by the minimum number of
+translated code $AST_T$. $TED$ is calculated by the minimum number of
 editing operations on AST nodes ({\em add}, {\em delete}, {\em
   replace}, and {\em move}) to sequentially make $AST_R$ and $AST_T$
 identical \cite{oopsla10}; and $size(t)$ returns the number of

@@ -1,7 +1,8 @@
 \subsubsection{The use of {\model} in comparing models}
-To evaluate {\model}'s abilities in comparing the translation quality
-of models, we performed an evaluation of RUBY used in comparing
-the two models mppSMT and p-mppSMT.
+%To evaluate {\model}'s abilities in comparing the translation quality
+%of models,
+We performed an evaluation on RUBY being used in comparing the two
+models mppSMT and p-mppSMT.
 %examination to evaluate the effectiveness of {\model} in comparing
 %mppSMT and p-mppSMT. 
 %
@@ -13,12 +14,12 @@ and GNMT~\cite{gnmt}.
 %
 For any two models $M$ and $M'$, we proceeded as follows. First, we
 performed $t$-test (at the confidence level of 95\%) with the mean
-values of the semantic scores on the two sets of results migrated by
-the two models to compare them. We then processed $t$-test in the same
-manner on the two sets of {\model}'s scores for the results migrated
-by the two models to compare them. If the decision whether $M$ is
-better than $M'$ by {\model} is consistent with that by the semantic
-scores, we consider {\model} as effective in comparing the models.
+values of semantic scores on the two sets of results migrated by the
+two models. We then processed $t$-test in the same manner on the two
+sets of {\model}'s scores for the results migrated by the two
+models. If the decision whether $M$ is better than $M'$ by {\model} is
+consistent with that by the semantic scores, we consider {\model} as
+effective in comparing the models.
 
 %We use $t$-test and the mean values of semantic scores to conclude
 %about the translation quality comparison between two models with a
@@ -28,13 +29,13 @@ scores, we consider {\model} as effective in comparing the models.
 %effectiveness of {\model} in comparing these two models.
 
 
-\textbf{Comparing mppSMT and p-mppSMT}. In this experiment, 
+\noindent \textbf{Comparing mppSMT and p-mppSMT:} In this experiment, 
 to compare the two models mppSMT and p-mppSMT, by using $t$-test, we
 were able to reject the null hypothesis that \textit{the semantic
-scores of two models are equal} with $p$-value of 2.81E-85. Because the average semantic score of mppSMT
-is greater than p-mppSMT by 0.268, we conclude that the translation
-quality of mppSMT is better than p-mppSMT based on the semantic
-scores.
+scores of two models are equal} with $p$-value of 2.81E-85. Because
+the average semantic score of mppSMT is greater than p-mppSMT by
+0.268, we conclude that the translation quality of mppSMT is better
+than p-mppSMT based on the semantic scores.
 %
 To compare mppSMT and p-mppSMT using {\model}, we performed another
 $t$-test with the null hypothesis that \textit{the {\model} scores of
@@ -46,7 +47,9 @@ conclusion that mppSMT is better than p-mppSMT is consistently stated
 by {\model} and by the semantic scores.
 %based on {\model} and semantic score are consistent. 
 Thus, the effectiveness of {\model} in comparing
-mppSMT and p-mppSMT is confirmed.
+those two models
+%mppSMT and p-mppSMT
+is confirmed.
 %{\model} is able to identify their difference 
 %in translation quality estimated by semantic similarity. Specifically, the model mppSMT's 
 %average {\model} score is higher than p-mppSMT by \textbf{0.258} which nearly equals 
@@ -56,19 +59,24 @@ mppSMT and p-mppSMT is confirmed.
 %That means, we reject the null hypothesis and conclude that mppSMT's {\model} 
 %score is higher than p-mppSMT's ones.
 
-\textbf{Comparing real-world models}. We also performed another experiment to compare 
-the three models lpSMT~\cite{fse13}, mppSMT~\cite{ase15} and
-GNMT~\cite{gnmt} in pairwise. In our $t$-tests, for all pairs, we were able to reject the null hypotheses that \textit{the semantic scores of two models are equal} and \textit{the {\model} scores of two models are equal}. When comparing the average scores, {\model}'s decision is always consistent with the semantic score's. 
+\noindent \textbf{Comparing real-world models:}
+We also made pairwise comparison among the three models
+lpSMT~\cite{fse13}, mppSMT~\cite{ase15}, and GNMT~\cite{gnmt}. In our
+$t$-tests, for all pairs, we were able to reject the null hypotheses
+that \textit{the semantic scores of two models are equal}
+and \textit{the {\model} scores of two models are equal}. When
+comparing the average scores, {\model}'s decision is always consistent
+with the semantic scores.
 %
 The results including the $p$-values and the mean values for the
-translated results of three models are shown in
+translated results of the models are shown in
 Tables~\ref{table:tTestResult} and~\ref{table:avgRubySem}. 
 %
 As seen, for all pairs of models, an improvement in {\model} scores
-when comparing between models always reflects an improvement in
-translation quality (represented by semantic scores). Therefore, {\em
-{\model} can be used in comparison the SMT-based migration models
-because it reflects well the semantic scores in such comparison}.
+when comparing the models always reflects an improvement in
+translation quality (represented by semantic scores). In brief, {\em
+{\model} can be used in comparison SMT-based code migration models
+because it reflects well the semantic scores in such~comparison}.
 %
 %For all pairs of models, {\model} shows consistent results with
 %semantic scores. 
@@ -83,7 +91,7 @@ because it reflects well the semantic scores in such comparison}.
 \begin{table}
 \centering
 \tabcolsep 3pt
-\caption{$p$-value results in comparing models}
+\caption{$p$-value Results in Model Comparison}
 \begin{tabular}{|c|c|c|c|}
 \hline
  & GNMT \& mppSMT & lpSMT \& mppSMT & lpSMT \& GNMT \\
@@ -99,7 +107,7 @@ RUBY  & 2.27E-25 & 1.10E-3 & 9.72E-26  \\
 
 \begin{table}
 \centering
-\caption{Mean semantic scores and {\model} scores}
+\caption{Mean Semantic Scores and {\model} Scores}
 \begin{tabular}{|c|c|c|c|}
 \hline
  & GNMT & lpSMT & mppSMT \\

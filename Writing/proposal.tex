@@ -25,10 +25,18 @@ SMT-based code migration tools.  From the empirical results
 listed in Section~\ref{sec:alternatives}, we can observe that the
 metric measuring translated results in a higher level representation
 can achieve higher correlation coefficient with semantic score.
+%
+However, the higher representation like PDG cannot always be
+constructed due to the missing syntactic or semantic-related
+information in the translated results that is required to construct
+ASTs and PDGs. For example, the sets of methods that are translated by
+lpSMT, and applicable for GRS and TRS are quite limited, 75 and 123
+(out of 375 methods), respectively (the respective numbers for mppSMT
+are 239 and 292, and those for GNMT are 128 and 155).
 % Tien
-However, as explained earlier, we cannot use GRS as a sole metric to
-evaluate the migrated code because {\em not all resulting migrated
-code is sufficiently correct to build the PDGs or even~ASTs}.
+In brief, we cannot use GRS as a sole metric to evaluate the migrated code
+because {\em not all resulting migrated code is sufficiently correct
+  to build the PDGs or even~ASTs}.
 %to compute the feature vectors.
 
 To address this problem, we adopt an idea from machine learning,

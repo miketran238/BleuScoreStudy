@@ -1,4 +1,4 @@
-\subsection{Experimental results on alternative metrics}
+\subsection{Experimental Results on Alternative Metrics}
 
 %To further study the relations between each of the three above metrics
 %and the semantic scores, we conducted several experiments in the same
@@ -12,10 +12,10 @@ for these three metrics in the same manner as the experiment described in
 Section~\ref{sec:bleuresult}.
 
 The correlation coefficient results between each of the three metrics
-with the semantic score are described in
+with the semantic score are displayed in
 Table~\ref{table:correlation}. These results follow a similar trend:
 for each model, the correlation coefficients increase 
-according to the abstraction levels of code from text, syntax, to semantic
+accordingly to the abstraction levels of code from text, syntax, to semantic
 representations in three metrics. For example, for mppSMT, the correlation
 coefficient between STS and semantic score is 0.549, whereas that
 for TRS is much greater at 0.820. The highest value is the
@@ -54,20 +54,22 @@ two methods with equivalent PDGs, but with textually~different.
 %\label{table:metrics}
 %\end{table}
 
-Based on these empirical results, we conclude that the metric that
-measures the results in the higher abstraction level, the better
-metric for reflecting the semantics accuracy. However, the higher
-representation like PDG cannot always be constructed due to the
-missing syntactic or semantic-related information in the translated
-results that is required to construct ASTs and PDGs. For example, the
-sets of methods that are translated by lpSMT, and applicable for GRS
-and TRS are quite limited, 75 and 123 (out of 375 methods),
-respectively (the respective numbers for mppSMT are 239 and 292, and
-those for GNMT are 128 and 155). Therefore, we propose a metric to
-evaluate the quality of translated code, which uses the measurement of
-the similarity of translated code and expected results in multiple
+From these results, we conclude that the metric that measures the
+results in the higher abstraction level is better in reflecting
+semantics accuracy. Therefore, we propose a metric to evaluate the
+quality of translated code, which uses the measurement of the
+similarity of translated code and expected results in multiple
 representations at different abstraction levels
 (Section~\ref{sec:proposal}).
+
+%However, the higher representation like PDG cannot always be
+%constructed due to the missing syntactic or semantic-related
+%information in the translated results that is required to construct
+%ASTs and PDGs. For example, the sets of methods that are translated by
+%lpSMT, and applicable for GRS and TRS are quite limited, 75 and 123
+%(out of 375 methods), respectively (the respective numbers for mppSMT
+%are 239 and 292, and those for GNMT are 128 and 155).
+
 %It is not worth to use SED instead of BLEU since it still has the same
 %problems as BLEU while its advantage is insignificant.
 %We then present our proposed metric in section~7 based on the results of the following experiments.
@@ -76,7 +78,7 @@ representations at different abstraction levels
 
 \begin{table}
 \centering
-\caption{Correlation between each metric with tje semantic score on the three models}
+\caption{Correlation between Metrics with Semantic Score}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
  & STS & TRS & GRS\\
