@@ -6,7 +6,7 @@ reference code as the complement of string edit
 distance~\cite{levenshtein}, tree edit distance~\cite{oopsla10}, and
 graph edit distance~\cite{sanfeliu}, respectively.
 
-\textbf{String similarity (STS)} is the metric to compare the
+\textit{String similarity (STS)} is the metric to compare the
 similarity of source code that is represented as a sequence of
 tokens. The similarity between the translated result $T$ and its
 reference code $R$ is computed as:
@@ -34,7 +34,7 @@ $length(t)$ refers to the length of the sequence~$t$.
 %distance is calculated by number of operations ({\em add}, {\em
 %delete}, {\em replace}, and {\em move}) to make them identical.
 
-\textbf{Tree similarity (TRS)} is the metric used to measure
+\textit{Tree similarity (TRS)} is the metric used to measure
 the similarity between two ASTs representing for the translated code $T$
 and the reference code $R$:
 $$TRS(R, T) = 1 -\frac{TED(AST_R, AST_T)}{size(AST_R) + size(AST_T)}$$ where $TED(AST_R, AST_T)$ is the edit
@@ -86,7 +86,7 @@ nodes in the AST $t$.
 %the difference of two graphs.
 
 %TODO cite Sanfeliu, Alberto; Fu, King-Sun (1983). "A distance measure between attributed relational graphs for pattern recognition"
-In this work, we define \textbf{graph similarity (GRS)} between the
+In this work, we define \textit{graph similarity (GRS)} between the
 translated result $T$ and the reference code $R$ represented as PDGs
 by using graph edit distance~\cite{sanfeliu}. That is:
 $$GRS(R, T) = 1-\frac{GED(PDG_R, PDG_T)}{size(PDG_R)+ size(PDG_T)}$$ where $GED(PDG_R, PDG_T)$ is the edit distance
